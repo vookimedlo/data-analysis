@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{9529bc0a-2dd9-4a70-9a93-a84c8053fc8e}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{0e967389-375f-4cf4-be47-05ac77f6c949}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{6e8a8692-053c-4929-8915-fb778ba71586}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{fc57687d-d6a8-4e6c-9400-dd5f09f2233a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Operation">
+      <UniqueIdentifier>{7d4385bb-6d33-43af-ad3c-80a3c4be6703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Abstraction">
+      <UniqueIdentifier>{6e3a060b-36cb-4032-b094-d57424fc9706}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Report">
+      <UniqueIdentifier>{3e982037-f120-429e-8f3b-1ce4d17c0b6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rd Party">
+      <UniqueIdentifier>{8d854d96-3fce-4fd8-9e29-1a2bcd4b6e06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{b028dcc0-0bfc-4eeb-8f0a-b5cfdb8145a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller">
+      <UniqueIdentifier>{8cc80fe8-d992-460f-b0b7-0fd261682900}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DirectoryTreeModel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DirectoryTreeModel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DataItemTreeModel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DataItemTreeModel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_OperationDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_OperationDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DataItemSortFilterProxyModel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DataItemSortFilterProxyModel.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DataAnalyzer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DataAnalyzer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_DataAnalyzer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fs\File.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fs\Directory.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fs\DataItem.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fs\DataInfo.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\ModelHelper.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\StringHelper.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\operations\MagicOperation.cpp">
+      <Filter>Source Files\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\operations\MD5Operation.cpp">
+      <Filter>Source Files\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\operations\Operations.cpp">
+      <Filter>Source Files\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\operations\ReportOperation.cpp">
+      <Filter>Source Files\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\operations\ScanDirOperation.cpp">
+      <Filter>Source Files\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\abstraction\win\DiskReader.cpp">
+      <Filter>Source Files\Abstraction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\abstraction\win\FS.cpp">
+      <Filter>Source Files\Abstraction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\CSVReportWriter.cpp">
+      <Filter>Source Files\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\RTFReportWriter.cpp">
+      <Filter>Source Files\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\3rdParty\md5\md5.cpp">
+      <Filter>Source Files\3rd Party</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ui\OperationDialog.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ui\DataAnalyzer.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\controller\DataItemSortFilterProxyModel.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\controller\DataItemTreeModel.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\controller\DetailsPublisher.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\controller\DirectoryTreeModel.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\TagHelper.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\src\controller\DirectoryTreeModel.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\controller\DataItemTreeModel.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\forms\About.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\OperationDialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\forms\OperationDialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\controller\DataItemSortFilterProxyModel.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\DataAnalyzer.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\forms\DataAnalyzer.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\resource\DataAnalyzer.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\controller\DetailsPublisher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_About.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\3rdParty\md5\md5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\operations\MD5Operation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\operations\ScanDirOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_OperationDialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\operations\MagicOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\operations\ReportOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\ReportWriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\CSVReportWriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\operations\Operations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\RTFReportWriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\ModelHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\StringHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_DataAnalyzer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\ConnectionManagement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fs\DataInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fs\DataItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fs\Directory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fs\File.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\abstraction\DiskReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\abstraction\FS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\TagHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DataAnalyzer.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\src\resource\DataAnalyzer.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\folder-20110506-300px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\matt-icons_file-x-generic-300px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\primary-rotate-ccw-800px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\primary-rotate-cw-800px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\redbuttonx-800px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\media-playback-start-300px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\tasto-7-architetto-franc-01-300px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\tasto-7-architetto-franc-01-800px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\tasto-8-architetto-franc-01-300px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\tasto-8-architetto-franc-01-800px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\Exit-by-Rones-800px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\1467665209-300px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\1467665209-800px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\1467665209-2400px.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\frame-radar-icon-001.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\frame-fingerprint.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\frame-fingerprint-magic.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\src\resource\frame-adriankierman-report-page.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\translations\dataanalyzer_cs_CZ.ts">
+      <Filter>Translation Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

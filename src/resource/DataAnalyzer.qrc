@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>DataAnalyzer.ico</file>
+        <file alias="1467665209-300px.png">images/1467665209-300px.png</file>
+        <file alias="1467665209-800px.png">images/1467665209-800px.png</file>
+        <file alias="1467665209-2400px.png">images/1467665209-2400px.png</file>
+        <file alias="Exit-by-Rones-800px.png">images/Exit-by-Rones-800px.png</file>
+        <file alias="folder-20110506-300px.png">images/folder-20110506-300px.png</file>
+        <file alias="frame-adriankierman-report-page-csv.png">images/frame-adriankierman-report-page-csv.png</file>
+        <file alias="frame-adriankierman-report-page-rtf.png">images/frame-adriankierman-report-page-rtf.png</file>
+        <file alias="frame-fingerprint.png">images/frame-fingerprint.png</file>
+        <file alias="frame-fingerprint-magic.png">images/frame-fingerprint-magic.png</file>
+        <file alias="frame-radar-icon-001.png">images/frame-radar-icon-001.png</file>
+        <file alias="matt-icons_file-x-generic-300px.png">images/matt-icons_file-x-generic-300px.png</file>
+        <file alias="media-playback-start-300px.png">images/media-playback-start-300px.png</file>
+        <file alias="primary-rotate-ccw-800px.png">images/primary-rotate-ccw-800px.png</file>
+        <file alias="primary-rotate-cw-800px.png">images/primary-rotate-cw-800px.png</file>
+        <file alias="redbuttonx-800px.png">images/redbuttonx-800px.png</file>
+        <file alias="tasto-7-architetto-franc-01-300px.png">images/tasto-7-architetto-franc-01-300px.png</file>
+        <file alias="tasto-7-architetto-franc-01-800px.png">images/tasto-7-architetto-franc-01-800px.png</file>
+        <file alias="tasto-8-architetto-franc-01-300px.png">images/tasto-8-architetto-franc-01-300px.png</file>
+        <file alias="tasto-8-architetto-franc-01-800px.png">images/tasto-8-architetto-franc-01-800px.png</file>
+    </qresource>
+    <qresource prefix="/text">
+        <file>text/about.htm</file>
+    </qresource>
+</RCC>
