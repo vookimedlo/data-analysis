@@ -30,7 +30,7 @@ ReportOperation::ReportOperation(ReportWriter& writer, DataItem &rootItem) : m_c
 
 void ReportOperation::start(std::wstring dir)
 {
-    throw std::exception("Not supported");
+    throw std::runtime_error("Not implemented!");
 }
 
 void ReportOperation::start()

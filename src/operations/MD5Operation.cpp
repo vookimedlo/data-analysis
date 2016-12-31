@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../fs/Directory.h"
 #include "../fs/File.h"
 #include "../util/ModelHelper.h"
+#include "../util/StringHelper.h"
 
 #include "MD5Operation.h"
 
@@ -32,7 +33,7 @@ MD5Operation::MD5Operation(DataItem &rootItem) : m_cancelWorkerActivity(false), 
 
 void MD5Operation::start(std::wstring dir)
 {
-    throw std::exception("Not supported");
+    throw std::runtime_error("Not implemented!");
 }
 
 void MD5Operation::start()
@@ -113,7 +114,7 @@ void MD5Operation::startOperation()
 bool MD5Operation::computeMD5(MD5& md5, std::wstring path)
 {
     char memblock[4096];
-    std::ifstream f(path, std::ios::in | std::ios::binary);
+    std::ifstream f(StringHelper::WString2String(path), std::ios::in | std::ios::binary);
 
     if (f.is_open())
     {

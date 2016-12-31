@@ -42,7 +42,7 @@ class DataItem
     virtual DataItem* const parent() const;
     virtual void optimize();
 
-    std::wstring DataItem::path();
+    std::wstring path();
     std::string info(const DataInfo::DataInfoE dataInfo);
     std::vector<DataInfo::DataInfoE> infos() const;
     bool isInfoValid(const DataInfo::DataInfoE dataInfo) const;    

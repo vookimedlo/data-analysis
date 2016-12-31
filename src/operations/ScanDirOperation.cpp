@@ -39,7 +39,7 @@ void ScanDirOperation::start(std::wstring dir)
 
 void ScanDirOperation::start()
 {
-    throw std::exception("Not supported");
+    throw std::runtime_error("Not implemented!");
 }
 
 void ScanDirOperation::cancel()
