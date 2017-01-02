@@ -51,7 +51,7 @@ MagicOperation::~MagicOperation()
 
 void MagicOperation::start(std::wstring dir)
 {
-    throw std::exception("Not supported");
+    throw std::runtime_error("Not supported");
 }
 
 void MagicOperation::start()
