@@ -74,3 +74,7 @@ FORMS += \
     ../../src/ui/forms/OperationDialog.ui
 
 unix:!macx: LIBS += -lmagic
+
+macx: LIBS += -L$$PWD/../../src/3rdParty/libmagic/macos/lib/ -lmagic.1
+macx: INCLUDEPATH += $$PWD/../../src/3rdParty/libmagic/macos/include
+macx: DEPENDPATH += $$PWD/../../src/3rdParty/libmagic/macos/include

@@ -26,11 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../fs/DataInfo.h"
 #include "../fs/Directory.h"
 #include "../fs/File.h"
-
-#if !defined Q_OS_MACOS
 #include "../operations/MagicOperation.h"
-#endif
-
 #include "../operations/MD5Operation.h"
 #include "../operations/ReportOperation.h"
 #include "../operations/ScanDirOperation.h"
@@ -182,7 +178,6 @@ void DataAnalyzer::onMD5Triggered()
 
 void DataAnalyzer::onFileMagicTriggered()
 {
-#if !defined Q_OS_MACOS
     QItemSelectionModel *selectionModel = ui.dataItemTreeView->selectionModel();
     if (selectionModel) // If the model exists
     {
@@ -208,7 +203,6 @@ void DataAnalyzer::onFileMagicTriggered()
             dialog.exec();
         }
     }
-#endif
 }
 
 void DataAnalyzer::onCSVReportTriggered()
