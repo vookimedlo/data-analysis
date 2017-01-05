@@ -126,9 +126,6 @@
     <ClCompile Include="..\..\src\operations\MagicOperation.cpp">
       <Filter>Source Files\Operation</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\operations\MD5Operation.cpp">
-      <Filter>Source Files\Operation</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\operations\Operations.cpp">
       <Filter>Source Files\Operation</Filter>
     </ClCompile>
@@ -150,9 +147,6 @@
     <ClCompile Include="..\..\src\reports\RTFReportWriter.cpp">
       <Filter>Source Files\Report</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\3rdParty\md5\md5.cpp">
-      <Filter>Source Files\3rd Party</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\ui\OperationDialog.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
@@ -173,6 +167,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\util\TagHelper.cpp">
       <Filter>Source Files\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\operations\HashOperation.cpp">
+      <Filter>Source Files\Operation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -210,12 +207,6 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_About.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\3rdParty\md5\md5.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\operations\MD5Operation.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\operations\ScanDirOperation.h">
       <Filter>Header Files</Filter>
@@ -272,6 +263,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\util\TagHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\operations\HashOperation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

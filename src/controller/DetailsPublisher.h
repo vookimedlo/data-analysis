@@ -17,6 +17,8 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
+#include <QCoreApplication>
+
 ///Forward declarations
 class DataItem;
 class QListWidget;
@@ -24,6 +26,7 @@ class QTreeWidget;
 
 class DetailsPublisher
 {
+    Q_DECLARE_TR_FUNCTIONS(DetailsPublisher);
 public:
     static void toUI(QTreeWidget &treeWidget, QListWidget& tagListWidget, DataItem &item);
     static void toModel(QTreeWidget &treeWidget, QListWidget& tagListWidget, DataItem &item);

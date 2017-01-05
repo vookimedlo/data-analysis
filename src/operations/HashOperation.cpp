@@ -19,49 +19,50 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <future>
 #include <queue>
-#include "../3rdParty/md5/md5.h"
+#include <QCryptographicHash>
+#include <QFile>
 #include "../fs/Directory.h"
 #include "../fs/File.h"
 #include "../util/ModelHelper.h"
 #include "../util/StringHelper.h"
 
-#include "MD5Operation.h"
+#include "HashOperation.h"
 
-MD5Operation::MD5Operation(DataItem &rootItem) : m_cancelWorkerActivity(false), m_RootItem(rootItem)
+HashOperation::HashOperation(QCryptographicHash &hash, DataInfo::DataInfoE info, DataItem &rootItem) : m_cancelWorkerActivity(false), m_RootItem(rootItem), m_hash(hash), m_info(info)
 {
 }
 
-void MD5Operation::start(std::wstring dir)
+void HashOperation::start(std::wstring dir)
 {
     throw std::runtime_error("Not implemented!");
 }
 
-void MD5Operation::start()
+void HashOperation::start()
 {
     m_asyncScanWorker = std::async(std::launch::async, [&]() { this->startOperation(); });
 }
 
-void MD5Operation::cancel()
+void HashOperation::cancel()
 {
     m_cancelWorkerActivity = true;
 }
 
-bool MD5Operation::isFinished() const
+bool HashOperation::isFinished() const
 {
     return m_asyncScanWorker.valid() ? std::future_status::ready == m_asyncScanWorker.wait_for(std::chrono::seconds(0)) : true;
 }
 
-std::wstring MD5Operation::path() const
+std::wstring HashOperation::path() const
 {
     return m_RootItem.path();
 }
 
-uint32_t MD5Operation::totalFilesCount() const
+uint32_t HashOperation::totalFilesCount() const
 {
     return ModelHelper::filesCount(m_RootItem);
 }
 
-void MD5Operation::startOperation()
+void HashOperation::startOperation()
 {
     unsigned numFiles = 0, numDirs = 0;
     std::queue<Directory *> q;
@@ -87,9 +88,8 @@ void MD5Operation::startOperation()
 
             for (File *file : d->files())
             {
-                MD5 md5;
-                if (computeMD5(md5, file->path()))
-                    file->addInfo(DataInfo::DataInfoE_MD5, md5.hexdigest());
+                if (computeHash(m_hash, file->path()))
+                    file->addInfo(m_info, QString(m_hash.result().toHex()).toStdString());
 
                 ++numFiles;
                 m_observersFilesRead.call(numFiles);
@@ -99,9 +99,8 @@ void MD5Operation::startOperation()
     }
     else
     {
-        MD5 md5;
-        if (computeMD5(md5, m_RootItem.path()))
-            m_RootItem.addInfo(DataInfo::DataInfoE_MD5, md5.hexdigest());
+        if (computeHash(m_hash, m_RootItem.path()))
+            m_RootItem.addInfo(m_info, QString(m_hash.result().toHex()).toStdString());
 
         ++numFiles;
         m_observersFilesRead.call(numFiles);
@@ -111,25 +110,13 @@ void MD5Operation::startOperation()
     m_observersResultVoid.call();
 }
 
-bool MD5Operation::computeMD5(MD5& md5, std::wstring path)
+bool HashOperation::computeHash(QCryptographicHash& hash, std::wstring path)
 {
-    char memblock[4096];
-    std::ifstream f(StringHelper::WString2String(path), std::ios::in | std::ios::binary);
+    QFile file(StringHelper::WString2QString(path));
+    hash.reset();
+    
+    if (file.open(QIODevice::ReadOnly))
+        return hash.addData(&file);
 
-    if (f.is_open())
-    {
-        while (f)
-        {
-            f.read(memblock, sizeof(memblock));
-            md5.update(memblock, f.gcount());
-        }
-        if (f.eof())
-        {
-            md5.finalize();
-            f.close();
-            return true; /***********/
-        }
-        f.close();
-    }
-    return false; /***********/
+    return false;
 }

@@ -29,6 +29,8 @@ class DataInfo
           DataInfoE_Tag,
           DataInfoE_MD5,
           DataInfoE_Magic,
+          DataInfoE_SHA1,
+          DataInfoE_SHA3_512,
 	  };
  
     DataInfo();

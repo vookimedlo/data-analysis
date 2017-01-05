@@ -18,10 +18,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
 #include <memory>
+#include <QCryptographicHash>
 #include "ui_DataAnalyzer.h"
 #include "../controller/DataItemSortFilterProxyModel.h"
 #include "../controller/DataItemTreeModel.h"
 #include "../controller/DirectoryTreeModel.h"
+#include "../fs/DataInfo.h"
 
 class DataItem;
 class Directory;
@@ -49,10 +51,13 @@ public Q_SLOTS:
     void onFileMagicTriggered();
     void onCSVReportTriggered();
     void onRTFReportTriggered();
+    void onSHA1Triggered();
+    void onSHA3_512Triggered();
 
 protected:
     void dataItemSelected(QModelIndex index);
     void assignDataItemToAnalysis(DataItem *item);
+    void hashOperation(QCryptographicHash::Algorithm algorithm, DataInfo::DataInfoE info, QString &dialogTitle);
 
 private:
     Ui::DataAnalyzerClass ui;

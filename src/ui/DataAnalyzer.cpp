@@ -18,16 +18,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <fstream>
 #include <QImageReader>
+#include <QCryptographicHash>
 #include <QPixmap>
 
 #include "OperationDialog.h"
 #include "ui_About.h"
 #include "../controller/DetailsPublisher.h"
-#include "../fs/DataInfo.h"
 #include "../fs/Directory.h"
 #include "../fs/File.h"
 #include "../operations/MagicOperation.h"
-#include "../operations/MD5Operation.h"
+#include "../operations/HashOperation.h"
 #include "../operations/ReportOperation.h"
 #include "../operations/ScanDirOperation.h"
 #include "../reports/CSVReportWriter.h"
@@ -149,31 +149,20 @@ void DataAnalyzer::onAbout()
 
 void DataAnalyzer::onMD5Triggered()
 {    
-    QItemSelectionModel *selectionModel = ui.dataItemTreeView->selectionModel();
-    if(selectionModel) // If the model exists
-    {
-        if (m_selectedDataItem) // If the model has an selection
-        {
-            QModelIndex currentIndex = selectionModel->currentIndex();
-            if (currentIndex.isValid())
-            {
-                DataItem *item = static_cast<DataItem *>(currentIndex.internalPointer());
-                MD5Operation operation(*item);
-                
-                OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
-                dialog.setTitle(tr("MD5 computation"));
-                dialog.exec();
-            }
-        }
-        else // In case of no selection, just uise the root
-        {
-            MD5Operation operation(*m_topLevelDirectory);
+    QString dialogTitile(tr("MD5 computation"));
+    hashOperation(QCryptographicHash::Md5, DataInfo::DataInfoE_MD5, dialogTitile);
+}
 
-            OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
-            dialog.setTitle(tr("MD5 computation"));
-            dialog.exec();
-        }
-    }
+void DataAnalyzer::onSHA1Triggered()
+{
+    QString dialogTitile(tr("SHA-1 computation"));
+    hashOperation(QCryptographicHash::Sha1, DataInfo::DataInfoE_SHA1, dialogTitile);
+}
+
+void DataAnalyzer::onSHA3_512Triggered()
+{
+    QString dialogTitile(tr("SHA3-512 computation"));
+    hashOperation(QCryptographicHash::Sha3_512, DataInfo::DataInfoE_SHA3_512, dialogTitile);
 }
 
 void DataAnalyzer::onFileMagicTriggered()
@@ -292,5 +281,35 @@ void DataAnalyzer::assignDataItemToAnalysis(DataItem* item)
     else
     {
         ui.analysisTextEdit->setPlainText(QString(""));
+    }
+}
+
+void DataAnalyzer::hashOperation(QCryptographicHash::Algorithm algorithm, DataInfo::DataInfoE info, QString &dialogTitle)
+{
+    QCryptographicHash hash(algorithm);
+    QItemSelectionModel *selectionModel = ui.dataItemTreeView->selectionModel();
+    if (selectionModel) // If the model exists
+    {
+        if (m_selectedDataItem) // If the model has an selection
+        {
+            QModelIndex currentIndex = selectionModel->currentIndex();
+            if (currentIndex.isValid())
+            {
+                DataItem *item = static_cast<DataItem *>(currentIndex.internalPointer());
+                HashOperation operation(hash, info, *item);
+
+                OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
+                dialog.setTitle(dialogTitle);
+                dialog.exec();
+            }
+        }
+        else // In case of no selection, just uise the root
+        {
+            HashOperation operation(hash, info, *m_topLevelDirectory);
+
+            OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
+            dialog.setTitle(dialogTitle);
+            dialog.exec();
+        }
     }
 }

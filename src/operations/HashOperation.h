@@ -18,17 +18,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
 #include <future>
+#include "../fs/DataInfo.h"
 #include "../operations/Operations.h"
 
 
 /// Forward declarations
-class MD5;
 class DataItem;
+class QCryptographicHash;
 
-class MD5Operation : public Operations
+class HashOperation : public Operations
 {
 public:
-    MD5Operation(DataItem &rootItem);
+    HashOperation(QCryptographicHash &hash, DataInfo::DataInfoE info, DataItem &rootItem);
     void start(std::wstring dir) override;
     void start() override;
     void cancel() override;
@@ -38,10 +39,12 @@ public:
 
 protected:
     void startOperation();
-    static bool computeMD5(MD5 &md5, std::wstring path);
+    static bool computeHash(QCryptographicHash& hash, std::wstring path);
 
 private:
     std::future<void> m_asyncScanWorker;
     bool m_cancelWorkerActivity;
     DataItem &m_RootItem;
+    QCryptographicHash &m_hash;
+    DataInfo::DataInfoE m_info;
 };

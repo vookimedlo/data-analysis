@@ -153,7 +153,6 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  $(OutDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\3rdParty\md5\md5.cpp" />
     <ClCompile Include="..\..\src\abstraction\win\DiskReader.cpp" />
     <ClCompile Include="..\..\src\abstraction\win\FS.cpp" />
     <ClCompile Include="..\..\src\controller\DataItemSortFilterProxyModel.cpp" />
@@ -167,7 +166,7 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  $(OutDir)</Command>
     <ClCompile Include="..\..\src\util\ModelHelper.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\operations\MagicOperation.cpp" />
-    <ClCompile Include="..\..\src\operations\MD5Operation.cpp" />
+    <ClCompile Include="..\..\src\operations\HashOperation.cpp" />
     <ClCompile Include="..\..\src\operations\Operations.cpp" />
     <ClCompile Include="..\..\src\operations\ReportOperation.cpp" />
     <ClCompile Include="..\..\src\operations\ScanDirOperation.cpp" />
@@ -272,7 +271,6 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  $(OutDir)</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\3rdParty\md5\md5.h" />
     <ClInclude Include="..\..\src\abstraction\DiskReader.h" />
     <ClInclude Include="..\..\src\abstraction\FS.h" />
     <ClInclude Include="..\..\src\util\ConnectionManagement.h" />
@@ -355,7 +353,7 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  $(OutDir)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_SQL_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB  "-I.\..\..\src\3rdParty\libmagic\win32\include" "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtMultimedia" "-I$(QTDIR)\include\QtMultimediaWidgets" "-I$(QTDIR)\include\QtSql" "-I$(QTDIR)\include\QtSvg" "-I$(QTDIR)\include\QtWidgets"</Command>
     </CustomBuild>
     <ClInclude Include="..\..\src\operations\MagicOperation.h" />
-    <ClInclude Include="..\..\src\operations\MD5Operation.h" />
+    <ClInclude Include="..\..\src\operations\HashOperation.h" />
     <ClInclude Include="..\..\src\operations\Operations.h" />
     <ClInclude Include="..\..\src\operations\ReportOperation.h" />
     <ClInclude Include="..\..\src\operations\ScanDirOperation.h" />

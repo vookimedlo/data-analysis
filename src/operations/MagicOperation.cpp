@@ -19,7 +19,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <future>
 #include <queue>
-#include "../3rdParty/md5/md5.h"
+#include <QString>
 #include "../abstraction/FS.h"
 #include "../fs/Directory.h"
 #include "../fs/File.h"
@@ -135,29 +135,3 @@ void MagicOperation::startOperation()
 
     m_observersResultVoid.call();
 }
-
-#if 0
-bool MagicOperation::computeMD5(MD5& md5, std::wstring path)
-{
-    char memblock[4096];
-    std::ifstream f(path, std::ios::in | std::ios::binary);
-
-    if (f.is_open())
-    {
-        while (f)
-        {
-            f.read(memblock, sizeof(memblock));
-            md5.update(memblock, f.gcount());
-        }
-        if (f.eof())
-        {
-            md5.finalize();
-            f.close();
-            return true; /***********/
-        }
-        f.close();
-    }
-    return false; /***********/
-}
-
-#endif

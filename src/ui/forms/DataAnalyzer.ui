@@ -331,9 +331,17 @@
      <addaction name="actionFinalReportCSV"/>
      <addaction name="actionFinalReportRTF"/>
     </widget>
+    <widget class="QMenu" name="menuHash_computation">
+     <property name="title">
+      <string>Hash computation</string>
+     </property>
+     <addaction name="actionMD5"/>
+     <addaction name="actionSHA_1_computation"/>
+     <addaction name="actionSHA3_512_computation"/>
+    </widget>
     <addaction name="actionScan"/>
-    <addaction name="actionMD5"/>
     <addaction name="actionFileMagic"/>
+    <addaction name="menuHash_computation"/>
     <addaction name="separator"/>
     <addaction name="menuGen"/>
    </widget>
@@ -376,13 +384,14 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="separator"/>
    <addaction name="actionScan"/>
+   <addaction name="separator"/>
    <addaction name="actionMD5"/>
    <addaction name="actionFileMagic"/>
    <addaction name="separator"/>
    <addaction name="actionFinalReportCSV"/>
    <addaction name="actionFinalReportRTF"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget">
    <property name="windowTitle">
@@ -594,7 +603,7 @@
      <normaloff>:/images/frame-fingerprint-magic.png</normaloff>:/images/frame-fingerprint-magic.png</iconset>
    </property>
    <property name="text">
-    <string>Data type analysis</string>
+    <string>Data type analysis ...</string>
    </property>
    <property name="shortcut">
     <string notr="true">Meta+Ctrl+T</string>
@@ -610,6 +619,16 @@
    </property>
    <property name="text">
     <string>RTF</string>
+   </property>
+  </action>
+  <action name="actionSHA_1_computation">
+   <property name="text">
+    <string>SHA-1 computation ...</string>
+   </property>
+  </action>
+  <action name="actionSHA3_512_computation">
+   <property name="text">
+    <string>SHA3-512 computation ...</string>
    </property>
   </action>
  </widget>
@@ -842,6 +861,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionSHA_1_computation</sender>
+   <signal>triggered()</signal>
+   <receiver>DataAnalyzerClass</receiver>
+   <slot>onSHA1Triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>647</x>
+     <y>362</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSHA3_512_computation</sender>
+   <signal>triggered()</signal>
+   <receiver>DataAnalyzerClass</receiver>
+   <slot>onSHA3_512Triggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>647</x>
+     <y>362</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onScanTriggered()</slot>
@@ -857,5 +908,7 @@
   <slot>onFileMagicTriggered()</slot>
   <slot>onCSVReportTriggered()</slot>
   <slot>onRTFReportTriggered()</slot>
+  <slot>onSHA1Triggered()</slot>
+  <slot>onSHA3_512Triggered()</slot>
  </slots>
 </ui>
