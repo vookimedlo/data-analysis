@@ -164,6 +164,7 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  $(OutDir)</Command>
     <ClCompile Include="..\..\src\fs\Directory.cpp" />
     <ClCompile Include="..\..\src\fs\File.cpp" />
     <ClCompile Include="..\..\src\reports\HTMLReportWriter.cpp" />
+    <ClCompile Include="..\..\src\reports\ReportSettings.cpp" />
     <ClCompile Include="..\..\src\util\ModelHelper.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\operations\MagicOperation.cpp" />
@@ -275,6 +276,7 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  $(OutDir)</Command>
     <ClInclude Include="..\..\src\abstraction\DiskReader.h" />
     <ClInclude Include="..\..\src\abstraction\FS.h" />
     <ClInclude Include="..\..\src\reports\HTMLReportWriter.h" />
+    <ClInclude Include="..\..\src\reports\ReportSettings.h" />
     <ClInclude Include="..\..\src\util\ConnectionManagement.h" />
     <CustomBuild Include="..\..\src\controller\DirectoryTreeModel.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
@@ -366,6 +368,7 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  $(OutDir)</Command>
     <ClInclude Include="..\..\src\util\TagHelper.h" />
     <ClInclude Include="GeneratedFiles\ui_About.h" />
     <ClInclude Include="GeneratedFiles\ui_DataAnalyzer.h" />
+    <ClInclude Include="GeneratedFiles\ui_FinalReportDialog.h" />
     <ClInclude Include="GeneratedFiles\ui_OperationDialog.h" />
   </ItemGroup>
   <ItemGroup>
@@ -546,6 +549,24 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  $(OutDir)</Command>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\translations\dataanalyzer_cs_CZ.ts" />
+    <CustomBuild Include="..\..\src\ui\forms\FinalReportDialog.ui">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

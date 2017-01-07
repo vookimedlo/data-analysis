@@ -22,6 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QCoreApplication>
 
 #include "ReportWriter.h"
+#include "ReportSettings.h"
 
 class QString;
 
@@ -30,7 +31,7 @@ class HTMLReportWriter : public ReportWriter
     Q_DECLARE_TR_FUNCTIONS(HTMLReportWriter);
 
 public:
-    explicit HTMLReportWriter(std::string outputFilePath);
+    explicit HTMLReportWriter(const ReportSettings &reportSettings);
     ~HTMLReportWriter() override;
     bool open() override;
     bool write(DataItem &dataiItem) override;
@@ -43,5 +44,5 @@ protected:
 
 private:
     std::ofstream m_OutputStream;
-    std::string m_OutputFilePath;
+    const ReportSettings &m_ReportSettings;
 };

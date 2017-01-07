@@ -174,6 +174,9 @@
     <ClCompile Include="..\..\src\reports\HTMLReportWriter.cpp">
       <Filter>Source Files\Report</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\reports\ReportSettings.cpp">
+      <Filter>Source Files\Report</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\src\controller\DirectoryTreeModel.h">
@@ -202,6 +205,9 @@
     </CustomBuild>
     <CustomBuild Include="..\..\src\resource\DataAnalyzer.qrc">
       <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\forms\FinalReportDialog.ui">
+      <Filter>Form Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -272,6 +278,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\reports\HTMLReportWriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_FinalReportDialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\ReportSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

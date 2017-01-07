@@ -68,3 +68,24 @@ div.analysis {
     border-top: 0;
     border-radius: 0 0 15px 15px;
 }
+
+span.title {
+    display: block;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+span.reference {
+    display: block;
+    font-weight: bold;
+    font-size: 15px;
+    font-style: italic;
+    padding-bottom: 1em;
+}
+
+div.perex {
+    padding: 0 10px 10px 10px;
+    white-space: pre;
+    border-bottom: 20px solid;
+    margin-bottom: 10px;
+}

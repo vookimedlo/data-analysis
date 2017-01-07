@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "HTMLReportWriter.h"
 
 
-HTMLReportWriter::HTMLReportWriter(std::string outputFilePath) : m_OutputStream(), m_OutputFilePath(outputFilePath)
+HTMLReportWriter::HTMLReportWriter(const ReportSettings &reportSettings) : m_OutputStream(), m_ReportSettings(reportSettings)
 {
 }
 
@@ -38,9 +38,9 @@ HTMLReportWriter::~HTMLReportWriter()
 
 bool HTMLReportWriter::open()
 {
-    m_OutputStream.open(m_OutputFilePath);
+    m_OutputStream.open(StringHelper::toStdString(m_ReportSettings.getFilePath()));
 
-    QString title(tr("HTML Report"));
+    QString title(m_ReportSettings.getTitle().isEmpty() ? tr("HTML Report") : m_ReportSettings.getTitle());
 
     // UTF BOM
     const unsigned char bom[] = { 0xEF, 0xBB, 0xBF };
@@ -62,6 +62,22 @@ bool HTMLReportWriter::open()
 
     write("<body>");
 
+    if (!m_ReportSettings.getTitle().isEmpty())
+    {
+        write(addPreparedStringInTag(prepareString(m_ReportSettings.getTitle()), "span", "title"));
+        write("<br />");
+    }
+
+    if (!m_ReportSettings.getReference().isEmpty())
+    {
+        write(addPreparedStringInTag(prepareString(m_ReportSettings.getReference()), "span", "reference"));
+    }
+
+    if (!m_ReportSettings.getPerex().isEmpty())
+    {
+        write(addPreparedStringInTag(prepareString(m_ReportSettings.getPerex()), "div", "perex"));
+    }
+
     return m_OutputStream.is_open();
 }
 
@@ -70,47 +86,116 @@ bool HTMLReportWriter::write(DataItem& dataItem)
     if (!m_OutputStream.is_open())
         return false;
 
+    if (!m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_Files) && dynamic_cast<const File *>(&dataItem))
+        return true;
+
+    if (!m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_Directories) && dynamic_cast<const Directory *>(&dataItem))
+        return true;
+
+
     uint8_t tag = dataItem.isInfoValid(DataInfo::DataInfoE_Tag) ? StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_Tag)).toUInt() : 0;
 
-    write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.name())), "span", "name"));
-    write(" - ");
-    write(addPreparedStringInTag(prepareString(StringHelper::toQString(TagHelper::tagToString(tag))), "span", "tag"));
-    write("<br />");
-    write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.path())), "span", "path"));
+    if (!m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_NotImporatant) && tag == 1)
+        return true;
 
-    write("<br />");
-    write(addPreparedStringInTag(prepareString(tr("Basic data type")), "span", "key"));
-    write(addPreparedStringInTag(prepareString(QString(dynamic_cast<const File *>(&dataItem) ? tr("File") : tr("Directory"))), "span", "value"));
-    write("<br />");
-    write(addPreparedStringInTag(prepareString(tr("Size in bytes")), "span", "key"));
-    write(addPreparedStringInTag(prepareString(QString::number(dataItem.size())), "span", "value"));
-    write("<br />");
-    write(addPreparedStringInTag(prepareString(tr("Creation date")), "span", "key"));
-    write(addPreparedStringInTag(prepareString(QDateTime::fromTime_t(dataItem.creationTimestamp()).toString(Qt::SystemLocaleShortDate)), "span", "value"));
-    write("<br />");
-    write(addPreparedStringInTag(prepareString(tr("Modification date")), "span", "key"));
-    write(addPreparedStringInTag(prepareString(QDateTime::fromTime_t(dataItem.modificationTimestamp()).toString(Qt::SystemLocaleShortDate)), "span", "value"));
-    write("<br />");
-    
-    if (dataItem.isInfoValid(DataInfo::DataInfoE_SHA1))
+    if (!m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_Imporatant) && tag == 2)
+        return true;
+
+    if (!m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_Proof) && tag == 3)
+        return true;
+
+    if (!m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_NoTag) && tag == 0)
+        return true;
+
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Tag))
     {
-        write(addPreparedStringInTag(prepareString(tr("SHA-1 fingerprint")), "span", "key"));
-        write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_SHA1))), "span", "value"));
+        if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Name))
+        {
+            write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.name())), "span", "name"));
+            write(" - ");
+        }
+        write(addPreparedStringInTag(prepareString(StringHelper::toQString(TagHelper::tagToString(tag))), "span", "tag"));
+        write("<br />");
+    }
+    else if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Name))
+    {
+        write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.name())), "span", "name"));
         write("<br />");
     }
 
-    if (dataItem.isInfoValid(DataInfo::DataInfoE_Magic))
+
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Path))
     {
-        write(addPreparedStringInTag(prepareString(tr("Probable data type")), "span", "key"));
-        write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_Magic))), "span", "value"));
+        write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.path())), "span", "path"));
         write("<br />");
     }
 
-    if (dataItem.isInfoValid(DataInfo::DataInfoE_Analysis) && !dataItem.info(DataInfo::DataInfoE_Analysis).empty())
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_BasicDataType))
     {
-        write(addPreparedStringInTag(prepareString(tr("Analysis")), "span", "analysis-title"));
-        write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_Analysis))), "div", "analysis"));
+        write(addPreparedStringInTag(prepareString(tr("Basic data type")), "span", "key"));
+        write(addPreparedStringInTag(prepareString(QString(dynamic_cast<const File *>(&dataItem) ? tr("File") : tr("Directory"))), "span", "value"));
         write("<br />");
+    }
+
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Size))
+    {
+        write(addPreparedStringInTag(prepareString(tr("Size in bytes")), "span", "key"));
+        write(addPreparedStringInTag(prepareString(QString::number(dataItem.size())), "span", "value"));
+        write("<br />");
+    }
+
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_CreationDate))
+    {
+        write(addPreparedStringInTag(prepareString(tr("Creation date")), "span", "key"));
+        write(addPreparedStringInTag(prepareString(QDateTime::fromTime_t(dataItem.creationTimestamp()).toString(Qt::SystemLocaleShortDate)), "span", "value"));
+        write("<br />");
+    }
+
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_ModificationDate))
+    {
+        write(addPreparedStringInTag(prepareString(tr("Modification date")), "span", "key"));
+        write(addPreparedStringInTag(prepareString(QDateTime::fromTime_t(dataItem.modificationTimestamp()).toString(Qt::SystemLocaleShortDate)), "span", "value"));
+        write("<br />");
+    }
+
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_SHA1))
+    {
+        if (dataItem.isInfoValid(DataInfo::DataInfoE_SHA1))
+        {
+            write(addPreparedStringInTag(prepareString(tr("SHA-1 fingerprint")), "span", "key"));
+            write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_SHA1))), "span", "value"));
+            write("<br />");
+        }
+    }
+
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_SHA3_512))
+    {
+        if (dataItem.isInfoValid(DataInfo::DataInfoE_SHA1))
+        {
+            write(addPreparedStringInTag(prepareString(tr("SHA3-512 fingerprint")), "span", "key"));
+            write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_SHA3_512))), "span", "value"));
+            write("<br />");
+        }
+    }
+
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_ProbableDataType))
+    {
+        if (dataItem.isInfoValid(DataInfo::DataInfoE_Magic))
+        {
+            write(addPreparedStringInTag(prepareString(tr("Probable data type")), "span", "key"));
+            write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_Magic))), "span", "value"));
+            write("<br />");
+        }
+    }
+
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Analysis))
+    {
+        if (dataItem.isInfoValid(DataInfo::DataInfoE_Analysis) && !dataItem.info(DataInfo::DataInfoE_Analysis).empty())
+        {
+            write(addPreparedStringInTag(prepareString(tr("Analysis")), "span", "analysis-title"));
+            write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_Analysis))), "div", "analysis"));
+            write("<br />");
+        }
     }
 
     write("<hr /><br />");
