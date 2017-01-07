@@ -163,6 +163,7 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  $(OutDir)</Command>
     <ClCompile Include="..\..\src\fs\DataItem.cpp" />
     <ClCompile Include="..\..\src\fs\Directory.cpp" />
     <ClCompile Include="..\..\src\fs\File.cpp" />
+    <ClCompile Include="..\..\src\reports\HTMLReportWriter.cpp" />
     <ClCompile Include="..\..\src\util\ModelHelper.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\operations\MagicOperation.cpp" />
@@ -273,6 +274,7 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  $(OutDir)</Command>
   <ItemGroup>
     <ClInclude Include="..\..\src\abstraction\DiskReader.h" />
     <ClInclude Include="..\..\src\abstraction\FS.h" />
+    <ClInclude Include="..\..\src\reports\HTMLReportWriter.h" />
     <ClInclude Include="..\..\src\util\ConnectionManagement.h" />
     <CustomBuild Include="..\..\src\controller\DirectoryTreeModel.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

@@ -67,13 +67,13 @@ QVariant DataItemTreeModel::data(const QModelIndex &index, int role) const
     switch(index.column())
     {
     case ColumnTypeE_Name:
-        return StringHelper::WString2QString(item->name());
+        return StringHelper::toQString(item->name());
     case ColumnTypeE_FilesCount:
         return ModelHelper::filesCount(*item);
     case ColumnTypeE_Size:
         return QString::number(item->size());
     case ColumnTypeE_Extension:
-        return StringHelper::WString2QString(item->extension());
+        return StringHelper::toQString(item->extension());
     case ColumnTypeE_ModificationTimestamp:
         return QDateTime::fromTime_t(item->modificationTimestamp()).toString(Qt::SystemLocaleShortDate);
     default:

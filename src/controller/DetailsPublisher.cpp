@@ -30,11 +30,11 @@ void DetailsPublisher::toUI(QTreeWidget& treeWidget, QListWidget& tagListWidget,
 {
     QTreeWidgetItem *treeItem = new QTreeWidgetItem(&treeWidget);
     treeItem->setText(0, tr("Full path"));
-    treeItem->setText(1, StringHelper::WString2QString(item.path()));
+    treeItem->setText(1, StringHelper::toQString(item.path()));
 
     treeItem = new QTreeWidgetItem(&treeWidget);
     treeItem->setText(0, tr("Name"));
-    treeItem->setText(1, StringHelper::WString2QString(item.name()));
+    treeItem->setText(1, StringHelper::toQString(item.name()));
 
     treeItem = new QTreeWidgetItem(&treeWidget);
     treeItem->setText(0, tr("Size"));

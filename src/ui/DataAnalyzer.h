@@ -48,11 +48,13 @@ public Q_SLOTS:
     void onTagChanged(int row);
     void onAbout();
     void onMD5Triggered();
+    void onSHA1Triggered();
+    void onSHA3_512Triggered();
     void onFileMagicTriggered();
     void onCSVReportTriggered();
     void onRTFReportTriggered();
-    void onSHA1Triggered();
-    void onSHA3_512Triggered();
+    void onHTMLReportTriggered();
+
 
 protected:
     void dataItemSelected(QModelIndex index);

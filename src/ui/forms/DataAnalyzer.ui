@@ -329,6 +329,7 @@
       <string>Final reports</string>
      </property>
      <addaction name="actionFinalReportCSV"/>
+     <addaction name="actionFinalReportHTML"/>
      <addaction name="actionFinalReportRTF"/>
     </widget>
     <widget class="QMenu" name="menuHash_computation">
@@ -363,6 +364,7 @@
    </attribute>
    <addaction name="actionQuit"/>
    <addaction name="separator"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="toolBar">
@@ -387,11 +389,13 @@
    <addaction name="actionScan"/>
    <addaction name="separator"/>
    <addaction name="actionMD5"/>
+   <addaction name="actionSHA_1_computation"/>
+   <addaction name="actionSHA3_512_computation"/>
    <addaction name="actionFileMagic"/>
    <addaction name="separator"/>
    <addaction name="actionFinalReportCSV"/>
+   <addaction name="actionFinalReportHTML"/>
    <addaction name="actionFinalReportRTF"/>
-   <addaction name="separator"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget">
    <property name="windowTitle">
@@ -571,7 +575,10 @@
      <normaloff>:/images/frame-adriankierman-report-page-csv.png</normaloff>:/images/frame-adriankierman-report-page-csv.png</iconset>
    </property>
    <property name="text">
-    <string>CSV</string>
+    <string>CSV ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Generate final report [CSV]</string>
    </property>
   </action>
   <action name="actionMD5">
@@ -618,17 +625,40 @@
      <normaloff>:/images/frame-adriankierman-report-page-rtf.png</normaloff>:/images/frame-adriankierman-report-page-rtf.png</iconset>
    </property>
    <property name="text">
-    <string>RTF</string>
+    <string>RTF ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Generate final report [RTF]</string>
    </property>
   </action>
   <action name="actionSHA_1_computation">
+   <property name="icon">
+    <iconset resource="../../resource/DataAnalyzer.qrc">
+     <normaloff>:/images/frame-fingerprint-sha1.png</normaloff>:/images/frame-fingerprint-sha1.png</iconset>
+   </property>
    <property name="text">
     <string>SHA-1 computation ...</string>
    </property>
   </action>
   <action name="actionSHA3_512_computation">
+   <property name="icon">
+    <iconset resource="../../resource/DataAnalyzer.qrc">
+     <normaloff>:/images/frame-fingerprint-sha3_512.png</normaloff>:/images/frame-fingerprint-sha3_512.png</iconset>
+   </property>
    <property name="text">
     <string>SHA3-512 computation ...</string>
+   </property>
+  </action>
+  <action name="actionFinalReportHTML">
+   <property name="icon">
+    <iconset resource="../../resource/DataAnalyzer.qrc">
+     <normaloff>:/images/frame-adriankierman-report-page-html.png</normaloff>:/images/frame-adriankierman-report-page-html.png</iconset>
+   </property>
+   <property name="text">
+    <string>HTML ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Generate final report [HTML]</string>
    </property>
   </action>
  </widget>
@@ -893,6 +923,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionFinalReportHTML</sender>
+   <signal>triggered()</signal>
+   <receiver>DataAnalyzerClass</receiver>
+   <slot>onHTMLReportTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>647</x>
+     <y>362</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onScanTriggered()</slot>
@@ -910,5 +956,6 @@
   <slot>onRTFReportTriggered()</slot>
   <slot>onSHA1Triggered()</slot>
   <slot>onSHA3_512Triggered()</slot>
+  <slot>onHTMLReportTriggered()</slot>
  </slots>
 </ui>

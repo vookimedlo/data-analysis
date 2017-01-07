@@ -31,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../operations/ReportOperation.h"
 #include "../operations/ScanDirOperation.h"
 #include "../reports/CSVReportWriter.h"
+#include "../reports/HTMLReportWriter.h"
 #include "../reports/RTFReportWriter.h"
 #include "../util/StringHelper.h"
 
@@ -220,6 +221,19 @@ void DataAnalyzer::onRTFReportTriggered()
     }
 }
 
+void DataAnalyzer::onHTMLReportTriggered()
+{
+    if (m_topLevelDirectory)
+    {
+        HTMLReportWriter writer("C:/tmp/report.html");
+        ReportOperation operation(writer, *m_topLevelDirectory);
+
+        OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
+        dialog.setTitle(tr("HTML report"));
+        dialog.exec();
+    }
+}
+
 void DataAnalyzer::dataItemSelected(QModelIndex index)
 {
     DataItem *item = static_cast<DataItem *>(index.internalPointer());
@@ -231,9 +245,9 @@ void DataAnalyzer::dataItemSelected(QModelIndex index)
     File *file = dynamic_cast<File *>(item);
     if (file)
     {
-        if (QImageReader::supportedImageFormats().indexOf(StringHelper::WString2QString(item->extension()).toLower().toLatin1()) != -1)
+        if (QImageReader::supportedImageFormats().indexOf(StringHelper::toQString(item->extension()).toLower().toLatin1()) != -1)
         {
-            QPixmap pixmap(StringHelper::WString2QString(file->path()));
+            QPixmap pixmap(StringHelper::toQString(file->path()));
             QPixmap scaledPixmap;
 
             if (pixmap.width() > pixmap.height())
@@ -243,9 +257,9 @@ void DataAnalyzer::dataItemSelected(QModelIndex index)
 
             ui.previewWidget->setPixmap(scaledPixmap);
         }
-        else if (QImageReader::supportedImageFormats().indexOf(StringHelper::WString2QString(item->extension()).toLower().toLatin1()) != -1)
+        else if (QImageReader::supportedImageFormats().indexOf(StringHelper::toQString(item->extension()).toLower().toLatin1()) != -1)
         {
-            QImageReader imageReader(StringHelper::WString2QString(file->path()));
+            QImageReader imageReader(StringHelper::toQString(file->path()));
             QPixmap pixmap = QPixmap::fromImageReader(&imageReader);
             QPixmap scaledPixmap;
 

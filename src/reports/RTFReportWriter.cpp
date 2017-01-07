@@ -119,12 +119,12 @@ bool RTFReportWriter::close()
 
 std::string RTFReportWriter::rtfEscapeString(const QString& str)
 {
-    return rtfEscapeString(StringHelper::QString2WString(str));
+    return rtfEscapeString(StringHelper::toStdWString(str));
 }
 
 std::string RTFReportWriter::rtfEscapeString(const std::string& str)
 {
-    return rtfEscapeString(StringHelper::String2WString(str));
+    return rtfEscapeString(StringHelper::toStdWString(str));
 }
 
 std::string RTFReportWriter::rtfEscapeString(const std::wstring &str)

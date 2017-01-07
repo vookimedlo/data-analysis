@@ -105,7 +105,7 @@ void MagicOperation::startOperation()
 
             for (File *file : d->files())
             {
-                QString path(StringHelper::WString2QString(FS::LongPathNameToShort(file->path())));
+                QString path(StringHelper::toQString(FS::LongPathNameToShort(file->path())));
                 
                 // check if file is readable, otherwise skip it => leads to crash
                 std::ifstream f(path.toStdString(), std::ios::in | std::ios::binary);
@@ -124,7 +124,7 @@ void MagicOperation::startOperation()
     }
     else
     {
-        const char *result = magic_file(m_MagicCookie, StringHelper::WString2QString(FS::LongPathNameToShort(m_RootItem.path())).toStdString().c_str());
+        const char *result = magic_file(m_MagicCookie, StringHelper::toQString(FS::LongPathNameToShort(m_RootItem.path())).toStdString().c_str());
         if (result)
             m_RootItem.addInfo(DataInfo::DataInfoE_Magic, result);
 

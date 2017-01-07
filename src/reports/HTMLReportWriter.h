@@ -17,21 +17,31 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include <QString>
+#include <fstream>
 #include <string>
+#include <QCoreApplication>
 
-//forward declarations
-class DataItem;
+#include "ReportWriter.h"
 
-class StringHelper
+class QString;
+
+class HTMLReportWriter : public ReportWriter
 {
+    Q_DECLARE_TR_FUNCTIONS(HTMLReportWriter);
+
 public:
-    static std::string toStdString(const QString &string);
-    static std::string toStdString(const std::wstring &string);
+    explicit HTMLReportWriter(std::string outputFilePath);
+    ~HTMLReportWriter() override;
+    bool open() override;
+    bool write(DataItem &dataiItem) override;
+    bool close() override;
 
-    static std::wstring toStdWString(const QString &string);
-    static std::wstring toStdWString(const std::string &string);
+protected:
+    QString prepareString(const QString& str);
+    QString addPreparedStringInTag(const QString& str, const QString& tag, const QString& cssClass = QString());
+    bool write(const QString& str);
 
-    static QString toQString(const std::string &string);
-    static QString toQString(const std::wstring &string);
+private:
+    std::ofstream m_OutputStream;
+    std::string m_OutputFilePath;
 };

@@ -112,7 +112,7 @@ void HashOperation::startOperation()
 
 bool HashOperation::computeHash(QCryptographicHash& hash, std::wstring path)
 {
-    QFile file(StringHelper::WString2QString(path));
+    QFile file(StringHelper::toQString(path));
     hash.reset();
     
     if (file.open(QIODevice::ReadOnly))

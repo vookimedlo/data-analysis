@@ -32,7 +32,7 @@ OperationDialog::OperationDialog(Operations &operations, ModeE mode, QWidget* pa
 
     if (m_Mode == ModeE_NoDirSelect)
     {
-        labelScanFSValue->setText(StringHelper::WString2QString(operations.path()));
+        labelScanFSValue->setText(StringHelper::toQString(operations.path()));
         dirSelectButton->setVisible(false);
     }
 }
@@ -44,7 +44,7 @@ void OperationDialog::setTitle(const QString& title)
 
 void OperationDialog::onScannedDirChangeNotification(std::wstring name)
 {
-    scannedDirChanged(StringHelper::WString2QString(name));
+    scannedDirChanged(StringHelper::toQString(name));
 }
 
 void OperationDialog::onResultReadyNotification(std::shared_ptr<Directory> directory)
@@ -86,7 +86,7 @@ void OperationDialog::onStart()
         /* Infinite progressbar behavior */
         progressBar->setMaximum(0);
         progressBar->setMinimum(0);
-        m_Operations.start(StringHelper::QString2WString(labelScanFSValue->text()));
+        m_Operations.start(StringHelper::toStdWString(labelScanFSValue->text()));
     }
     else
     {

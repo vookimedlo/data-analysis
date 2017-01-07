@@ -59,7 +59,7 @@ QVariant DirectoryTreeModel::data(const QModelIndex &index, int role) const
     switch(index.column())
     {
     case 0:
-        return StringHelper::WString2QString(item->name());
+        return StringHelper::toQString(item->name());
     case 1:
         return ModelHelper::filesCount(*item);
     default:

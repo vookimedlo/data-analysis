@@ -34,12 +34,17 @@
         <translation>MD5 otisk</translation>
     </message>
     <message>
-        <location filename="../reports/CSVReportWriter.cpp" line="67"/>
+        <location filename="../reports/CSVReportWriter.cpp" line="53"/>
+        <source>SHA-1 Fingerprint</source>
+        <translation>SHA-1 otisk</translation>
+    </message>
+    <message>
+        <location filename="../reports/CSVReportWriter.cpp" line="68"/>
         <source>File</source>
         <translation>Soubor</translation>
     </message>
     <message>
-        <location filename="../reports/CSVReportWriter.cpp" line="67"/>
+        <location filename="../reports/CSVReportWriter.cpp" line="68"/>
         <source>Directory</source>
         <translation>Adresář</translation>
     </message>
@@ -47,35 +52,40 @@
 <context>
     <name>DataAnalyzer</name>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="152"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="153"/>
         <source>MD5 computation</source>
         <translation>Výpočet MD5 otisku</translation>
     </message>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="158"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="159"/>
         <source>SHA-1 computation</source>
         <translation>Výpočet SHA-1 otisku</translation>
     </message>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="164"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="165"/>
         <source>SHA3-512 computation</source>
         <translation>Výpočet SHA3-512 otisku</translation>
     </message>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="182"/>
-        <location filename="../ui/DataAnalyzer.cpp" line="191"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="183"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="192"/>
         <source>Type detection</source>
         <translation>Detekce typu</translation>
     </message>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="205"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="206"/>
         <source>CSV report</source>
         <translation>CSV zpráva</translation>
     </message>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="218"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="219"/>
         <source>RTF report</source>
         <translation>RTF zpráva</translation>
+    </message>
+    <message>
+        <location filename="../ui/DataAnalyzer.cpp" line="232"/>
+        <source>HTML report</source>
+        <translation>HTML zpráva</translation>
     </message>
 </context>
 <context>
@@ -115,7 +125,7 @@
     </message>
     <message>
         <location filename="../ui/forms/DataAnalyzer.ui" line="97"/>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="465"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="469"/>
         <source>Tags</source>
         <translation>Tagy</translation>
     </message>
@@ -181,7 +191,7 @@
     </message>
     <message>
         <location filename="../ui/forms/DataAnalyzer.ui" line="319"/>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="554"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="558"/>
         <source>Settings</source>
         <translation>Nastavení</translation>
     </message>
@@ -196,106 +206,136 @@
         <translation>Generování závěrečné zprávy</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="336"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="337"/>
         <source>Hash computation</source>
         <translation>Hašovací operace</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="356"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="357"/>
         <source>Other operations</source>
         <translation>Ostatní operace</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="373"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="375"/>
         <source>Main operations</source>
         <translation>Hlavní operace</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="398"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="402"/>
         <source>File operations</source>
         <translation>Souborové operace</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="412"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="416"/>
         <source>Directories</source>
         <translation>Adresáře</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="418"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="422"/>
         <source>Directories only</source>
         <translation>Pouze adresáře</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="460"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="464"/>
         <source>Search</source>
         <translation>Hledání</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="479"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="483"/>
         <source>&amp;Quit</source>
         <translation>U&amp;končit</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="510"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="514"/>
         <source>Initial file system scan</source>
         <translation>Iniciální načtení souborového systému</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="521"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="525"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopírovat</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="532"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="536"/>
         <source>&amp;Cut</source>
         <translation>Vy&amp;jmout</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="543"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="547"/>
         <source>&amp;Paste</source>
         <translation>&amp;Vložit</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="562"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="566"/>
         <source>&amp;Open ...</source>
         <translation>&amp;Otevřít ...</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="594"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="578"/>
+        <source>CSV ...</source>
+        <translation>CSV ...</translation>
+    </message>
+    <message>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="581"/>
+        <source>Generate final report [CSV]</source>
+        <translation>Vytvoření závěrečné zprávy [CSV]</translation>
+    </message>
+    <message>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="601"/>
         <source>&amp;Search ...</source>
         <translation>&amp;Hledat ...</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="626"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="628"/>
+        <source>RTF ...</source>
+        <translation>RTF ...</translation>
+    </message>
+    <message>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="631"/>
+        <source>Generate final report [RTF]</source>
+        <translation>Vytvoření závěrečné zprávy [RTF]</translation>
+    </message>
+    <message>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="640"/>
         <source>SHA-1 computation ...</source>
         <translation>Výpočet SHA-1 otisku ...</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="631"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="649"/>
         <source>SHA3-512 computation ...</source>
         <translation>Výpočet SHA3-512 ...</translation>
+    </message>
+    <message>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="658"/>
+        <source>HTML ...</source>
+        <translation>HTML ...</translation>
+    </message>
+    <message>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="661"/>
+        <source>Generate final report [HTML]</source>
+        <translation>Vytvoření závěrečné zprávy [HTML]</translation>
     </message>
     <message>
         <source>Quit</source>
         <translation type="vanished">Ukončit</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="487"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="491"/>
         <source>About ...</source>
         <translation>O programu ...</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="495"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="499"/>
         <source>About components ...</source>
         <translation>O komponentách ...</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="498"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="502"/>
         <source>About 3rd parties components</source>
         <translation>O komponentách třetích stran</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="507"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="511"/>
         <source>Directory scan ...</source>
         <translation>Sken adresáře ...</translation>
     </message>
@@ -320,7 +360,7 @@
         <translation type="vanished">Otevřít ...</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="583"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="590"/>
         <source>MD5 computation ...</source>
         <translation>Výpočet MD5 otisku ...</translation>
     </message>
@@ -333,19 +373,17 @@
         <translation type="vanished">Analýza typu dat</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="574"/>
         <source>CSV</source>
-        <translation>CSV</translation>
+        <translation type="vanished">CSV</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="606"/>
+        <location filename="../ui/forms/DataAnalyzer.ui" line="613"/>
         <source>Data type analysis ...</source>
         <translation>Detekce typu souboru ...</translation>
     </message>
     <message>
-        <location filename="../ui/forms/DataAnalyzer.ui" line="621"/>
         <source>RTF</source>
-        <translation>RTF</translation>
+        <translation type="vanished">RTF</translation>
     </message>
 </context>
 <context>
@@ -394,6 +432,63 @@
         <location filename="../controller/DetailsPublisher.cpp" line="78"/>
         <source>SHA3-512 fingerprint</source>
         <translation>SHA3-512 otisk</translation>
+    </message>
+</context>
+<context>
+    <name>HTMLReportWriter</name>
+    <message>
+        <location filename="../reports/HTMLReportWriter.cpp" line="83"/>
+        <source>File</source>
+        <translation>Soubor</translation>
+    </message>
+    <message>
+        <location filename="../reports/HTMLReportWriter.cpp" line="83"/>
+        <source>Directory</source>
+        <translation>Adresář</translation>
+    </message>
+    <message>
+        <location filename="../reports/HTMLReportWriter.cpp" line="43"/>
+        <source>HTML Report</source>
+        <translation>Závěrečná zpráva</translation>
+    </message>
+    <message>
+        <location filename="../reports/HTMLReportWriter.cpp" line="82"/>
+        <source>Basic data type</source>
+        <translation>Základní typ objektu</translation>
+    </message>
+    <message>
+        <source>Size</source>
+        <translation type="obsolete">Velikost</translation>
+    </message>
+    <message>
+        <location filename="../reports/HTMLReportWriter.cpp" line="85"/>
+        <source>Size in bytes</source>
+        <translation>Velikost v bajtech</translation>
+    </message>
+    <message>
+        <location filename="../reports/HTMLReportWriter.cpp" line="88"/>
+        <source>Creation date</source>
+        <translation>Datum vytvoření</translation>
+    </message>
+    <message>
+        <location filename="../reports/HTMLReportWriter.cpp" line="91"/>
+        <source>Modification date</source>
+        <translation>Datum modifikace</translation>
+    </message>
+    <message>
+        <location filename="../reports/HTMLReportWriter.cpp" line="97"/>
+        <source>SHA-1 fingerprint</source>
+        <translation>SHA-1 otisk</translation>
+    </message>
+    <message>
+        <location filename="../reports/HTMLReportWriter.cpp" line="104"/>
+        <source>Probable data type</source>
+        <translation>Pravděpodobný typ dat</translation>
+    </message>
+    <message>
+        <location filename="../reports/HTMLReportWriter.cpp" line="111"/>
+        <source>Analysis</source>
+        <translation>Analýza</translation>
     </message>
 </context>
 <context>

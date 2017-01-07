@@ -18,7 +18,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "StringHelper.h"
 
-std::wstring StringHelper::QString2WString(const QString& string)
+std::string StringHelper::toStdString(const QString& string)
+{
+    return string.toStdString();
+}
+
+std::string StringHelper::toStdString(const std::wstring& string)
+{
+#ifdef _MSC_VER
+    return QString::fromUtf16(reinterpret_cast<const ushort*>(string.c_str())).toStdString();
+#else
+    return QString::fromStdWString(string).toStdString();
+#endif
+}
+
+std::wstring StringHelper::toStdWString(const QString& string)
 {
 #ifdef _MSC_VER
     return std::wstring(reinterpret_cast<const wchar_t*>(string.utf16()));
@@ -27,16 +41,7 @@ std::wstring StringHelper::QString2WString(const QString& string)
 #endif
 }
 
-QString StringHelper::WString2QString(const std::wstring& string)
-{
-#ifdef _MSC_VER
-    return QString::fromUtf16(reinterpret_cast<const ushort*>(string.c_str()));
-#else
-    return QString::fromStdWString(string);
-#endif
-}
-
-std::wstring StringHelper::String2WString(const std::string& string)
+std::wstring StringHelper::toStdWString(const std::string& string)
 {
 #ifdef _MSC_VER
     return std::wstring(reinterpret_cast<const wchar_t*>(QString::fromStdString(string).utf16()));
@@ -45,11 +50,16 @@ std::wstring StringHelper::String2WString(const std::string& string)
 #endif
 }
 
-std::string StringHelper::WString2String(const std::wstring& string)
+QString StringHelper::toQString(const std::string& string)
+{
+    return QString::fromStdString(string);
+}
+
+QString StringHelper::toQString(const std::wstring& string)
 {
 #ifdef _MSC_VER
-    return QString::fromUtf16(reinterpret_cast<const ushort*>(string.c_str())).toStdString();
+    return QString::fromUtf16(reinterpret_cast<const ushort*>(string.c_str()));
 #else
-    return QString::fromStdWString(string).toStdString();
+    return QString::fromStdWString(string);
 #endif
 }

@@ -50,6 +50,7 @@ bool CSVReportWriter::open()
     writeColumn(tr("Extension"));
     writeColumn(tr("Path"));
     writeColumn(tr("MD5 Fingerprint"));
+    writeColumn(tr("SHA-1 Fingerprint"));
 
     m_OutputStream << std::endl;
     return m_OutputStream.is_open();
@@ -68,6 +69,7 @@ bool CSVReportWriter::write(DataItem& dataItem)
     writeColumn(dataItem.extension());
     writeColumn(dataItem.path());
     writeColumn(dataItem.info(DataInfo::DataInfoE_MD5));
+    writeColumn(dataItem.info(DataInfo::DataInfoE_SHA1));
 
     m_OutputStream << std::endl;
     return m_OutputStream.good();
@@ -87,10 +89,10 @@ bool CSVReportWriter::writeColumn(const std::string& str)
 
 bool CSVReportWriter::writeColumn(const std::wstring& str)
 {
-    return writeColumn(StringHelper::WString2String(str));
+    return writeColumn(StringHelper::toStdString(str));
 }
 
 bool CSVReportWriter::writeColumn(const QString& str)
 {
-    return writeColumn(StringHelper::QString2WString(str));
+    return writeColumn(StringHelper::toStdWString(str));
 }

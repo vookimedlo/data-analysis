@@ -171,6 +171,9 @@
     <ClCompile Include="..\..\src\operations\HashOperation.cpp">
       <Filter>Source Files\Operation</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\reports\HTMLReportWriter.cpp">
+      <Filter>Source Files\Report</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\src\controller\DirectoryTreeModel.h">
@@ -266,6 +269,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\operations\HashOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\HTMLReportWriter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

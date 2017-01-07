@@ -20,8 +20,14 @@
         <file alias="tasto-7-architetto-franc-01-800px.png">images/tasto-7-architetto-franc-01-800px.png</file>
         <file alias="tasto-8-architetto-franc-01-300px.png">images/tasto-8-architetto-franc-01-300px.png</file>
         <file alias="tasto-8-architetto-franc-01-800px.png">images/tasto-8-architetto-franc-01-800px.png</file>
+        <file alias="frame-adriankierman-report-page-html.png">images/frame-adriankierman-report-page-html.png</file>
+        <file alias="frame-fingerprint-sha1.png">images/frame-fingerprint-sha1.png</file>
+        <file alias="frame-fingerprint-sha3_512.png">images/frame-fingerprint-sha3_512.png</file>
     </qresource>
     <qresource prefix="/text">
         <file>text/about.htm</file>
+    </qresource>
+    <qresource prefix="/css">
+        <file alias="dataanalysis.css">css/dataanalysis.css</file>
     </qresource>
 </RCC>
