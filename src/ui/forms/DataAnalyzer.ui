@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1295</width>
-    <height>726</height>
+    <width>1544</width>
+    <height>876</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -142,8 +142,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>283</width>
-              <height>353</height>
+              <width>413</width>
+              <height>422</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -285,8 +285,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1295</width>
-     <height>21</height>
+     <width>1544</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSoubor">
@@ -618,7 +618,7 @@
   </action>
   <action name="actionFinalReportRTF">
    <property name="enabled">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="icon">
     <iconset resource="../../resource/DataAnalyzer.qrc">

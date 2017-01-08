@@ -13,7 +13,6 @@ TEMPLATE = app
 
 
 SOURCES += \
-    ../../src/3rdParty/md5/md5.cpp \
     ../../src/abstraction/qt/DiskReader.cpp \
     ../../src/controller/DataItemSortFilterProxyModel.cpp \
     ../../src/controller/DataItemTreeModel.cpp \
@@ -24,7 +23,6 @@ SOURCES += \
     ../../src/fs/Directory.cpp \
     ../../src/fs/File.cpp \
     ../../src/operations/MagicOperation.cpp \
-    ../../src/operations/MD5Operation.cpp \
     ../../src/operations/Operations.cpp \
     ../../src/operations/ReportOperation.cpp \
     ../../src/operations/ScanDirOperation.cpp \
@@ -36,10 +34,12 @@ SOURCES += \
     ../../src/util/StringHelper.cpp \
     ../../src/util/TagHelper.cpp \
     ../../src/main.cpp \
-    ../../src/abstraction/unix/FS.cpp
+    ../../src/abstraction/unix/FS.cpp \
+    ../../src/operations/HashOperation.cpp \
+    ../../src/reports/HTMLReportWriter.cpp \
+    ../../src/reports/ReportSettings.cpp
 
 HEADERS  += \
-    ../../src/3rdParty/md5/md5.h \
     ../../src/abstraction/DiskReader.h \
     ../../src/controller/DataItemSortFilterProxyModel.h \
     ../../src/controller/DataItemTreeModel.h \
@@ -50,7 +50,6 @@ HEADERS  += \
     ../../src/fs/Directory.h \
     ../../src/fs/File.h \
     ../../src/operations/MagicOperation.h \
-    ../../src/operations/MD5Operation.h \
     ../../src/operations/Operations.h \
     ../../src/operations/ReportOperation.h \
     ../../src/operations/ScanDirOperation.h \
@@ -63,7 +62,10 @@ HEADERS  += \
     ../../src/util/ModelHelper.h \
     ../../src/util/StringHelper.h \
     ../../src/util/TagHelper.h \
-    ../../src/abstraction/FS.h
+    ../../src/abstraction/FS.h \
+    ../../src/operations/HashOperation.h \
+    ../../src/reports/HTMLReportWriter.h \
+    ../../src/reports/ReportSettings.h
 
 RESOURCES += \
     ../../src/resource/DataAnalyzer.qrc
@@ -71,7 +73,8 @@ RESOURCES += \
 FORMS += \
     ../../src/ui/forms/About.ui \
     ../../src/ui/forms/DataAnalyzer.ui \
-    ../../src/ui/forms/OperationDialog.ui
+    ../../src/ui/forms/OperationDialog.ui \
+    ../../src/ui/forms/FinalReportDialog.ui
 
 unix:!macx: LIBS += -lmagic
 

@@ -32,24 +32,24 @@ struct _FILETIME
 
 bool DiskReader::readDirectoryStructure(Directory *const directory)
 {
-    QDir qdir(StringHelper::WString2QString(directory->path()));
+    QDir qdir(StringHelper::toQString(directory->path()));
     if (qdir.exists())
     {
         foreach(QFileInfo info, qdir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files | QDir::AllDirs ))
         {
             if (info.isFile())
             {
-                unique_ptr<File> file(new File(StringHelper::QString2WString(info.fileName()), directory));
+                unique_ptr<File> file(new File(StringHelper::toStdWString(info.fileName()), directory));
                 file->setCreationTimestamp(info.created().toTime_t());
                 file->setModificationTimestamp(info.lastModified().toTime_t());
-                file->setExtension(StringHelper::QString2WString(info.suffix())); // +1 skip dot
+                file->setExtension(StringHelper::toStdWString(info.suffix())); // +1 skip dot
 
                 file.get()->setSize(info.size());
                 directory->addFile(std::move(file));
             }
             if (info.isDir())
             {
-                unique_ptr<Directory> dir(new Directory(StringHelper::QString2WString(info.fileName()), directory));
+                unique_ptr<Directory> dir(new Directory(StringHelper::toStdWString(info.fileName()), directory));
                 dir->setCreationTimestamp(info.created().toTime_t());
                 dir->setModificationTimestamp(info.lastModified().toTime_t());
                 directory->addDirectory(std::move(dir));
