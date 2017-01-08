@@ -17,33 +17,28 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include <fstream>
-#include <string>
-#include <QCoreApplication>
-#include <QString>
-
-#include "ReportWriter.h"
+#include <QDialog>
+#include "ui_FinalReportDialog.h"
 
 class ReportSettings;
 
-class CSVReportWriter : public ReportWriter
+class FinalReportDialog : public QDialog
 {
-    Q_DECLARE_TR_FUNCTIONS(CSVReportWriter);
+    Q_OBJECT
 
 public:
-    explicit CSVReportWriter(const ReportSettings &reportSettings);
-    ~CSVReportWriter() override;
-    bool open() override;
-    bool write(DataItem &dataiItem) override;
-    bool close() override;
+    FinalReportDialog(ReportSettings &settings, QWidget *parent = Q_NULLPTR);
 
-protected:
-    bool writeColumn(const std::string  &str);
-    bool writeColumn(const std::wstring &str);
-    bool writeColumn(const QString      &str);
+public Q_SLOTS:
+    void onAccept();
+    void onClearAll();
+    virtual void onDefault();
+    virtual void onSelectAll();
 
 private:
-    std::ofstream m_OutputStream;
-    std::string m_Separator;
-    const ReportSettings &m_ReportSettings;
+    void changeCheckBoxState(Qt::CheckState state);
+
+protected:
+    Ui::FinalReportDialog m_uiReportDialog;
+    ReportSettings &m_reportSettings;
 };

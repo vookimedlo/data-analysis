@@ -18,6 +18,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QDateTime>
 #include <QFile>
+#include "ReportSettings.h"
 #include "../fs/DataItem.h"
 #include "../fs/Directory.h"
 #include "../fs/File.h"

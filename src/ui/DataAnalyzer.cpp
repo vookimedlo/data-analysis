@@ -35,6 +35,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../reports/HTMLReportWriter.h"
 #include "../reports/ReportSettings.h"
 #include "../reports/RTFReportWriter.h"
+#include "../ui/CSVFinalReportDialog.h"
+#include "../ui/HTMLFinalReportDialog.h"
 #include "../util/StringHelper.h"
 
 #include "DataAnalyzer.h"
@@ -201,12 +203,24 @@ void DataAnalyzer::onCSVReportTriggered()
 {
     if (m_topLevelDirectory)
     {
-        CSVReportWriter writer("C:/tmp/report.csv");
-        ReportOperation operation(writer, *m_topLevelDirectory);
+        QString dialogTitle(tr("CSV report"));
+        ReportSettings settings;
+        CSVFinalReportDialog reportDialog(settings);
+        reportDialog.setWindowTitle(dialogTitle);
 
-        OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
-        dialog.setTitle(tr("CSV report"));
-        dialog.exec();
+        reportDialog.show();
+        if (reportDialog.exec() == QDialog::Accepted)
+        {
+            // TODO: remove
+            settings.setFilePath("C:/tmp/report.csv");
+
+            CSVReportWriter writer(settings);
+            ReportOperation operation(writer, *m_topLevelDirectory);
+
+            OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
+            dialog.setTitle(dialogTitle);
+            dialog.exec();
+        }
     }
 }
 
@@ -227,69 +241,23 @@ void DataAnalyzer::onHTMLReportTriggered()
 {
     if (m_topLevelDirectory)
     {
-
-        QDialog reportDialog;
-        Ui::FinalReportDialog uiReportDialog;
-        uiReportDialog.setupUi(&reportDialog);
-        reportDialog.setWindowTitle(tr("HTML report")); 
+        QString dialogTitle(tr("HTML report"));
+        ReportSettings settings;
+        HTMLFinalReportDialog reportDialog(settings);
+        reportDialog.setWindowTitle(dialogTitle); 
 
         reportDialog.show();
         if (reportDialog.exec() == QDialog::Accepted)
         {
-            // ReportSettings settings(uiReportDialog.exportToFileLineEdit->text());
-            ReportSettings settings("C:/tmp/report.html");
-
-            if(uiReportDialog.checkBoxFiles->isChecked())
-                settings.addRestriction(ReportSettings::RestrictionE_Files);
-            if (uiReportDialog.checkBoxDirectories->isChecked())
-                settings.addRestriction(ReportSettings::RestrictionE_Directories);
-            if (uiReportDialog.checkBoxTagNoTag->isChecked())
-                settings.addRestriction(ReportSettings::RestrictionE_NoTag);
-            if (uiReportDialog.checkBoxTagNotInteresting->isChecked())
-                settings.addRestriction(ReportSettings::RestrictionE_NotImporatant);
-            if (uiReportDialog.checkBoxTagInteresting->isChecked())
-                settings.addRestriction(ReportSettings::RestrictionE_Imporatant);
-            if (uiReportDialog.checkBoxTagProof->isChecked())
-                settings.addRestriction(ReportSettings::RestrictionE_Proof);
-
-            if (uiReportDialog.checkBoxBasicDataType->isChecked())
-                settings.addProperty(ReportSettings::PropertiesE_BasicDataType);
-            if (uiReportDialog.checkBoxProbableDataType->isChecked())
-                settings.addProperty(ReportSettings::PropertiesE_ProbableDataType);
-            if (uiReportDialog.checkBoxSize->isChecked())
-                settings.addProperty(ReportSettings::PropertiesE_Size);
-            if (uiReportDialog.checkBoxCreationDate->isChecked())
-                settings.addProperty(ReportSettings::PropertiesE_CreationDate);
-            if (uiReportDialog.checkBoxModificationDate->isChecked())
-                settings.addProperty(ReportSettings::PropertiesE_ModificationDate);
-            if (uiReportDialog.checkBoxMD5->isChecked())
-                settings.addProperty(ReportSettings::PropertiesE_MD5);
-            if (uiReportDialog.checkBoxSHA1->isChecked())
-                settings.addProperty(ReportSettings::PropertiesE_SHA1);
-            if (uiReportDialog.checkBoxSHA3->isChecked())
-                settings.addProperty(ReportSettings::PropertiesE_SHA3_512);
-            if (uiReportDialog.checkBoxPreview->isChecked())
-                settings.addProperty(ReportSettings::PropertiesE_Preview);
-            if (uiReportDialog.checkBoxAnalysis->isChecked())
-                settings.addProperty(ReportSettings::PropertiesE_Analysis);
-            if (uiReportDialog.checkBoxTag->isChecked())
-                settings.addProperty(ReportSettings::PropertiesE_Tag);
-            if (uiReportDialog.checkBoxName->isChecked())
-                settings.addProperty(ReportSettings::PropertiesE_Name);
-            if (uiReportDialog.checkBoxPath->isChecked())
-                settings.addProperty(ReportSettings::PropertiesE_Path);
-
-            settings.setTitle(uiReportDialog.titleLineEdit->text());
-            settings.setReference(uiReportDialog.referenceLineEdit->text());
-            settings.setPerex(uiReportDialog.perexTextEdit->toPlainText());
+            // TODO: remove
+            settings.setFilePath("C:/tmp/report.html");
 
             HTMLReportWriter writer(settings);
             ReportOperation operation(writer, *m_topLevelDirectory);
 
             OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
-            dialog.setTitle(tr("HTML report"));
+            dialog.setTitle(dialogTitle);
             dialog.exec();
-
         }
     }
 }

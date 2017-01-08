@@ -50,9 +50,10 @@ public:
         PropertiesE_Tag = 1 << 13,
     };
 
-    ReportSettings(const QString &filePath);
+    ReportSettings();
     virtual ~ReportSettings() {}
     
+    void setFilePath(const QString &filePath);
     QString getFilePath() const;
 
     void setTitle(const QString &title);

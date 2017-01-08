@@ -20,8 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ReportSettings.h"
 
 
-ReportSettings::ReportSettings(const QString &filePath) : m_filePath(filePath), m_restrictions(0), m_properties(0)
+ReportSettings::ReportSettings() : m_restrictions(0), m_properties(0)
 {
+}
+
+void ReportSettings::setFilePath(const QString& filePath)
+{
+    m_filePath = filePath;
 }
 
 QString ReportSettings::getFilePath() const

@@ -20,10 +20,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <string>
 #include <QCoreApplication>
-
 #include "ReportWriter.h"
-#include "ReportSettings.h"
 
+class ReportSettings;
 class QString;
 
 class HTMLReportWriter : public ReportWriter
