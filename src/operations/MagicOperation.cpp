@@ -51,6 +51,7 @@ MagicOperation::~MagicOperation()
 
 void MagicOperation::start(std::wstring dir)
 {
+    #pragma unused(dir)
     throw std::runtime_error("Not supported");
 }
 

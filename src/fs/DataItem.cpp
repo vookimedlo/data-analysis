@@ -21,7 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 using namespace std;
 
 
-DataItem::DataItem(const std::wstring& name, DataItem* parent) : m_parent(parent), m_size(0), m_creationTimestamp(0), m_modificationTimestamp(0), m_name(name), m_dataInfo()
+DataItem::DataItem(const std::wstring& name, DataItem* parent) : m_parent(parent), m_dataInfo(), m_size(0), m_creationTimestamp(0), m_modificationTimestamp(0), m_name(name)
 {
 }
 
@@ -86,7 +86,7 @@ std::wstring DataItem::extension() const
 }
 
 
-DataItem * const DataItem::parent() const
+DataItem *DataItem::parent() const
 {
     return m_parent;
 }
@@ -101,7 +101,7 @@ std::wstring DataItem::path()
 {
     wstring p(name());
     DataItem *dir = this;
-    while (dir = dir->parent()) {
+    while ((dir = dir->parent())) {
         p.insert(0, dir->name() + L"/");
     }
 

@@ -91,6 +91,7 @@ void DetailsPublisher::toUI(QTreeWidget& treeWidget, QListWidget& tagListWidget,
 
 void DetailsPublisher::toModel(QTreeWidget& treeWidget, QListWidget& tagListWidget, DataItem& item)
 {
+    #pragma unused(treeWidget)
     if (tagListWidget.currentRow() >= 0)
         item.addInfo(DataInfo::DataInfoE_Tag, QString::number(tagListWidget.currentRow()).toStdString());
 }

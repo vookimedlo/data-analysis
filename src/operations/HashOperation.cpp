@@ -34,6 +34,7 @@ HashOperation::HashOperation(QCryptographicHash &hash, DataInfo::DataInfoE info,
 
 void HashOperation::start(std::wstring dir)
 {
+    #pragma unused(dir)
     throw std::runtime_error("Not implemented!");
 }
 

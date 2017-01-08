@@ -65,9 +65,6 @@ std::shared_ptr<Directory> OperationDialog::getResult() const
 
 void OperationDialog::onUpdateProgress(int value)
 {
-    int mi = progressBar->minimum();
-    int ma = progressBar->maximum();
-
     progressBar->setValue(value);
 }
 

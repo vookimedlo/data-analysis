@@ -62,5 +62,6 @@ bool DiskReader::readDirectoryStructure(Directory *const directory)
 
 int64_t DiskReader::convertWindowsTimeToUnixTime(_FILETIME& input)
 {
+    #pragma unused(input)
     throw std::runtime_error("Not implemented!");
 }

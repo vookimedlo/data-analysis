@@ -139,6 +139,7 @@ void DataAnalyzer::onClockwiseRotate()
 
 void DataAnalyzer::onTagChanged(int row)
 {
+    #pragma unused(row)
     if (m_selectedDataItem)
         DetailsPublisher::toModel(*ui.detailsTreeWidget, *ui.tagListWidget, *m_selectedDataItem);    
 }

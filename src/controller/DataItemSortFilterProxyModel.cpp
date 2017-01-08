@@ -61,7 +61,7 @@ bool DataItemSortFilterProxyModel::lessThan(const QModelIndex &left,
     const Directory* const rightItemDir = dynamic_cast<const Directory *>(rightItem);
 
     /* Keep folders on top */
-    if (leftItemDir && rightItemDir || !leftItemDir && !rightItemDir)
+    if ((leftItemDir && rightItemDir) || (!leftItemDir && !rightItemDir))
     {
         switch (left.column())
         {

@@ -30,6 +30,7 @@ ReportOperation::ReportOperation(ReportWriter& writer, DataItem &rootItem) : m_c
 
 void ReportOperation::start(std::wstring dir)
 {
+    #pragma unused(dir)
     throw std::runtime_error("Not implemented!");
 }
 

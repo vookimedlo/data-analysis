@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
     QString locale = QLocale::system().name();
 
     bool result = translator.load(QString("dataanalyzer_") + locale + ".qm");
+    #pragma unused(result)
+
     qDebug("Locale database is '%s'", qPrintable(QString("dataanalyzer_") + locale));
     app.installTranslator(&translator);
 

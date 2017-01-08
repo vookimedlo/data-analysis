@@ -37,7 +37,10 @@ SOURCES += \
     ../../src/abstraction/unix/FS.cpp \
     ../../src/operations/HashOperation.cpp \
     ../../src/reports/HTMLReportWriter.cpp \
-    ../../src/reports/ReportSettings.cpp
+    ../../src/reports/ReportSettings.cpp \
+    ../../src/ui/CSVFinalReportDialog.cpp \
+    ../../src/ui/FinalReportDialog.cpp \
+    ../../src/ui/HTMLFinalReportDialog.cpp
 
 HEADERS  += \
     ../../src/abstraction/DiskReader.h \
@@ -65,7 +68,10 @@ HEADERS  += \
     ../../src/abstraction/FS.h \
     ../../src/operations/HashOperation.h \
     ../../src/reports/HTMLReportWriter.h \
-    ../../src/reports/ReportSettings.h
+    ../../src/reports/ReportSettings.h \
+    ../../src/ui/CSVFinalReportDialog.h \
+    ../../src/ui/FinalReportDialog.h \
+    ../../src/ui/HTMLFinalReportDialog.h
 
 RESOURCES += \
     ../../src/resource/DataAnalyzer.qrc

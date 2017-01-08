@@ -39,7 +39,7 @@ class DataItem
     virtual int64_t modificationTimestamp() const;
     virtual std::wstring extension() const;
 
-    virtual DataItem* const parent() const;
+    virtual DataItem* parent() const;
     virtual void optimize();
 
     std::wstring path();

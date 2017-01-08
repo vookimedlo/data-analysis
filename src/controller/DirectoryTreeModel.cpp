@@ -35,6 +35,7 @@ DirectoryTreeModel::~DirectoryTreeModel()
 
 int DirectoryTreeModel::columnCount(const QModelIndex &parent) const
 {
+     #pragma unused(parent)
     return 2;
 }
 

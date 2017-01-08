@@ -40,6 +40,7 @@ DataItemTreeModel::~DataItemTreeModel()
 
 int DataItemTreeModel::columnCount(const QModelIndex &parent) const
 {    
+    #pragma unused(parent)
     return m_mode == DataItemTreeModelE_NoDetails ? 2 : 5;
 }
 
