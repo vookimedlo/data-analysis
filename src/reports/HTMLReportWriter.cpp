@@ -158,6 +158,16 @@ bool HTMLReportWriter::write(DataItem& dataItem)
         write("<br />");
     }
 
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_MD5))
+    {
+        if (dataItem.isInfoValid(DataInfo::DataInfoE_SHA1))
+        {
+            write(addPreparedStringInTag(prepareString(tr("MD5 fingerprint")), "span", "key"));
+            write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_MD5))), "span", "value"));
+            write("<br />");
+        }
+    }
+
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_SHA1))
     {
         if (dataItem.isInfoValid(DataInfo::DataInfoE_SHA1))

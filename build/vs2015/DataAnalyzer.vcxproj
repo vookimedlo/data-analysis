@@ -74,11 +74,12 @@
       <AdditionalDependencies>Shlwapi.lib;magic1.lib;qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Multimediad.lib;Qt5MultimediaWidgetsd.lib;Qt5Sqld.lib;Qt5Svgd.lib;Qt5Widgetsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y ..\..\src\translations\dataanalyzer_cs_CZ.qm $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic1.dll  $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\x64\zlibwapi.dll  $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\x64\regex2.dll  $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic.mgc  $(OutDir)</Command>
+      <Command>xcopy /Y ..\..\src\translations\dataanalyzer_cs_CZ.qm "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic1.dll  "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\x64\zlibwapi.dll  "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\x64\regex2.dll  "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic.mgc  "$(OutDir)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -98,11 +99,13 @@ xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic.mgc  $(OutDir)</Command>
       <AdditionalDependencies>Shlwapi.lib;magic1.lib;qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Multimediad.lib;Qt5MultimediaWidgetsd.lib;Qt5Sqld.lib;Qt5Svgd.lib;Qt5Widgetsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y ..\..\src\translations\dataanalyzer_cs_CZ.qm $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic1.dll  $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\win32\zlibwapi.dll  $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\win32\regex2.dll  $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  $(OutDir)</Command>
+      <Command>xcopy /Y ..\..\src\translations\dataanalyzer_cs_CZ.qm "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic1.dll  "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\win32\zlibwapi.dll  "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\win32\regex2.dll  "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  "$(OutDir)"
+
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -121,11 +124,12 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  $(OutDir)</Command>
       <AdditionalDependencies>Shlwapi.lib;magic1.lib;qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Multimedia.lib;Qt5MultimediaWidgets.lib;Qt5Sql.lib;Qt5Svg.lib;Qt5Widgets.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y ..\..\src\translations\dataanalyzer_cs_CZ.qm $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic1.dll  $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\x64\zlibwapi.dll  $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\x64\regex2.dll  $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic.mgc  $(OutDir)</Command>
+      <Command>xcopy /Y ..\..\src\translations\dataanalyzer_cs_CZ.qm "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic1.dll  "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\x64\zlibwapi.dll  "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\x64\regex2.dll  "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic.mgc  "$(OutDir)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -145,11 +149,13 @@ xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic.mgc  $(OutDir)</Command>
       <AdditionalDependencies>Shlwapi.lib;magic1.lib;qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Multimedia.lib;Qt5MultimediaWidgets.lib;Qt5Sql.lib;Qt5Svg.lib;Qt5Widgets.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y ..\..\src\translations\dataanalyzer_cs_CZ.qm $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic1.dll  $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\win32\zlibwapi.dll  $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\win32\regex2.dll  $(OutDir)
-xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  $(OutDir)</Command>
+      <Command>xcopy /Y ..\..\src\translations\dataanalyzer_cs_CZ.qm "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic1.dll  "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\win32\zlibwapi.dll  "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\win32\regex2.dll  "$(OutDir)"
+xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  "$(OutDir)"
+
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
