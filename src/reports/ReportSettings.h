@@ -58,6 +58,9 @@ public:
 
     void setTitle(const QString &title);
     QString getTitle() const;
+
+    void setId(const QString &id);
+    QString getId() const;
     
     void setReference(const QString &reference);
     QString getReference() const;
@@ -77,6 +80,7 @@ public:
 private:
     QString m_filePath;
     QString m_title;
+    QString m_id;
     QString m_reference;
     QString m_perex;
     uint32_t m_restrictions;

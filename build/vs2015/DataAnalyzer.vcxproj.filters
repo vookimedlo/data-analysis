@@ -348,64 +348,13 @@
     <Image Include="..\..\src\resource\DataAnalyzer.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="..\..\src\resource\folder-20110506-300px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\matt-icons_file-x-generic-300px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\primary-rotate-ccw-800px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\primary-rotate-cw-800px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\redbuttonx-800px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\media-playback-start-300px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\tasto-7-architetto-franc-01-300px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\tasto-7-architetto-franc-01-800px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\tasto-8-architetto-franc-01-300px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\tasto-8-architetto-franc-01-800px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\Exit-by-Rones-800px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\1467665209-300px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\1467665209-800px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\1467665209-2400px.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\frame-radar-icon-001.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\frame-fingerprint.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\frame-fingerprint-magic.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\src\resource\frame-adriankierman-report-page.png">
-      <Filter>Resource Files</Filter>
-    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\translations\dataanalyzer_cs_CZ.ts">
       <Filter>Translation Files</Filter>
+    </None>
+    <None Include="..\..\src\resource\css\dataanalysis.css">
+      <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
 </Project>

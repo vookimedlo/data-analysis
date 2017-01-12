@@ -83,9 +83,26 @@ span.reference {
     padding-bottom: 1em;
 }
 
+span.id {
+    display: block;
+    font-weight: bold;
+    font-size: 15px;
+    font-style: italic;
+    padding-bottom: 1em;
+}
+
 div.perex {
     padding: 0 10px 10px 10px;
     white-space: pre;
     border-bottom: 20px solid;
     margin-bottom: 10px;
+}
+   
+img {
+    display: block;
+    max-width: 500px;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+    margin: 15px 0px 0px 40px; 
 }

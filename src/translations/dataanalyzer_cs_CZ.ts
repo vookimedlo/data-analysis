@@ -644,22 +644,22 @@
 <context>
     <name>HTMLReportWriter</name>
     <message>
-        <location filename="../reports/HTMLReportWriter.cpp" line="165"/>
+        <location filename="../reports/HTMLReportWriter.cpp" line="171"/>
         <source>File</source>
         <translation>Soubor</translation>
     </message>
     <message>
-        <location filename="../reports/HTMLReportWriter.cpp" line="165"/>
+        <location filename="../reports/HTMLReportWriter.cpp" line="171"/>
         <source>Directory</source>
         <translation>Adresář</translation>
     </message>
     <message>
-        <location filename="../reports/HTMLReportWriter.cpp" line="47"/>
+        <location filename="../reports/HTMLReportWriter.cpp" line="48"/>
         <source>HTML Report</source>
         <translation>Závěrečná zpráva</translation>
     </message>
     <message>
-        <location filename="../reports/HTMLReportWriter.cpp" line="164"/>
+        <location filename="../reports/HTMLReportWriter.cpp" line="170"/>
         <source>Basic data type</source>
         <translation>Základní typ objektu</translation>
     </message>
@@ -668,42 +668,42 @@
         <translation type="obsolete">Velikost</translation>
     </message>
     <message>
-        <location filename="../reports/HTMLReportWriter.cpp" line="171"/>
+        <location filename="../reports/HTMLReportWriter.cpp" line="177"/>
         <source>Size in bytes</source>
         <translation>Velikost v bajtech</translation>
     </message>
     <message>
-        <location filename="../reports/HTMLReportWriter.cpp" line="178"/>
+        <location filename="../reports/HTMLReportWriter.cpp" line="184"/>
         <source>Creation date</source>
         <translation>Datum vytvoření</translation>
     </message>
     <message>
-        <location filename="../reports/HTMLReportWriter.cpp" line="185"/>
+        <location filename="../reports/HTMLReportWriter.cpp" line="191"/>
         <source>Modification date</source>
         <translation>Datum modifikace</translation>
     </message>
     <message>
-        <location filename="../reports/HTMLReportWriter.cpp" line="194"/>
+        <location filename="../reports/HTMLReportWriter.cpp" line="200"/>
         <source>MD5 fingerprint</source>
         <translation>MD5 otisk</translation>
     </message>
     <message>
-        <location filename="../reports/HTMLReportWriter.cpp" line="204"/>
+        <location filename="../reports/HTMLReportWriter.cpp" line="210"/>
         <source>SHA-1 fingerprint</source>
         <translation>SHA-1 otisk</translation>
     </message>
     <message>
-        <location filename="../reports/HTMLReportWriter.cpp" line="214"/>
+        <location filename="../reports/HTMLReportWriter.cpp" line="220"/>
         <source>SHA3-512 fingerprint</source>
         <translation>SHA3-512 otisk</translation>
     </message>
     <message>
-        <location filename="../reports/HTMLReportWriter.cpp" line="224"/>
+        <location filename="../reports/HTMLReportWriter.cpp" line="230"/>
         <source>Probable data type</source>
         <translation>Pravděpodobný typ dat</translation>
     </message>
     <message>
-        <location filename="../reports/HTMLReportWriter.cpp" line="234"/>
+        <location filename="../reports/HTMLReportWriter.cpp" line="240"/>
         <source>Analysis</source>
         <translation>Analýza</translation>
     </message>

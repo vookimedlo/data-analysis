@@ -44,6 +44,16 @@ QString ReportSettings::getTitle() const
     return m_title;
 }
 
+void ReportSettings::setId(const QString& id)
+{
+    m_id = id;
+}
+
+QString ReportSettings::getId() const
+{
+    return m_id;
+}
+
 void ReportSettings::setReference(const QString& reference)
 {
     m_reference = reference;

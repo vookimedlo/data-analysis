@@ -69,6 +69,7 @@ void FinalReportDialog::onAccept()
         m_reportSettings.addProperty(ReportSettings::PropertiesE_Path);
 
     m_reportSettings.setTitle(m_uiReportDialog.titleLineEdit->text());
+    m_reportSettings.setId(m_uiReportDialog.idLineEdit->text());
     m_reportSettings.setReference(m_uiReportDialog.referenceLineEdit->text());
     m_reportSettings.setPerex(m_uiReportDialog.perexTextEdit->toPlainText());
     m_reportSettings.setFilePath(m_uiReportDialog.exportToFileLineEdit->text());

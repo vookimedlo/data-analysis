@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../util/TagHelper.h"
 
 #include "HTMLReportWriter.h"
+#include <QImageReader>
 
 
 HTMLReportWriter::HTMLReportWriter(const ReportSettings &reportSettings, ReportThumbnailGenerator &reportThumbnailGenerator) : m_OutputStream(), m_ReportSettings(reportSettings), m_ReportThumbnailGenerator(reportThumbnailGenerator), m_UniqueNumber(0)
@@ -75,6 +76,11 @@ bool HTMLReportWriter::open()
     if (!m_ReportSettings.getReference().isEmpty())
     {
         write(addPreparedStringInTag(prepareString(m_ReportSettings.getReference()), "span", "reference"));
+    }
+
+    if (!m_ReportSettings.getId().isEmpty())
+    {
+        write(addPreparedStringInTag(prepareString(m_ReportSettings.getId()), "span", "id"));
     }
 
     if (!m_ReportSettings.getPerex().isEmpty())
@@ -233,6 +239,15 @@ bool HTMLReportWriter::write(DataItem& dataItem)
         {
             write(addPreparedStringInTag(prepareString(tr("Analysis")), "span", "analysis-title"));
             write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_Analysis))), "div", "analysis"));
+            write("<br />");
+        }
+    }
+
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Preview))
+    {
+        if (QImageReader::supportedImageFormats().indexOf(StringHelper::toQString(dataItem.extension()).toLower().toLatin1()) != -1)
+        {
+            write("<img src=\"" + prepareString(thumbnailURL) + "\" />");
             write("<br />");
         }
     }
