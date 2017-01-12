@@ -17,8 +17,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
 #include <QDateTime>
+#include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include "ReportSettings.h"
+#include "ReportThumbnailGenerator.h"
 #include "../fs/DataItem.h"
 #include "../fs/Directory.h"
 #include "../fs/File.h"
@@ -28,7 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "HTMLReportWriter.h"
 
 
-HTMLReportWriter::HTMLReportWriter(const ReportSettings &reportSettings) : m_OutputStream(), m_ReportSettings(reportSettings)
+HTMLReportWriter::HTMLReportWriter(const ReportSettings &reportSettings, ReportThumbnailGenerator &reportThumbnailGenerator) : m_OutputStream(), m_ReportSettings(reportSettings), m_ReportThumbnailGenerator(reportThumbnailGenerator), m_UniqueNumber(0)
 {
 }
 
@@ -108,6 +111,21 @@ bool HTMLReportWriter::write(DataItem& dataItem)
     if (!m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_NoTag) && tag == 0)
         return true;
 
+    QFileInfo htmlOutput(m_ReportSettings.getFilePath());
+    QString originalPathName(StringHelper::toQString(dataItem.path()));
+    QFileInfo fileInfo(originalPathName);
+    QString thumbnailPath(htmlOutput.canonicalPath() + "/" + htmlOutput.baseName() + "/");
+    QString thumbnailName(QString::number(m_UniqueNumber++) + (fileInfo.completeSuffix().isEmpty() ? "" : ( "." + fileInfo.completeSuffix())));
+    QString thumbnailURL(htmlOutput.baseName() + "/" + thumbnailName);
+    QDir thumbnailDir(thumbnailPath);
+    std::unique_ptr<ReportThumbnail> thumbnail = m_ReportThumbnailGenerator.generate(originalPathName);
+
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Preview))
+    {
+        if (!thumbnailDir.exists())
+            thumbnailDir.mkpath(thumbnailPath);
+    }
+
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Tag))
     {
         if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Name))
@@ -127,7 +145,17 @@ bool HTMLReportWriter::write(DataItem& dataItem)
 
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Path))
     {
-        write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.path())), "span", "path"));
+        if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Preview) && dynamic_cast<const File *>(&dataItem))
+        {
+            QString preparedPathString(prepareString(StringHelper::toQString(dataItem.path())));
+            QString pathLink("<a href=\"" + thumbnailURL + "\">" + preparedPathString + "</a>");
+            write(addPreparedStringInTag(pathLink, "span", "path"));
+            thumbnail->write(thumbnailPath + "/" + thumbnailName);
+        }
+        else
+        {
+            write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.path())), "span", "path"));
+        }
         write("<br />");
     }
 

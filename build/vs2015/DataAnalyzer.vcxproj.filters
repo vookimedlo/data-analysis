@@ -204,6 +204,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_CSVFinalReportDialog.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\reports\HTMLReportThumbnailGenerator.cpp">
+      <Filter>Source Files\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\CopyReportThumbnail.cpp">
+      <Filter>Source Files\Report</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\src\controller\DirectoryTreeModel.h">
@@ -321,6 +327,18 @@
     </ClInclude>
     <ClInclude Include="..\..\src\reports\ReportSettings.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\ReportThumbnailGenerator.h">
+      <Filter>Source Files\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\ReportThumbnail.h">
+      <Filter>Source Files\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\HTMLReportThumbnailGenerator.h">
+      <Filter>Source Files\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\CopyReportThumbnail.h">
+      <Filter>Source Files\Report</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

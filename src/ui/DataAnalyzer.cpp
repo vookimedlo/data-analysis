@@ -32,6 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../operations/ReportOperation.h"
 #include "../operations/ScanDirOperation.h"
 #include "../reports/CSVReportWriter.h"
+#include "../reports/HTMLReportThumbnailGenerator.h"
 #include "../reports/HTMLReportWriter.h"
 #include "../reports/ReportSettings.h"
 #include "../reports/RTFReportWriter.h"
@@ -252,8 +253,9 @@ void DataAnalyzer::onHTMLReportTriggered()
         {
             // TODO: remove
             settings.setFilePath("C:/tmp/report.html");
-
-            HTMLReportWriter writer(settings);
+            
+            HTMLReportThumbnailGenerator generator;
+            HTMLReportWriter writer(settings, generator);
             ReportOperation operation(writer, *m_topLevelDirectory);
 
             OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);

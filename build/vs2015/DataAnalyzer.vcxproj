@@ -169,6 +169,8 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  "$(OutDir)"
     <ClCompile Include="..\..\src\fs\DataItem.cpp" />
     <ClCompile Include="..\..\src\fs\Directory.cpp" />
     <ClCompile Include="..\..\src\fs\File.cpp" />
+    <ClCompile Include="..\..\src\reports\CopyReportThumbnail.cpp" />
+    <ClCompile Include="..\..\src\reports\HTMLReportThumbnailGenerator.cpp" />
     <ClCompile Include="..\..\src\reports\HTMLReportWriter.cpp" />
     <ClCompile Include="..\..\src\reports\ReportSettings.cpp" />
     <ClCompile Include="..\..\src\ui\CSVFinalReportDialog.cpp" />
@@ -308,6 +310,8 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  "$(OutDir)"
   <ItemGroup>
     <ClInclude Include="..\..\src\abstraction\DiskReader.h" />
     <ClInclude Include="..\..\src\abstraction\FS.h" />
+    <ClInclude Include="..\..\src\reports\CopyReportThumbnail.h" />
+    <ClInclude Include="..\..\src\reports\HTMLReportThumbnailGenerator.h" />
     <ClInclude Include="..\..\src\reports\HTMLReportWriter.h" />
     <ClInclude Include="..\..\src\reports\ReportSettings.h" />
     <CustomBuild Include="..\..\src\ui\FinalReportDialog.h">
@@ -364,6 +368,8 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  "$(OutDir)"
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_SQL_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB "-I.\..\..\src\3rdParty\libmagic\x64\include" "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtMultimedia" "-I$(QTDIR)\include\QtMultimediaWidgets" "-I$(QTDIR)\include\QtSql" "-I$(QTDIR)\include\QtSvg" "-I$(QTDIR)\include\QtWidgets"</Command>
     </CustomBuild>
+    <ClInclude Include="..\..\src\reports\ReportThumbnail.h" />
+    <ClInclude Include="..\..\src\reports\ReportThumbnailGenerator.h" />
     <ClInclude Include="..\..\src\util\ConnectionManagement.h" />
     <CustomBuild Include="..\..\src\controller\DirectoryTreeModel.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

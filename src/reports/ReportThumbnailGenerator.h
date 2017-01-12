@@ -17,35 +17,15 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include <cstdint>
-#include <fstream>
-#include <string>
-#include <QCoreApplication>
-#include "ReportWriter.h"
+#include <memory>
+#include "ReportThumbnail.h"
 
-class ReportThumbnailGenerator;
-class ReportSettings;
 class QString;
 
-class HTMLReportWriter : public ReportWriter
+class ReportThumbnailGenerator
 {
-    Q_DECLARE_TR_FUNCTIONS(HTMLReportWriter);
-
 public:
-    explicit HTMLReportWriter(const ReportSettings &reportSettings, ReportThumbnailGenerator &reportThumbnailGenerator);
-    ~HTMLReportWriter() override;
-    bool open() override;
-    bool write(DataItem &dataiItem) override;
-    bool close() override;
+    virtual ~ReportThumbnailGenerator() {}
 
-protected:
-    QString prepareString(const QString& str);
-    QString addPreparedStringInTag(const QString& str, const QString& tag, const QString& cssClass = QString());
-    bool write(const QString& str);
-
-private:
-    std::ofstream m_OutputStream;
-    const ReportSettings &m_ReportSettings;
-    ReportThumbnailGenerator &m_ReportThumbnailGenerator;
-    uint64_t m_UniqueNumber;
+    virtual std::unique_ptr<ReportThumbnail> generate(const QString& pathName) = 0;
 };
