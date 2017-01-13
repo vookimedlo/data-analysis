@@ -17,34 +17,22 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include <future>
-#include "../model/fs/DataInfo.h"
-#include "../operations/Operations.h"
+#include <QDialog>
+#include "ui_GlobalInformationDialog.h"
 
+class GlobalInformation;
 
-/// Forward declarations
-class DataItem;
-class QCryptographicHash;
-
-class HashOperation : public Operations
+class GlobalInformationDialog : public QDialog
 {
+    Q_OBJECT
+
 public:
-    HashOperation(QCryptographicHash &hash, DataInfo::DataInfoE info, DataItem &rootItem);
-    void start(std::wstring dir) override;
-    void start() override;
-    void cancel() override;
-    bool isFinished() const override;
-    std::wstring path() const override;
-    uint32_t totalFilesCount() const override;
+    explicit GlobalInformationDialog(GlobalInformation &info, bool populateInfoToUi = false, QWidget *parent = Q_NULLPTR);
 
+ public Q_SLOTS:
+    void onAccept();
+ 
 protected:
-    void startOperation();
-    static bool computeHash(QCryptographicHash& hash, std::wstring path);
-
-private:
-    std::future<void> m_asyncScanWorker;
-    bool m_cancelWorkerActivity;
-    DataItem &m_RootItem;
-    QCryptographicHash &m_hash;
-    DataInfo::DataInfoE m_info;
+    Ui::GlobalInformationDialog m_uiGlobalInformationDialog;
+    GlobalInformation &m_info;
 };

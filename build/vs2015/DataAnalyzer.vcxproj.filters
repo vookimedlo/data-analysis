@@ -38,9 +38,6 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
-    <Filter Include="Source Files\Model">
-      <UniqueIdentifier>{6e8a8692-053c-4929-8915-fb778ba71586}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Util">
       <UniqueIdentifier>{fc57687d-d6a8-4e6c-9400-dd5f09f2233a}</UniqueIdentifier>
     </Filter>
@@ -66,6 +63,12 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
       <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{2c669fe1-460f-40af-a79f-299a2473f6a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\FileSystem">
+      <UniqueIdentifier>{78aec9ba-e03b-42d2-8da6-7e4272ba073f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -104,18 +107,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_DataAnalyzer.cpp">
       <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fs\File.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fs\Directory.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fs\DataItem.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fs\DataInfo.cpp">
-      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\util\ModelHelper.cpp">
       <Filter>Source Files\Util</Filter>
@@ -210,6 +201,30 @@
     <ClCompile Include="..\..\src\reports\CopyReportThumbnail.cpp">
       <Filter>Source Files\Report</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GlobalInformationDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GlobalInformationDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ui\GlobalInformationDialog.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\model\fs\DataInfo.cpp">
+      <Filter>Source Files\Model\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\model\fs\DataItem.cpp">
+      <Filter>Source Files\Model\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\model\fs\Directory.cpp">
+      <Filter>Source Files\Model\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\model\fs\File.cpp">
+      <Filter>Source Files\Model\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\model\GlobalInformation.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\src\controller\DirectoryTreeModel.h">
@@ -250,6 +265,12 @@
     </CustomBuild>
     <CustomBuild Include="..\..\src\ui\CSVFinalReportDialog.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\GlobalInformationDialog.h">
+      <Filter>Source Files\UI</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\forms\GlobalInformationDialog.ui">
+      <Filter>Form Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -295,18 +316,6 @@
     <ClInclude Include="..\..\src\util\ConnectionManagement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\fs\DataInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fs\DataItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fs\Directory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fs\File.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\abstraction\DiskReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -339,6 +348,24 @@
     </ClInclude>
     <ClInclude Include="..\..\src\reports\CopyReportThumbnail.h">
       <Filter>Source Files\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_GlobalInformationDialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\fs\File.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\fs\Directory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\fs\DataItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\fs\DataInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\GlobalInformation.h">
+      <Filter>Source Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

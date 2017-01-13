@@ -18,9 +18,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QDateTime>
 #include "ReportSettings.h"
-#include "../fs/DataItem.h"
-#include "../fs/Directory.h"
-#include "../fs/File.h"
+#include "../model/fs/DataItem.h"
+#include "../model/fs/Directory.h"
+#include "../model/fs/File.h"
 #include "../util/ModelHelper.h"
 #include "../util/StringHelper.h"
 #include "../util/TagHelper.h"

@@ -1,4 +1,3 @@
-#pragma once
 /****************************************************************************
 Data Analysis - tool for making a basic data analysis.
 Copyright(C) 2017  Michal Duda <github@vookimedlo.cz>
@@ -17,34 +16,38 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include <future>
-#include "../model/fs/DataInfo.h"
-#include "../operations/Operations.h"
+#include "GlobalInformation.h"
 
-
-/// Forward declarations
-class DataItem;
-class QCryptographicHash;
-
-class HashOperation : public Operations
+GlobalInformation::GlobalInformation()
 {
-public:
-    HashOperation(QCryptographicHash &hash, DataInfo::DataInfoE info, DataItem &rootItem);
-    void start(std::wstring dir) override;
-    void start() override;
-    void cancel() override;
-    bool isFinished() const override;
-    std::wstring path() const override;
-    uint32_t totalFilesCount() const override;
+}
 
-protected:
-    void startOperation();
-    static bool computeHash(QCryptographicHash& hash, std::wstring path);
+void GlobalInformation::setReferenceNumber(const std::string & value)
+{
+    m_referenceNumber = value;
+}
 
-private:
-    std::future<void> m_asyncScanWorker;
-    bool m_cancelWorkerActivity;
-    DataItem &m_RootItem;
-    QCryptographicHash &m_hash;
-    DataInfo::DataInfoE m_info;
-};
+std::string GlobalInformation::getReferenceNumber() const
+{
+    return m_referenceNumber;
+}
+
+void GlobalInformation::setReference(const std::string & value)
+{
+    m_reference = value;
+}
+
+std::string GlobalInformation::getReference() const
+{
+    return m_reference;
+}
+
+void GlobalInformation::setId(const std::string & value)
+{
+    m_id = value;
+}
+
+std::string GlobalInformation::getId() const
+{
+    return m_id;
+}

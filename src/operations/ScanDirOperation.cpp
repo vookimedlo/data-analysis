@@ -20,8 +20,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <queue>
 #include "../abstraction/DiskReader.h"
-#include "../fs/Directory.h"
-#include "../fs/File.h"
+#include "../model/fs/Directory.h"
+#include "../model/fs/File.h"
 
 #include "ScanDirOperation.h"
 

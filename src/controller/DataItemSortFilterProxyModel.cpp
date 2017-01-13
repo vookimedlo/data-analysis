@@ -20,8 +20,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "DataItemSortFilterProxyModel.h"
 #include "DataItemTreeModel.h"
-#include "../fs/DataItem.h"
-#include "../fs/Directory.h"
+#include "../model/fs/DataItem.h"
+#include "../model/fs/Directory.h"
 
 DataItemSortFilterProxyModel::DataItemSortFilterProxyModel(QObject *parent) : QSortFilterProxyModel(parent)
 {

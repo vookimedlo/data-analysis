@@ -21,8 +21,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <queue>
 #include <QString>
 #include "../abstraction/FS.h"
-#include "../fs/Directory.h"
-#include "../fs/File.h"
+#include "../model/fs/Directory.h"
+#include "../model/fs/File.h"
 #include "../util/ModelHelper.h"
 #include "../util/StringHelper.h"
 

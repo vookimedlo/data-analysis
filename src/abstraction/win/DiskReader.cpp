@@ -21,8 +21,8 @@
 
 #include <memory>
 #include <vector>
-#include "../../fs/File.h"
-#include "../../fs/Directory.h"
+#include "../../model/fs/File.h"
+#include "../../model/fs/Directory.h"
 
 #include "../DiskReader.h"
 

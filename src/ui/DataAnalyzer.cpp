@@ -25,8 +25,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_About.h"
 #include "ui_FinalReportDialog.h"
 #include "../controller/DetailsPublisher.h"
-#include "../fs/Directory.h"
-#include "../fs/File.h"
+#include "../model/GlobalInformation.h"
+#include "../model/fs/Directory.h"
+#include "../model/fs/File.h"
 #include "../operations/MagicOperation.h"
 #include "../operations/HashOperation.h"
 #include "../operations/ReportOperation.h"
@@ -41,9 +42,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../util/StringHelper.h"
 
 #include "DataAnalyzer.h"
+#include "GlobalInformationDialog.h"
 
 DataAnalyzer::DataAnalyzer(QWidget *parent)
-    : QMainWindow(parent), m_directoryModel(nullptr), m_fileDirectoryModel(nullptr), m_detailedDataItemModel(nullptr), m_detailedDataItemSortFilterProxyModel(new (std::nothrow) DataItemSortFilterProxyModel()), m_selectedDataItem(nullptr)
+    : QMainWindow(parent),
+      m_directoryModel(nullptr),
+      m_fileDirectoryModel(nullptr),
+      m_detailedDataItemModel(nullptr),
+      m_detailedDataItemSortFilterProxyModel(new (std::nothrow) DataItemSortFilterProxyModel()),
+      m_selectedDataItem(nullptr),
+      m_globalInformation()
 {
     ui.setupUi(this);
     ui.detailedDataItemTreeView->setModel(m_detailedDataItemSortFilterProxyModel.get());
@@ -55,6 +63,9 @@ void DataAnalyzer::onScanTriggered()
     OperationDialog dialog(operation, OperationDialog::ModeE_DirSelect, this);
     if (dialog.exec() == QDialog::Accepted)
     {
+        ui.detailsTreeWidget->clear();
+        ui.previewWidget->clear();
+
         m_topLevelDirectory = dialog.getResult();
 
         m_directoryModel.reset(new (std::nothrow) DirectoryTreeModel(m_topLevelDirectory.get()));
@@ -245,6 +256,10 @@ void DataAnalyzer::onHTMLReportTriggered()
     {
         QString dialogTitle(tr("HTML report"));
         ReportSettings settings;
+        settings.setTitle(StringHelper::toQString(m_globalInformation.getReferenceNumber()));
+        settings.setReference(StringHelper::toQString(m_globalInformation.getReference()));
+        settings.setId(StringHelper::toQString(m_globalInformation.getId()));
+
         HTMLFinalReportDialog reportDialog(settings);
         reportDialog.setWindowTitle(dialogTitle); 
 
@@ -263,6 +278,41 @@ void DataAnalyzer::onHTMLReportTriggered()
             dialog.exec();
         }
     }
+}
+
+void DataAnalyzer::onNewTriggered()
+{  
+    QString dialogTitle(tr("Dataset settings"));
+    GlobalInformationDialog dialog(m_globalInformation);
+    dialog.setWindowTitle(dialogTitle);  
+
+    dialog.show();
+    if (dialog.exec() == QDialog::Accepted)
+    {
+        m_directoryModel.reset();
+        m_fileDirectoryModel.reset();
+        ui.detailedDataItemTreeView->setModel(nullptr);
+        ui.detailedDataItemTreeView->reset();
+        m_detailedDataItemSortFilterProxyModel->setSourceModel(nullptr);
+        m_detailedDataItemModel.reset();
+
+        ui.detailsTreeWidget->clear();
+        ui.previewWidget->clear();
+        ui.tagListWidget->setCurrentRow(0);
+
+        m_topLevelDirectory.reset();
+        m_selectedDataItem = nullptr;
+    }
+}
+
+void DataAnalyzer::onDatasetSettingsTriggered()
+{
+    QString dialogTitle(tr("Dataset settings"));
+    GlobalInformationDialog dialog(m_globalInformation, true);
+    dialog.setWindowTitle(dialogTitle);
+
+    dialog.show();
+    dialog.exec();
 }
 
 void DataAnalyzer::dataItemSelected(QModelIndex index)

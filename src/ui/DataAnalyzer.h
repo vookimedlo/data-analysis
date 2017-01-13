@@ -23,7 +23,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../controller/DataItemSortFilterProxyModel.h"
 #include "../controller/DataItemTreeModel.h"
 #include "../controller/DirectoryTreeModel.h"
-#include "../fs/DataInfo.h"
+#include "../model/GlobalInformation.h"
+#include "../model/fs/DataInfo.h"
 
 class DataItem;
 class Directory;
@@ -54,6 +55,8 @@ public Q_SLOTS:
     void onCSVReportTriggered();
     void onRTFReportTriggered();
     void onHTMLReportTriggered();
+    void onNewTriggered();
+    void onDatasetSettingsTriggered();
 
 
 protected:
@@ -73,4 +76,6 @@ private:
     DataItem *m_analysisDataItem;
 
     DataItem *m_selectedDataItem;
+
+    GlobalInformation m_globalInformation;
 };

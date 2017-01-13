@@ -34,5 +34,6 @@ int main(int argc, char *argv[])
 
     DataAnalyzer mainWindow;
     mainWindow.show();
+    mainWindow.onNewTriggered();
     return app.exec();
 }

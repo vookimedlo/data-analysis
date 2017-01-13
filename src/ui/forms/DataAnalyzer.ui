@@ -142,8 +142,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>413</width>
-              <height>422</height>
+              <width>367</width>
+              <height>456</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -286,13 +286,14 @@
      <x>0</x>
      <y>0</y>
      <width>1544</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSoubor">
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
@@ -318,6 +319,7 @@
     <property name="title">
      <string>Settings</string>
     </property>
+    <addaction name="actionDatasetSettings"/>
     <addaction name="actionSettings"/>
    </widget>
    <widget class="QMenu" name="menuOperace">
@@ -661,6 +663,16 @@
     <string>Generate final report [HTML]</string>
    </property>
   </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New ...</string>
+   </property>
+  </action>
+  <action name="actionDatasetSettings">
+   <property name="text">
+    <string>Dataset settings ...</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
@@ -939,6 +951,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionNew</sender>
+   <signal>triggered()</signal>
+   <receiver>DataAnalyzerClass</receiver>
+   <slot>onNewTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>771</x>
+     <y>437</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDatasetSettings</sender>
+   <signal>triggered()</signal>
+   <receiver>DataAnalyzerClass</receiver>
+   <slot>onDatasetSettingsTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>771</x>
+     <y>437</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onScanTriggered()</slot>
@@ -957,5 +1001,7 @@
   <slot>onSHA1Triggered()</slot>
   <slot>onSHA3_512Triggered()</slot>
   <slot>onHTMLReportTriggered()</slot>
+  <slot>onNewTriggered()</slot>
+  <slot>onDatasetSettingsTriggered()</slot>
  </slots>
 </ui>

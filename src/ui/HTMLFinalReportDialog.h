@@ -20,7 +20,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <memory>
 #include <QDialog>
 #include "ui_FinalReportDialog.h"
-#include "../fs/DataInfo.h"
+#include "../model/fs/DataInfo.h"
 #include "FinalReportDialog.h"
 
 class ReportSettings;

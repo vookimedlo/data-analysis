@@ -21,7 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QListWidget>
 #include <QTreeWidget>
 #include "../util/StringHelper.h"
-#include "../fs/DataItem.h"
+#include "../model/fs/DataItem.h"
 
 #include "DetailsPublisher.h"
 

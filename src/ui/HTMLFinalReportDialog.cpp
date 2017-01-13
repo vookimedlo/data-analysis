@@ -23,6 +23,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 HTMLFinalReportDialog::HTMLFinalReportDialog(ReportSettings& settings, QWidget* parent) : FinalReportDialog(settings, parent)
 {    
     defaultSettings();
+    m_uiReportDialog.titleLineEdit->setText(settings.getTitle());
+    m_uiReportDialog.referenceLineEdit->setText(settings.getReference());
+    m_uiReportDialog.idLineEdit->setText(settings.getId());
 }
 
 void HTMLFinalReportDialog::onDefault()

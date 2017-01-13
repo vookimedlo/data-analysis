@@ -20,7 +20,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <functional>
 #include <memory>
-#include "../fs/Directory.h"
+#include "../model/fs/Directory.h"
 #include "../util/ConnectionManagement.h"
 
 class Operations
