@@ -19,8 +19,8 @@
 #include <vector>
 #include <QDateTime>
 #include <QDir>
-#include "../../fs/File.h"
-#include "../../fs/Directory.h"
+#include "../../model/fs/File.h"
+#include "../../model/fs/Directory.h"
 #include "../../util/StringHelper.h"
 
 #include "../DiskReader.h"

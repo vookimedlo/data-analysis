@@ -11,6 +11,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = DataAnalysis
 TEMPLATE = app
 
+# std::make_unique is part of c++14
+#
+CONFIG += c++14
 
 SOURCES += \
     ../../src/abstraction/qt/DiskReader.cpp \
@@ -18,10 +21,11 @@ SOURCES += \
     ../../src/controller/DataItemTreeModel.cpp \
     ../../src/controller/DetailsPublisher.cpp \
     ../../src/controller/DirectoryTreeModel.cpp \
-    ../../src/fs/DataInfo.cpp \
-    ../../src/fs/DataItem.cpp \
-    ../../src/fs/Directory.cpp \
-    ../../src/fs/File.cpp \
+    ../../src/model/GlobalInformation.cpp \
+    ../../src/model/fs/DataInfo.cpp \
+    ../../src/model/fs/DataItem.cpp \
+    ../../src/model/fs/Directory.cpp \
+    ../../src/model/fs/File.cpp \
     ../../src/operations/MagicOperation.cpp \
     ../../src/operations/Operations.cpp \
     ../../src/operations/ReportOperation.cpp \
@@ -40,7 +44,11 @@ SOURCES += \
     ../../src/reports/ReportSettings.cpp \
     ../../src/ui/CSVFinalReportDialog.cpp \
     ../../src/ui/FinalReportDialog.cpp \
-    ../../src/ui/HTMLFinalReportDialog.cpp
+    ../../src/ui/HTMLFinalReportDialog.cpp \
+    ../../src/ui/GlobalInformationDialog.cpp \
+    ../../src/reports/CopyReportThumbnail.cpp \
+    ../../src/reports/HTMLReportThumbnailGenerator.cpp
+
 
 HEADERS  += \
     ../../src/abstraction/DiskReader.h \
@@ -48,10 +56,11 @@ HEADERS  += \
     ../../src/controller/DataItemTreeModel.h \
     ../../src/controller/DetailsPublisher.h \
     ../../src/controller/DirectoryTreeModel.h \
-    ../../src/fs/DataInfo.h \
-    ../../src/fs/DataItem.h \
-    ../../src/fs/Directory.h \
-    ../../src/fs/File.h \
+    ../../src/model/GlobalInformation.cpp \
+    ../../src/model/fs/DataInfo.h \
+    ../../src/model/fs/DataItem.h \
+    ../../src/model/fs/Directory.h \
+    ../../src/model/fs/File.h \
     ../../src/operations/MagicOperation.h \
     ../../src/operations/Operations.h \
     ../../src/operations/ReportOperation.h \
@@ -71,7 +80,13 @@ HEADERS  += \
     ../../src/reports/ReportSettings.h \
     ../../src/ui/CSVFinalReportDialog.h \
     ../../src/ui/FinalReportDialog.h \
-    ../../src/ui/HTMLFinalReportDialog.h
+    ../../src/ui/HTMLFinalReportDialog.h \
+    ../../src/ui/GlobalInformationDialog.h \
+    ../../src/reports/CopyReportThumbnail.h \
+    ../../src/reports/HTMLReportThumbnailGenerator.h \
+    ../../src/reports/ReportThumbnail.h \
+    ../../src/reports/ReportThumbnailGenerator.h
+
 
 RESOURCES += \
     ../../src/resource/DataAnalyzer.qrc
@@ -80,7 +95,8 @@ FORMS += \
     ../../src/ui/forms/About.ui \
     ../../src/ui/forms/DataAnalyzer.ui \
     ../../src/ui/forms/OperationDialog.ui \
-    ../../src/ui/forms/FinalReportDialog.ui
+    ../../src/ui/forms/FinalReportDialog.ui \
+    ../../src/ui/forms/GlobalInformationDialog.ui
 
 unix:!macx: LIBS += -lmagic
 
