@@ -21,7 +21,6 @@ SOURCES += \
     ../../src/controller/DataItemTreeModel.cpp \
     ../../src/controller/DetailsPublisher.cpp \
     ../../src/controller/DirectoryTreeModel.cpp \
-    ../../src/model/GlobalInformation.cpp \
     ../../src/model/fs/DataInfo.cpp \
     ../../src/model/fs/DataItem.cpp \
     ../../src/model/fs/Directory.cpp \
@@ -47,7 +46,8 @@ SOURCES += \
     ../../src/ui/HTMLFinalReportDialog.cpp \
     ../../src/ui/GlobalInformationDialog.cpp \
     ../../src/reports/CopyReportThumbnail.cpp \
-    ../../src/reports/HTMLReportThumbnailGenerator.cpp
+    ../../src/reports/HTMLReportThumbnailGenerator.cpp \
+    ../../src/model/GlobalInformation.cpp
 
 
 HEADERS  += \
@@ -56,7 +56,6 @@ HEADERS  += \
     ../../src/controller/DataItemTreeModel.h \
     ../../src/controller/DetailsPublisher.h \
     ../../src/controller/DirectoryTreeModel.h \
-    ../../src/model/GlobalInformation.cpp \
     ../../src/model/fs/DataInfo.h \
     ../../src/model/fs/DataItem.h \
     ../../src/model/fs/Directory.h \
@@ -85,7 +84,8 @@ HEADERS  += \
     ../../src/reports/CopyReportThumbnail.h \
     ../../src/reports/HTMLReportThumbnailGenerator.h \
     ../../src/reports/ReportThumbnail.h \
-    ../../src/reports/ReportThumbnailGenerator.h
+    ../../src/reports/ReportThumbnailGenerator.h \
+    ../../src/model/GlobalInformation.h
 
 
 RESOURCES += \

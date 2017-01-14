@@ -142,8 +142,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>367</width>
-              <height>456</height>
+              <width>413</width>
+              <height>422</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -286,10 +286,10 @@
      <x>0</x>
      <y>0</y>
      <width>1544</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuSoubor">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
@@ -298,14 +298,14 @@
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
-   <widget class="QMenu" name="menuN_pov_da">
+   <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
     <addaction name="actionAbout"/>
     <addaction name="action3rdParty"/>
    </widget>
-   <widget class="QMenu" name="menu_pravy">
+   <widget class="QMenu" name="menuEdit">
     <property name="title">
      <string>Edit</string>
     </property>
@@ -315,14 +315,14 @@
     <addaction name="separator"/>
     <addaction name="actionFind"/>
    </widget>
-   <widget class="QMenu" name="menuNastaven">
+   <widget class="QMenu" name="menuSettings">
     <property name="title">
      <string>Settings</string>
     </property>
     <addaction name="actionDatasetSettings"/>
     <addaction name="actionSettings"/>
    </widget>
-   <widget class="QMenu" name="menuOperace">
+   <widget class="QMenu" name="menuOperation">
     <property name="title">
      <string>Operation</string>
     </property>
@@ -348,11 +348,11 @@
     <addaction name="separator"/>
     <addaction name="menuGen"/>
    </widget>
-   <addaction name="menuSoubor"/>
-   <addaction name="menu_pravy"/>
-   <addaction name="menuOperace"/>
-   <addaction name="menuNastaven"/>
-   <addaction name="menuN_pov_da"/>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuOperation"/>
+   <addaction name="menuSettings"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <property name="windowTitle">
@@ -487,10 +487,16 @@
    <property name="shortcut">
     <string notr="true">Meta+Ctrl+Q</string>
    </property>
+   <property name="menuRole">
+    <enum>QAction::QuitRole</enum>
+   </property>
   </action>
   <action name="actionAbout">
    <property name="text">
     <string>About ...</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutRole</enum>
    </property>
   </action>
   <action name="action3rdParty">
@@ -502,6 +508,9 @@
    </property>
    <property name="toolTip">
     <string>About 3rd parties components</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
    </property>
   </action>
   <action name="actionScan">
@@ -558,6 +567,9 @@
    </property>
    <property name="text">
     <string>Settings</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::PreferencesRole</enum>
    </property>
   </action>
   <action name="actionOpen">
@@ -671,6 +683,9 @@
   <action name="actionDatasetSettings">
    <property name="text">
     <string>Dataset settings ...</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::TextHeuristicRole</enum>
    </property>
   </action>
  </widget>
