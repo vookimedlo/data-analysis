@@ -71,16 +71,21 @@ void ScanDirOperation::doScan(std::wstring startDir)
     
     m_observersScanDir.call(startDir);
 
-    std::unique_ptr<Directory> dir(new Directory(startDir, nullptr));
+    std::unique_ptr<Directory> dir(std::make_unique<Directory>(std::wstring(), nullptr));
+
+    // This is weird, need to refactor and use std::shared_ptr
+    std::unique_ptr<Directory> child(std::make_unique<Directory>(startDir, dir.get()));
+    dir->addDirectory(child);
 
     std::queue<Directory *> q;
-    q.push(dir.get());
+    q.push(dir->directories()[0]);
 
     while (!m_cancelWorkerActivity && !q.empty()) {
         auto d = q.front();
         q.pop();
 
-        m_observersScanDir.call(d->path());
+        std::wstring aaa(d->path());
+        m_observersScanDir.call(aaa);
 
         ++numDirs;
 
@@ -111,9 +116,8 @@ void ScanDirOperation::doScan(std::wstring startDir)
 
     std::cerr << "Total dirs in memory: " << numDirs << std::endl;
     std::cerr << "Total files in memory: " << numFiles << std::endl;
-    
-   m_asyncScanWorkerResult.reset(dir.release());
-   m_observersProgress.call(100);
 
-   m_observersResult.call(m_asyncScanWorkerResult);
+    m_asyncScanWorkerResult.reset(dir.release());
+    m_observersProgress.call(100);
+    m_observersResult.call(m_asyncScanWorkerResult);
 }

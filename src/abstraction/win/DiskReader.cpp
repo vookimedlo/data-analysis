@@ -51,7 +51,7 @@ bool DiskReader::readDirectoryStructure(Directory *const directory)
                 unique_ptr<Directory> dir(new Directory(wstring(fd.cFileName), directory));               
                 dir->setCreationTimestamp(convertWindowsTimeToUnixTime(fd.ftCreationTime));
                 dir->setModificationTimestamp(convertWindowsTimeToUnixTime(fd.ftLastWriteTime));
-                directory->addDirectory(std::move(dir));
+                directory->addDirectory(dir);
 
             }
             // Files
@@ -70,7 +70,7 @@ bool DiskReader::readDirectoryStructure(Directory *const directory)
                 }
 
                 file.get()->setSize(ul.QuadPart);
-                directory->addFile(std::move(file));
+                directory->addFile(file);
             }
         } while (::FindNextFile(hFind, &fd));
         ::FindClose(hFind);

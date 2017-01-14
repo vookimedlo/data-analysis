@@ -37,7 +37,7 @@ bool DiskReader::readDirectoryStructure(Directory *const directory)
     QDir qdir(StringHelper::toQString(directory->path()));
     if (qdir.exists())
     {
-        foreach(QFileInfo info, qdir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files | QDir::AllDirs ))
+        foreach(QFileInfo info, qdir.entryInfoList(QDir::NoDotAndDotDot | QDir::Files | QDir::AllDirs | QDir::NoSymLinks ))
         {
             if (info.isFile())
             {
@@ -47,14 +47,14 @@ bool DiskReader::readDirectoryStructure(Directory *const directory)
                 file->setExtension(StringHelper::toStdWString(info.suffix())); // +1 skip dot
 
                 file.get()->setSize(info.size());
-                directory->addFile(std::move(file));
+                directory->addFile(file);
             }
             if (info.isDir())
             {
                 unique_ptr<Directory> dir(new Directory(StringHelper::toStdWString(info.fileName()), directory));
                 dir->setCreationTimestamp(info.created().toTime_t());
                 dir->setModificationTimestamp(info.lastModified().toTime_t());
-                directory->addDirectory(std::move(dir));
+                directory->addDirectory(dir);
             }
         }
     }

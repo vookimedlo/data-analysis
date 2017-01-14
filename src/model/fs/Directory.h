@@ -32,8 +32,8 @@ class Directory : public DataItem
     Directory(const std::wstring& name, DataItem* parent);
     virtual ~Directory();
 
-    bool addDirectory(std::unique_ptr<Directory> directory);
-    bool addFile(std::unique_ptr<File> file);
+    bool addDirectory(std::unique_ptr<Directory> &directory);
+    bool addFile(std::unique_ptr<File> &file);
     //std::vector<std::reference_wrapper<Directory>> directories();
     std::vector<Directory *> &directories();
     std::vector<File *> &files();

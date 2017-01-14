@@ -104,7 +104,8 @@ std::wstring DataItem::path()
     wstring p(name());
     DataItem *dir = this;
     while ((dir = dir->parent())) {
-        p.insert(0, dir->name() + L"/");
+        if(!dir->name().empty())
+            p.insert(0, dir->name() + L"/");
     }
 
     return p;

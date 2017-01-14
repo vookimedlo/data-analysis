@@ -56,6 +56,7 @@ DataAnalyzer::DataAnalyzer(QWidget *parent)
       m_globalInformation()
 {
     ui.setupUi(this);
+    ui.detailedDataItemTreeView->header()->setSortIndicator(0, Qt::AscendingOrder);
     ui.detailedDataItemTreeView->setModel(m_detailedDataItemSortFilterProxyModel.get());
 }
 
@@ -301,6 +302,7 @@ void DataAnalyzer::onNewTriggered()
 
         m_topLevelDirectory.reset();
         m_selectedDataItem = nullptr;
+        ui.detailedDataItemTreeView->header()->setSortIndicator(0, Qt::AscendingOrder);
     }
 }
 
