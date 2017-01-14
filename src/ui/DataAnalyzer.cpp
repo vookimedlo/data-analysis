@@ -92,8 +92,6 @@ void DataAnalyzer::onDataItemSelected(QModelIndex index)
 {
     DataItem *item = static_cast<DataItem *>(index.internalPointer());
     Directory *directory = dynamic_cast<Directory *>(item);
-
-    ui.dataItemTreeView->selectionModel()->setCurrentIndex(index, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     
     if (index.isValid() && directory)
     {
@@ -116,7 +114,6 @@ void DataAnalyzer::onDataItemSelected(QModelIndex index)
 
 void DataAnalyzer::onDetailedDataItemSelected(QModelIndex index)
 {
-    ui.detailedDataItemTreeView->selectionModel()->setCurrentIndex(index, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     dataItemSelected(m_detailedDataItemSortFilterProxyModel->mapToSource(index));
 }
 

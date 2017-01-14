@@ -176,7 +176,10 @@ QModelIndex DataItemTreeModel::parent(const QModelIndex &index) const
     auto it = std::find(container.begin(), container.end(), parentNode);
     int row = it != container.end() ? std::distance(container.begin(), it) : 0;
 
-    return createIndex(row, index.column(), parentNode);
+    // I was doing return createIndex(row, index.colum()).
+    // In this case, the parent is not the same when selecting all cells in a row (default selection mode).
+    // The parent should always be column 0, and the correct implementations should return createIndex(row , 0).
+    return createIndex(row, 0, parentNode);
 }
 
 int DataItemTreeModel::rowCount(const QModelIndex &parent) const

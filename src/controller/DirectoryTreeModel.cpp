@@ -135,7 +135,10 @@ QModelIndex DirectoryTreeModel::parent(const QModelIndex &index) const
     auto it = std::find(container.begin(), container.end(), parentNode);
     int row = it == container.end() ? 0 : std::distance(container.begin(), it);
 
-    return createIndex(row, index.column(), parentNode);
+    // I was doing return createIndex(row, index.colum()).
+    // In this case, the parent is not the same when selecting all cells in a row (default selection mode).
+    // The parent should always be column 0, and the correct implementations should return createIndex(row , 0).
+    return createIndex(row, 0, parentNode);
 }
 
 int DirectoryTreeModel::rowCount(const QModelIndex &parent) const
