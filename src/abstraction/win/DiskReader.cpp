@@ -1,6 +1,8 @@
 /****************************************************************************
     Data Analysis - tool for making a basic data analysis.
     Copyright(C) 2017  Michal Duda <github@vookimedlo.cz>
+ 
+    https://github.com/vookimedlo/data-analysis
 
     This program is free software : you can redistribute it and / or modify
     it under the terms of the GNU General Public License as published by
