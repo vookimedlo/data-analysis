@@ -383,29 +383,14 @@ void DataAnalyzer::assignDataItemToAnalysis(DataItem* item)
 void DataAnalyzer::hashOperation(QCryptographicHash::Algorithm algorithm, DataInfo::DataInfoE info, QString &dialogTitle)
 {
     QCryptographicHash hash(algorithm);
-    QItemSelectionModel *selectionModel = ui.dataItemTreeView->selectionModel();
-    if (selectionModel) // If the model exists
+
+    if (m_topLevelDirectory.get())
     {
-        if (m_selectedDataItem) // If the model has an selection
-        {
-            QModelIndex currentIndex = selectionModel->currentIndex();
-            if (currentIndex.isValid())
-            {
-                DataItem *item = static_cast<DataItem *>(currentIndex.internalPointer());
-                HashOperation operation(hash, info, *item);
+        DataItem &item = m_selectedDataItem ? *m_selectedDataItem : *m_topLevelDirectory;  // If the model has an selection
+        HashOperation operation(hash, info, item);
 
-                OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
-                dialog.setTitle(dialogTitle);
-                dialog.exec();
-            }
-        }
-        else // In case of no selection, just uise the root
-        {
-            HashOperation operation(hash, info, *m_topLevelDirectory);
-
-            OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
-            dialog.setTitle(dialogTitle);
-            dialog.exec();
-        }
+        OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
+        dialog.setTitle(dialogTitle);
+        dialog.exec();
     }
 }
