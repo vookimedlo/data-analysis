@@ -139,8 +139,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>413</width>
-              <height>422</height>
+              <width>367</width>
+              <height>456</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -283,7 +283,7 @@
      <x>0</x>
      <y>0</y>
      <width>1544</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -301,6 +301,7 @@
     </property>
     <addaction name="actionAbout"/>
     <addaction name="action3rdParty"/>
+    <addaction name="actionAboutQt"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -679,6 +680,14 @@
     <enum>QAction::TextHeuristicRole</enum>
    </property>
   </action>
+  <action name="actionAboutQt">
+   <property name="text">
+    <string>About Qt ...</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutQtRole</enum>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
@@ -989,6 +998,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionAboutQt</sender>
+   <signal>triggered()</signal>
+   <receiver>DataAnalyzerClass</receiver>
+   <slot>onAboutQtTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>771</x>
+     <y>437</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onScanTriggered()</slot>
@@ -1009,5 +1034,6 @@
   <slot>onHTMLReportTriggered()</slot>
   <slot>onNewTriggered()</slot>
   <slot>onDatasetSettingsTriggered()</slot>
+  <slot>onAboutQtTriggered()</slot>
  </slots>
 </ui>

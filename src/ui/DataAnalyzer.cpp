@@ -165,6 +165,11 @@ void DataAnalyzer::onAbout()
     delete dialog;
 }
 
+void DataAnalyzer::onAboutQtTriggered()
+{
+    QApplication::aboutQt();
+}
+
 void DataAnalyzer::onMD5Triggered()
 {    
     QString dialogTitile(tr("MD5 computation"));
