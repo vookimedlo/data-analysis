@@ -225,6 +225,9 @@
     <ClCompile Include="..\..\src\model\GlobalInformation.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\operations\ExivOperation.cpp">
+      <Filter>Source Files\Operation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\src\controller\DirectoryTreeModel.h">
@@ -366,6 +369,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\model\GlobalInformation.h">
       <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\operations\ExivOperation.h">
+      <Filter>Source Files\Operation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

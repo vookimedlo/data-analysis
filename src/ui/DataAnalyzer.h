@@ -60,7 +60,7 @@ public Q_SLOTS:
     void onHTMLReportTriggered();
     void onNewTriggered();
     void onDatasetSettingsTriggered();
-
+    void onReadEXIFMetadata();
 
 protected:
     void dataItemSelected(QModelIndex index);

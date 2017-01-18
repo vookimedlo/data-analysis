@@ -30,8 +30,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../model/GlobalInformation.h"
 #include "../model/fs/Directory.h"
 #include "../model/fs/File.h"
-#include "../operations/MagicOperation.h"
+#include "../operations/ExivOperation.h"
 #include "../operations/HashOperation.h"
+#include "../operations/MagicOperation.h"
 #include "../operations/ReportOperation.h"
 #include "../operations/ScanDirOperation.h"
 #include "../reports/CSVReportWriter.h"
@@ -319,6 +320,35 @@ void DataAnalyzer::onDatasetSettingsTriggered()
 
     dialog.show();
     dialog.exec();
+}
+
+void DataAnalyzer::onReadEXIFMetadata()
+{
+    QItemSelectionModel *selectionModel = ui.dataItemTreeView->selectionModel();
+    if (selectionModel) // If the model exists
+    {
+        if (m_selectedDataItem) // If the model has an selection
+        {
+            QModelIndex currentIndex = selectionModel->currentIndex();
+            if (currentIndex.isValid())
+            {
+                DataItem *item = static_cast<DataItem *>(currentIndex.internalPointer());
+                ExivOperation operation(*item);
+
+                OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
+                dialog.setTitle(tr("Type detection"));
+                dialog.exec();
+            }
+        }
+        else // In case of no selection, just use the root
+        {
+            ExivOperation operation(*m_topLevelDirectory);
+
+            OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
+            dialog.setTitle(tr("Type detection"));
+            dialog.exec();
+        }
+    }
 }
 
 void DataAnalyzer::dataItemSelected(QModelIndex index)
