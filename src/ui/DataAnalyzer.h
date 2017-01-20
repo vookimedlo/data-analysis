@@ -28,9 +28,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../model/GlobalInformation.h"
 #include "../model/fs/DataInfo.h"
 
+// Forward declarations
 class DataItem;
 class Directory;
 class File;
+class QMenu;
 
 
 class DataAnalyzer : public QMainWindow
@@ -43,7 +45,9 @@ public:
 public Q_SLOTS:
     void onScanTriggered();
     void onDataItemSelected(QModelIndex index);
+    void onDataItemCurrentChanged(const QModelIndex &current, const QModelIndex &previous);
     void onDetailedDataItemSelected(QModelIndex index);
+    void onDetailedDataItemCurrentChanged(const QModelIndex &current, const QModelIndex &previous);
     void onAnalysisTextChange();
     void onDirOnly(bool showOnlyDirs);
     void onCounterClockwiseRotate();
@@ -60,7 +64,9 @@ public Q_SLOTS:
     void onHTMLReportTriggered();
     void onNewTriggered();
     void onDatasetSettingsTriggered();
-
+    void onOpenFileExternallyTriggered();
+    void onCustomContextMenuInDetailedDataItemTreeView(const QPoint &point);
+    void onCustomContextMenuInDataItemTreeView(const QPoint &point);
 
 protected:
     void dataItemSelected(QModelIndex index);
@@ -77,8 +83,8 @@ private:
     std::unique_ptr<DataItemTreeModel> m_detailedDataItemModel;
     std::unique_ptr<DataItemSortFilterProxyModel> m_detailedDataItemSortFilterProxyModel;
     DataItem *m_analysisDataItem;
-
     DataItem *m_selectedDataItem;
 
     GlobalInformation m_globalInformation;
+    QMenu *m_contextMenu;
 };

@@ -48,6 +48,9 @@
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
            <widget class="QTreeView" name="detailedDataItemTreeView">
+            <property name="contextMenuPolicy">
+             <enum>Qt::CustomContextMenu</enum>
+            </property>
             <property name="editTriggers">
              <set>QAbstractItemView::NoEditTriggers</set>
             </property>
@@ -425,6 +428,9 @@
          </item>
          <item>
           <widget class="QTreeView" name="dataItemTreeView">
+           <property name="contextMenuPolicy">
+            <enum>Qt::CustomContextMenu</enum>
+           </property>
            <property name="editTriggers">
             <set>QAbstractItemView::NoEditTriggers</set>
            </property>
@@ -735,38 +741,6 @@
     <hint type="sourcelabel">
      <x>553</x>
      <y>366</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>647</x>
-     <y>355</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>detailedDataItemTreeView</sender>
-   <signal>clicked(QModelIndex)</signal>
-   <receiver>DataAnalyzerClass</receiver>
-   <slot>onDetailedDataItemSelected(QModelIndex)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>553</x>
-     <y>152</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>647</x>
-     <y>355</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>dataItemTreeView</sender>
-   <signal>clicked(QModelIndex)</signal>
-   <receiver>DataAnalyzerClass</receiver>
-   <slot>onDataItemSelected(QModelIndex)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>147</x>
-     <y>381</y>
     </hint>
     <hint type="destinationlabel">
      <x>647</x>

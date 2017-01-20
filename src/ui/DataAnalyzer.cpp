@@ -21,8 +21,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <QImageReader>
 #include <QCryptographicHash>
+#include <QDesktopServices>
+#include <QMenu>
 #include <QPixmap>
+#include <QUrl>
 
+#include "GlobalInformationDialog.h"
 #include "OperationDialog.h"
 #include "ui_About.h"
 #include "ui_FinalReportDialog.h"
@@ -44,7 +48,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../util/StringHelper.h"
 
 #include "DataAnalyzer.h"
-#include "GlobalInformationDialog.h"
 
 DataAnalyzer::DataAnalyzer(QWidget *parent)
     : QMainWindow(parent),
@@ -58,6 +61,14 @@ DataAnalyzer::DataAnalyzer(QWidget *parent)
     ui.setupUi(this);
     ui.detailedDataItemTreeView->header()->setSortIndicator(0, Qt::AscendingOrder);
     ui.detailedDataItemTreeView->setModel(m_detailedDataItemSortFilterProxyModel.get());
+
+    // Context menu
+    m_contextMenu = new QMenu(this);
+    m_contextMenu->addAction(tr("Open file externally"), this, SLOT(onOpenFileExternallyTriggered()));
+
+    // Context menu connection
+    connect(ui.detailedDataItemTreeView, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(onCustomContextMenuInDetailedDataItemTreeView(const QPoint &)));
+    connect(ui.dataItemTreeView, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(onCustomContextMenuInDataItemTreeView(const QPoint &)));
 }
 
 void DataAnalyzer::onScanTriggered()
@@ -66,6 +77,10 @@ void DataAnalyzer::onScanTriggered()
     OperationDialog dialog(operation, OperationDialog::ModeE_DirSelect, this);
     if (dialog.exec() == QDialog::Accepted)
     {
+        // Do the disconnection before the model is cleared
+        disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+
         ui.detailsTreeWidget->clear();
         ui.previewWidget->clear();
 
@@ -86,6 +101,8 @@ void DataAnalyzer::onScanTriggered()
         m_detailedDataItemSortFilterProxyModel->setSourceModel(m_detailedDataItemModel.get());
 
         ui.detailedDataItemTreeView->setModel(m_detailedDataItemSortFilterProxyModel.get());
+
+        connect(ui.dataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
     }
 }
 
@@ -96,6 +113,9 @@ void DataAnalyzer::onDataItemSelected(QModelIndex index)
     
     if (index.isValid() && directory)
     {
+        // Do the disconnection before the model is cleared
+        disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+
         // Remove model binding so we can delete the old one
         m_detailedDataItemSortFilterProxyModel->setSourceModel(nullptr);
 
@@ -108,14 +128,27 @@ void DataAnalyzer::onDataItemSelected(QModelIndex index)
         ui.detailedDataItemTreeView->setModel(m_detailedDataItemSortFilterProxyModel.get());
                 
         ui.previewWidget->clear();
+
+        connect(ui.detailedDataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
     }
 
     dataItemSelected(index);
 }
 
+void DataAnalyzer::onDataItemCurrentChanged(const QModelIndex &current, const QModelIndex &previous)
+{
+    onDataItemSelected(current);
+}
+
+
 void DataAnalyzer::onDetailedDataItemSelected(QModelIndex index)
 {
     dataItemSelected(m_detailedDataItemSortFilterProxyModel->mapToSource(index));
+}
+
+void DataAnalyzer::onDetailedDataItemCurrentChanged(const QModelIndex& current, const QModelIndex& previous)
+{
+    onDetailedDataItemSelected(current);
 }
 
 void DataAnalyzer::onAnalysisTextChange()
@@ -294,6 +327,10 @@ void DataAnalyzer::onNewTriggered()
     dialog.show();
     if (dialog.exec() == QDialog::Accepted)
     {
+        // Do the disconnection before the model is cleared
+        disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+
         m_directoryModel.reset();
         m_fileDirectoryModel.reset();
         ui.detailedDataItemTreeView->setModel(nullptr);
@@ -319,6 +356,41 @@ void DataAnalyzer::onDatasetSettingsTriggered()
 
     dialog.show();
     dialog.exec();
+}
+
+void DataAnalyzer::onOpenFileExternallyTriggered()
+{
+    File *file = dynamic_cast<File *>(m_selectedDataItem);
+    if (file)
+    {
+        QDesktopServices::openUrl(QUrl::fromLocalFile(StringHelper::toQString(file->path())));
+    }
+    else
+    {
+            
+    }
+}
+
+void DataAnalyzer::onCustomContextMenuInDetailedDataItemTreeView(const QPoint& point)
+{
+    QModelIndex index = ui.detailedDataItemTreeView->indexAt(point);
+
+    if (index.isValid())
+    {
+        dataItemSelected(m_detailedDataItemSortFilterProxyModel->mapToSource(index));
+        m_contextMenu->exec(ui.detailedDataItemTreeView->mapToGlobal(point));
+    }
+}
+
+void DataAnalyzer::onCustomContextMenuInDataItemTreeView(const QPoint& point)
+{
+    QModelIndex index = ui.dataItemTreeView->indexAt(point);
+
+    if (index.isValid())
+    {
+        dataItemSelected(index);
+        m_contextMenu->exec(ui.dataItemTreeView->mapToGlobal(point));
+    }
 }
 
 void DataAnalyzer::dataItemSelected(QModelIndex index)
@@ -391,7 +463,7 @@ void DataAnalyzer::hashOperation(QCryptographicHash::Algorithm algorithm, DataIn
 
     if (m_topLevelDirectory.get())
     {
-        DataItem &item = m_selectedDataItem ? *m_selectedDataItem : *m_topLevelDirectory;  // If the model has an selection
+        DataItem &item = m_selectedDataItem ? *m_selectedDataItem : *m_topLevelDirectory;  // If the model has a selection
         HashOperation operation(hash, info, item);
 
         OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
