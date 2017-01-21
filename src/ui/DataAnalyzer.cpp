@@ -62,9 +62,13 @@ DataAnalyzer::DataAnalyzer(QWidget *parent)
     ui.detailedDataItemTreeView->header()->setSortIndicator(0, Qt::AscendingOrder);
     ui.detailedDataItemTreeView->setModel(m_detailedDataItemSortFilterProxyModel.get());
 
+    ui.detailsTreeWidget->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+
     // Context menu
     m_contextMenu = new QMenu(this);
     m_contextMenu->addAction(tr("Open file externally"), this, SLOT(onOpenFileExternallyTriggered()));
+    m_contextMenu->addSeparator();
+    m_contextMenu->addMenu(ui.menuOperation);
 
     // Context menu connection
     connect(ui.detailedDataItemTreeView, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(onCustomContextMenuInDetailedDataItemTreeView(const QPoint &)));
@@ -102,6 +106,26 @@ void DataAnalyzer::onScanTriggered()
 
         ui.detailedDataItemTreeView->setModel(m_detailedDataItemSortFilterProxyModel.get());
 
+
+        // Columns resize policy
+        if (ui.dataItemTreeView->header()->count() > 0)
+            ui.dataItemTreeView->header()->setSectionResizeMode(0, QHeaderView::Interactive);
+
+        for (int i = 1; i < ui.dataItemTreeView->header()->count(); ++i)
+        {
+            ui.dataItemTreeView->header()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+        }
+            
+        // Columns resize policy
+        if (ui.detailedDataItemTreeView->header()->count() > 0)
+            ui.detailedDataItemTreeView->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+
+        for (int i = 1; i < ui.detailedDataItemTreeView->header()->count(); ++i)
+        {
+            ui.detailedDataItemTreeView->header()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+        }
+
+        connect(ui.detailedDataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
         connect(ui.dataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
     }
 }
@@ -128,6 +152,15 @@ void DataAnalyzer::onDataItemSelected(QModelIndex index)
         ui.detailedDataItemTreeView->setModel(m_detailedDataItemSortFilterProxyModel.get());
                 
         ui.previewWidget->clear();
+
+        // Columns resize policy
+        if (ui.detailedDataItemTreeView->header()->count() > 0)
+            ui.detailedDataItemTreeView->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+
+        for (int i = 1; i < ui.detailedDataItemTreeView->header()->count(); ++i)
+        {
+           ui.detailedDataItemTreeView->header()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+        }       
 
         connect(ui.detailedDataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
     }
@@ -161,10 +194,25 @@ void DataAnalyzer::onDirOnly(bool showOnlyDirs)
 {
     ui.dataItemTreeView->reset();
     ui.dataItemTreeView->setModel(nullptr);
+
+    // Do the disconnection before the model is cleared
+    disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+
     if (showOnlyDirs)
         ui.dataItemTreeView->setModel(m_directoryModel.get());
     else
         ui.dataItemTreeView->setModel(m_fileDirectoryModel.get());
+
+    // Columns resize policy
+    if (ui.dataItemTreeView->header()->count() > 0)
+        ui.dataItemTreeView->header()->setSectionResizeMode(0, QHeaderView::Interactive);
+
+    for (int i = 1; i < ui.dataItemTreeView->header()->count(); ++i)
+    {
+        ui.dataItemTreeView->header()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+    }
+
+    connect(ui.dataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
 }
 
 void DataAnalyzer::onCounterClockwiseRotate()
@@ -223,30 +271,14 @@ void DataAnalyzer::onSHA3_512Triggered()
 
 void DataAnalyzer::onFileMagicTriggered()
 {
-    QItemSelectionModel *selectionModel = ui.dataItemTreeView->selectionModel();
-    if (selectionModel) // If the model exists
+    if (m_topLevelDirectory.get())
     {
-        if (m_selectedDataItem) // If the model has an selection
-        {
-            QModelIndex currentIndex = selectionModel->currentIndex();
-            if (currentIndex.isValid())
-            {
-                DataItem *item = static_cast<DataItem *>(currentIndex.internalPointer());
-                MagicOperation operation(*item);
+        DataItem &item = m_selectedDataItem ? *m_selectedDataItem : *m_topLevelDirectory;  // If the model has a selection
+        MagicOperation operation(item);
 
-                OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
-                dialog.setTitle(tr("Type detection"));
-                dialog.exec();
-            }
-        }
-        else // In case of no selection, just use the root
-        {
-            MagicOperation operation(*m_topLevelDirectory);
-
-            OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
-            dialog.setTitle(tr("Type detection"));
-            dialog.exec();
-        }
+        OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
+        dialog.setTitle(tr("Type detection"));
+        dialog.exec();
     }
 }
 

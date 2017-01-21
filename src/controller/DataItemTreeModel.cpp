@@ -52,6 +52,7 @@ QVariant DataItemTreeModel::data(const QModelIndex &index, int role) const
         return QVariant();
 
     if (role == Qt::DecorationRole)
+    {
         switch (index.column())
         {
         case ColumnTypeE_Name:
@@ -62,6 +63,19 @@ QVariant DataItemTreeModel::data(const QModelIndex &index, int role) const
         default:
             break;
         }
+    }
+
+    if (role == Qt::TextAlignmentRole)
+    {
+        switch (index.column())
+        {
+        case ColumnTypeE_FilesCount:
+        case ColumnTypeE_Size:
+            return int(Qt::AlignRight | Qt::AlignVCenter);
+        default:
+            return int(Qt::AlignVCenter);
+        }
+    }
 
     if (role != Qt::DisplayRole)
         return QVariant();
@@ -92,23 +106,22 @@ Qt::ItemFlags DataItemTreeModel::flags(const QModelIndex &index) const
     return QAbstractItemModel::flags(index);
 }
 
-QVariant DataItemTreeModel::headerData(int section, Qt::Orientation orientation,
-    int role) const
+QVariant DataItemTreeModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
     {
         switch(section)
         {
         case ColumnTypeE_Name:
-            return QString("Name");
+            return QString(tr("Name"));
         case ColumnTypeE_FilesCount:
-            return QString("# of files");
+            return QString(tr("# of files"));
         case ColumnTypeE_Size:
-            return QString("Velikost");
+            return QString(tr("Size"));
         case ColumnTypeE_Extension:
-            return QString("Extension");
+            return QString(tr("Extension"));
         case ColumnTypeE_ModificationTimestamp:
-            return QString("Modification timestamp");
+            return QString(tr("Modification timestamp"));
         default:
             return QVariant();
         }        

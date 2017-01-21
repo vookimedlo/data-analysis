@@ -75,6 +75,12 @@
             <property name="animated">
              <bool>true</bool>
             </property>
+            <attribute name="headerHighlightSections">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="headerStretchLastSection">
+             <bool>false</bool>
+            </attribute>
            </widget>
           </item>
          </layout>
@@ -454,6 +460,9 @@
            </property>
            <attribute name="headerCascadingSectionResizes">
             <bool>true</bool>
+           </attribute>
+           <attribute name="headerStretchLastSection">
+            <bool>false</bool>
            </attribute>
           </widget>
          </item>

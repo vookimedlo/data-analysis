@@ -55,6 +55,17 @@ QVariant DirectoryTreeModel::data(const QModelIndex &index, int role) const
             break;
         }
 
+    if (role == Qt::TextAlignmentRole)
+    {
+        switch (index.column())
+        {
+        case 1:
+            return int(Qt::AlignRight | Qt::AlignVCenter);
+        default:
+            return int(Qt::AlignVCenter);
+        }
+    }
+
     if (role != Qt::DisplayRole)
         return QVariant();
 

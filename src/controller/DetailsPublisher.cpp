@@ -64,7 +64,7 @@ void DetailsPublisher::toUI(QTreeWidget& treeWidget, QListWidget& tagListWidget,
         case DataInfo::DataInfoE_Magic:
         {
             treeItem = new QTreeWidgetItem(&treeWidget);
-            treeItem->setText(0, tr("Data type detection"));
+            treeItem->setText(0, tr("Probable data type"));
 
             QLabel *label = new (std::nothrow) QLabel(QString::fromStdString(item.info(info)));
             label->setWordWrap(true);
