@@ -74,7 +74,9 @@ void ReportOperation::startOperation()
         if (directory)
         {
             q.push(directory);
-            m_ReportWriter.write(*directory);
+
+            // Uncomment this if you would like to write the top level directory
+            // m_ReportWriter.write(*directory);
 
             while (!m_cancelWorkerActivity && !q.empty()) {
                 auto d = q.front();

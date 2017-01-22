@@ -21,12 +21,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 // Forward declarations
 class DataItem;
+class QString;
 
 class ReportWriter
 {
 public:
+    ReportWriter(const QString &rootPath) : m_rootPath(rootPath) {}
     virtual ~ReportWriter(){}
     virtual bool open() = 0;
     virtual bool write(DataItem &dataiItem) = 0;
     virtual bool close() = 0;
+
+protected:
+    const QString &m_rootPath;
 };

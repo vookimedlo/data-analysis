@@ -22,6 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QImageReader>
 #include "ReportSettings.h"
 #include "ReportThumbnailGenerator.h"
 #include "../model/fs/DataItem.h"
@@ -29,12 +30,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../model/fs/File.h"
 #include "../util/StringHelper.h"
 #include "../util/TagHelper.h"
+#include "../util/ModelHelper.h"
 
 #include "HTMLReportWriter.h"
-#include <QImageReader>
 
 
-HTMLReportWriter::HTMLReportWriter(const ReportSettings &reportSettings, ReportThumbnailGenerator &reportThumbnailGenerator) : m_OutputStream(), m_ReportSettings(reportSettings), m_ReportThumbnailGenerator(reportThumbnailGenerator), m_UniqueNumber(0)
+HTMLReportWriter::HTMLReportWriter(const ReportSettings &reportSettings, ReportThumbnailGenerator &reportThumbnailGenerator, const QString &rootPath) : ReportWriter(rootPath), m_OutputStream(), m_ReportSettings(reportSettings), m_ReportThumbnailGenerator(reportThumbnailGenerator), m_UniqueNumber(0)
 {
 }
 
@@ -155,14 +156,14 @@ bool HTMLReportWriter::write(DataItem& dataItem)
     {
         if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Preview) && dynamic_cast<const File *>(&dataItem))
         {
-            QString preparedPathString(prepareString(StringHelper::toQString(dataItem.path())));
+            QString preparedPathString(prepareString(ModelHelper::removePartOfPath(dataItem, m_rootPath)));
             QString pathLink("<a href=\"" + thumbnailURL + "\">" + preparedPathString + "</a>");
             write(addPreparedStringInTag(pathLink, "span", "path"));
             thumbnail->write(thumbnailPath + "/" + thumbnailName);
         }
         else
         {
-            write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.path())), "span", "path"));
+            write(addPreparedStringInTag(prepareString(ModelHelper::removePartOfPath(dataItem, m_rootPath)), "span", "path"));
         }
         write("<br />");
     }

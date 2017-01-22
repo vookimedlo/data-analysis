@@ -30,7 +30,7 @@ class RTFReportWriter : public ReportWriter
     Q_DECLARE_TR_FUNCTIONS(RTFReportWriter);
 
 public:
-    explicit RTFReportWriter(std::string outputFilePath);
+    explicit RTFReportWriter(std::string outputFilePath, const QString &rootPath);
     ~RTFReportWriter() override;
     bool open() override;
     bool write(DataItem &dataiItem) override;

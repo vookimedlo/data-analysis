@@ -297,8 +297,9 @@ void DataAnalyzer::onCSVReportTriggered()
             // TODO: remove
             settings.setFilePath("C:/tmp/report.csv");
 
-            CSVReportWriter writer(settings);
-            ReportOperation operation(writer, *m_topLevelDirectory);
+            QString rootPath = StringHelper::toQString(m_topLevelDirectory->directories()[0]->name());
+            CSVReportWriter writer(settings, rootPath);
+            ReportOperation operation(writer, *(m_topLevelDirectory->directories()[0]));
 
             OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
             dialog.setTitle(dialogTitle);
@@ -311,8 +312,9 @@ void DataAnalyzer::onRTFReportTriggered()
 {
     if (m_topLevelDirectory)
     {
-        RTFReportWriter writer("C:/tmp/report.rtf");
-        ReportOperation operation(writer, *m_topLevelDirectory);
+        QString rootPath = StringHelper::toQString(m_topLevelDirectory->directories()[0]->name());
+        RTFReportWriter writer("C:/tmp/report.rtf", rootPath);
+        ReportOperation operation(writer, *(m_topLevelDirectory->directories()[0]));
 
         OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
         dialog.setTitle(tr("RTF report"));
@@ -340,8 +342,9 @@ void DataAnalyzer::onHTMLReportTriggered()
             settings.setFilePath("C:/tmp/report.html");
             
             HTMLReportThumbnailGenerator generator;
-            HTMLReportWriter writer(settings, generator);
-            ReportOperation operation(writer, *m_topLevelDirectory);
+            QString rootPath = StringHelper::toQString(m_topLevelDirectory->directories()[0]->name());
+            HTMLReportWriter writer(settings, generator, rootPath);
+            ReportOperation operation(writer, *(m_topLevelDirectory->directories()[0]));
 
             OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
             dialog.setTitle(dialogTitle);

@@ -34,7 +34,7 @@ class HTMLReportWriter : public ReportWriter
     Q_DECLARE_TR_FUNCTIONS(HTMLReportWriter);
 
 public:
-    explicit HTMLReportWriter(const ReportSettings &reportSettings, ReportThumbnailGenerator &reportThumbnailGenerator);
+    explicit HTMLReportWriter(const ReportSettings &reportSettings, ReportThumbnailGenerator &reportThumbnailGenerator, const QString &rootPath);
     ~HTMLReportWriter() override;
     bool open() override;
     bool write(DataItem &dataiItem) override;

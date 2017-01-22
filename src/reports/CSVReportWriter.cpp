@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "CSVReportWriter.h"
 
 
-CSVReportWriter::CSVReportWriter(const ReportSettings &reportSettings) : m_OutputStream(), m_Separator(";"), m_ReportSettings(reportSettings)
+CSVReportWriter::CSVReportWriter(const ReportSettings &reportSettings, const QString &rootPath) : ReportWriter(rootPath), m_OutputStream(), m_Separator(";"), m_ReportSettings(reportSettings)
 {
 }
 
@@ -117,7 +117,7 @@ bool CSVReportWriter::write(DataItem& dataItem)
     //    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Extension))
     //    writeColumn(dataItem.extension());
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Path))
-        writeColumn(dataItem.path());
+        writeColumn(ModelHelper::removePartOfPath(dataItem, m_rootPath));
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_MD5))
         writeColumn(dataItem.info(DataInfo::DataInfoE_MD5));
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_SHA1))

@@ -20,12 +20,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
 #include <cstdint>
+#include <QString>
 
 //forward declarations
 class DataItem;
+class QString;
 
 class ModelHelper
 {
 public:
     static uint32_t filesCount(DataItem& rootItem);
+    static QString removePartOfPath(DataItem& item, const QString& pathToRemove);
 };

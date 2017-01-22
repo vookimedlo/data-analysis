@@ -33,7 +33,7 @@ class CSVReportWriter : public ReportWriter
     Q_DECLARE_TR_FUNCTIONS(CSVReportWriter);
 
 public:
-    explicit CSVReportWriter(const ReportSettings &reportSettings);
+    explicit CSVReportWriter(const ReportSettings &reportSettings, const QString &rootPath);
     ~CSVReportWriter() override;
     bool open() override;
     bool write(DataItem &dataiItem) override;

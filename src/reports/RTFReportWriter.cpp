@@ -32,7 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 
 
-RTFReportWriter::RTFReportWriter(std::string outputFilePath) : m_OutputStream(), m_OutputFilePath(outputFilePath)
+RTFReportWriter::RTFReportWriter(std::string outputFilePath, const QString &rootPath) : ReportWriter(rootPath), m_OutputStream(), m_OutputFilePath(outputFilePath)
 {
 }
 

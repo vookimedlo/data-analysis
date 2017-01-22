@@ -22,6 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../model/fs/Directory.h"
 
 #include "ModelHelper.h"
+#include "StringHelper.h"
 
 uint32_t ModelHelper::filesCount(DataItem& rootItem)
 {
@@ -47,4 +48,9 @@ uint32_t ModelHelper::filesCount(DataItem& rootItem)
     }
 
     return numFiles;
+}
+
+QString ModelHelper::removePartOfPath(DataItem& item, const QString& pathToRemove)
+{
+    return StringHelper::toQString(item.path()).remove(pathToRemove);
 }

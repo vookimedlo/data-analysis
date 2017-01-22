@@ -266,11 +266,11 @@
     <CustomBuild Include="..\..\src\ui\CSVFinalReportDialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\src\ui\GlobalInformationDialog.h">
-      <Filter>Source Files\UI</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\..\src\ui\forms\GlobalInformationDialog.ui">
       <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\GlobalInformationDialog.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
