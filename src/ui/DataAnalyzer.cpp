@@ -240,10 +240,9 @@ void DataAnalyzer::onTagChanged(int row)
 void DataAnalyzer::onAbout()
 {
     Ui::aboutDialog uiAbout;
-    QDialog *dialog = new QDialog();
-    uiAbout.setupUi(dialog);
-    dialog->exec();
-    delete dialog;
+    QDialog dialog(this);
+    uiAbout.setupUi(&dialog);
+    dialog.exec();
 }
 
 void DataAnalyzer::onAboutQtTriggered()
@@ -288,10 +287,9 @@ void DataAnalyzer::onCSVReportTriggered()
     {
         QString dialogTitle(tr("CSV report"));
         ReportSettings settings;
-        CSVFinalReportDialog reportDialog(settings);
+        CSVFinalReportDialog reportDialog(settings, this);
         reportDialog.setWindowTitle(dialogTitle);
 
-        reportDialog.show();
         if (reportDialog.exec() == QDialog::Accepted)
         {
             // TODO: remove
@@ -332,10 +330,9 @@ void DataAnalyzer::onHTMLReportTriggered()
         settings.setReference(StringHelper::toQString(m_globalInformation.getReference()));
         settings.setId(StringHelper::toQString(m_globalInformation.getId()));
 
-        HTMLFinalReportDialog reportDialog(settings);
+        HTMLFinalReportDialog reportDialog(settings, this);
         reportDialog.setWindowTitle(dialogTitle); 
 
-        reportDialog.show();
         if (reportDialog.exec() == QDialog::Accepted)
         {
             // TODO: remove
@@ -356,10 +353,9 @@ void DataAnalyzer::onHTMLReportTriggered()
 void DataAnalyzer::onNewTriggered()
 {  
     QString dialogTitle(tr("Dataset settings"));
-    GlobalInformationDialog dialog(m_globalInformation);
+    GlobalInformationDialog dialog(m_globalInformation, false, this);
     dialog.setWindowTitle(dialogTitle);  
 
-    dialog.show();
     if (dialog.exec() == QDialog::Accepted)
     {
         // Do the disconnection before the model is cleared
@@ -386,10 +382,9 @@ void DataAnalyzer::onNewTriggered()
 void DataAnalyzer::onDatasetSettingsTriggered()
 {
     QString dialogTitle(tr("Dataset settings"));
-    GlobalInformationDialog dialog(m_globalInformation, true);
+    GlobalInformationDialog dialog(m_globalInformation, true, this);
     dialog.setWindowTitle(dialogTitle);
 
-    dialog.show();
     dialog.exec();
 }
 

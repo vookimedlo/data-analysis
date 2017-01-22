@@ -81,43 +81,43 @@
         <translation>Otevřít v externím programu</translation>
     </message>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="256"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="255"/>
         <source>MD5 computation</source>
         <translation>Výpočet MD5 otisku</translation>
     </message>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="262"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="261"/>
         <source>SHA-1 computation</source>
         <translation>Výpočet SHA-1 otisku</translation>
     </message>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="268"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="267"/>
         <source>SHA3-512 computation</source>
         <translation>Výpočet SHA3-512 otisku</translation>
     </message>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="280"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="279"/>
         <source>Type detection</source>
         <translation>Detekce typu</translation>
     </message>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="289"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="288"/>
         <source>CSV report</source>
         <translation>CSV zpráva</translation>
     </message>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="320"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="318"/>
         <source>RTF report</source>
         <translation>RTF zpráva</translation>
     </message>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="329"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="327"/>
         <source>HTML report</source>
         <translation>HTML zpráva</translation>
     </message>
     <message>
-        <location filename="../ui/DataAnalyzer.cpp" line="358"/>
-        <location filename="../ui/DataAnalyzer.cpp" line="388"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="355"/>
+        <location filename="../ui/DataAnalyzer.cpp" line="384"/>
         <source>Dataset settings</source>
         <translation>Nastvení souboru dat</translation>
     </message>
@@ -701,32 +701,32 @@
 <context>
     <name>GlobalInformationDialog</name>
     <message>
-        <location filename="../ui/forms/GlobalInformationDialog.ui" line="14"/>
+        <location filename="../ui/forms/GlobalInformationDialog.ui" line="17"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/forms/GlobalInformationDialog.ui" line="22"/>
+        <location filename="../ui/forms/GlobalInformationDialog.ui" line="28"/>
         <source>Reference number:</source>
         <translation>Číslo jednací:</translation>
     </message>
     <message>
-        <location filename="../ui/forms/GlobalInformationDialog.ui" line="32"/>
+        <location filename="../ui/forms/GlobalInformationDialog.ui" line="38"/>
         <source>Reference:</source>
         <translation>Stopa:</translation>
     </message>
     <message>
-        <location filename="../ui/forms/GlobalInformationDialog.ui" line="42"/>
+        <location filename="../ui/forms/GlobalInformationDialog.ui" line="48"/>
         <source>ID:</source>
         <translation>ID:</translation>
     </message>
     <message>
-        <location filename="../ui/forms/GlobalInformationDialog.ui" line="97"/>
+        <location filename="../ui/forms/GlobalInformationDialog.ui" line="103"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../ui/forms/GlobalInformationDialog.ui" line="104"/>
+        <location filename="../ui/forms/GlobalInformationDialog.ui" line="110"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
