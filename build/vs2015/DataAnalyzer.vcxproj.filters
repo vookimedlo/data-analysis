@@ -377,11 +377,11 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\src\translations\dataanalyzer_cs_CZ.ts">
-      <Filter>Translation Files</Filter>
-    </None>
     <None Include="..\..\src\resource\css\dataanalysis.css">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\src\resource\translations\dataanalyzer_cs_CZ.ts">
+      <Filter>Translation Files</Filter>
     </None>
   </ItemGroup>
 </Project>

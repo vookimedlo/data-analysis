@@ -30,4 +30,7 @@
     <qresource prefix="/css">
         <file alias="dataanalysis.css">css/dataanalysis.css</file>
     </qresource>
+    <qresource prefix="/translation">
+        <file alias="dataanalyzer_cs_CZ.qm">translations/dataanalyzer_cs_CZ.qm</file>
+    </qresource>
 </RCC>

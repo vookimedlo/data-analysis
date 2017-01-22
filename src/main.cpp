@@ -27,13 +27,19 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QTranslator translator;
     QString locale = QLocale::system().name();
+    qDebug("Locale is '%s'", qPrintable(locale));
 
-    bool result = translator.load(QString("dataanalyzer_") + locale + ".qm");
-    #pragma unused(result)
-
-    qDebug("Locale database is '%s'", qPrintable(QString("dataanalyzer_") + locale));
-    app.installTranslator(&translator);
-
+    const bool result = translator.load(QString(":/translation/dataanalyzer_") + locale + ".qm");
+    if (result)
+    {
+        app.installTranslator(&translator);
+        qDebug(qPrintable("Translation loaded - " + QString(":/translation/dataanalyzer_") + locale + ".qm"));
+    }
+    else
+    {
+        qDebug("Translations database not found - using English");
+    }
+    
     DataAnalyzer mainWindow;
     mainWindow.show();
     mainWindow.onNewTriggered();

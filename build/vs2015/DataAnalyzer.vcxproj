@@ -74,8 +74,7 @@
       <AdditionalDependencies>Shlwapi.lib;magic1.lib;qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Multimediad.lib;Qt5MultimediaWidgetsd.lib;Qt5Sqld.lib;Qt5Svgd.lib;Qt5Widgetsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y ..\..\src\translations\dataanalyzer_cs_CZ.qm "$(OutDir)"
-xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic1.dll  "$(OutDir)"
+      <Command>xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic1.dll  "$(OutDir)"
 xcopy /Y ..\..\src\3rdParty\libmagic\x64\zlibwapi.dll  "$(OutDir)"
 xcopy /Y ..\..\src\3rdParty\libmagic\x64\regex2.dll  "$(OutDir)"
 xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic.mgc  "$(OutDir)"
@@ -99,8 +98,7 @@ xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic.mgc  "$(OutDir)"
       <AdditionalDependencies>Shlwapi.lib;magic1.lib;qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5Multimediad.lib;Qt5MultimediaWidgetsd.lib;Qt5Sqld.lib;Qt5Svgd.lib;Qt5Widgetsd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y ..\..\src\translations\dataanalyzer_cs_CZ.qm "$(OutDir)"
-xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic1.dll  "$(OutDir)"
+      <Command>xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic1.dll  "$(OutDir)"
 xcopy /Y ..\..\src\3rdParty\libmagic\win32\zlibwapi.dll  "$(OutDir)"
 xcopy /Y ..\..\src\3rdParty\libmagic\win32\regex2.dll  "$(OutDir)"
 xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  "$(OutDir)"
@@ -124,8 +122,7 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  "$(OutDir)"
       <AdditionalDependencies>Shlwapi.lib;magic1.lib;qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Multimedia.lib;Qt5MultimediaWidgets.lib;Qt5Sql.lib;Qt5Svg.lib;Qt5Widgets.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y ..\..\src\translations\dataanalyzer_cs_CZ.qm "$(OutDir)"
-xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic1.dll  "$(OutDir)"
+      <Command>xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic1.dll  "$(OutDir)"
 xcopy /Y ..\..\src\3rdParty\libmagic\x64\zlibwapi.dll  "$(OutDir)"
 xcopy /Y ..\..\src\3rdParty\libmagic\x64\regex2.dll  "$(OutDir)"
 xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic.mgc  "$(OutDir)"
@@ -149,8 +146,7 @@ xcopy /Y ..\..\src\3rdParty\libmagic\x64\magic.mgc  "$(OutDir)"
       <AdditionalDependencies>Shlwapi.lib;magic1.lib;qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Multimedia.lib;Qt5MultimediaWidgets.lib;Qt5Sql.lib;Qt5Svg.lib;Qt5Widgets.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y ..\..\src\translations\dataanalyzer_cs_CZ.qm "$(OutDir)"
-xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic1.dll  "$(OutDir)"
+      <Command>xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic1.dll  "$(OutDir)"
 xcopy /Y ..\..\src\3rdParty\libmagic\win32\zlibwapi.dll  "$(OutDir)"
 xcopy /Y ..\..\src\3rdParty\libmagic\win32\regex2.dll  "$(OutDir)"
 xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  "$(OutDir)"
@@ -567,7 +563,7 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  "$(OutDir)"
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </None>
-    <None Include="..\..\src\translations\dataanalyzer_cs_CZ.ts" />
+    <None Include="..\..\src\resource\translations\dataanalyzer_cs_CZ.ts" />
     <CustomBuild Include="..\..\src\ui\forms\FinalReportDialog.ui">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
