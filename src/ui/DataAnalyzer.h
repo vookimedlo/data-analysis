@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <memory>
 #include <QCryptographicHash>
+#include <QTranslator>
 #include "ui_DataAnalyzer.h"
 #include "../controller/DataItemSortFilterProxyModel.h"
 #include "../controller/DataItemTreeModel.h"
@@ -67,11 +68,16 @@ public Q_SLOTS:
     void onOpenFileExternallyTriggered();
     void onCustomContextMenuInDetailedDataItemTreeView(const QPoint &point);
     void onCustomContextMenuInDataItemTreeView(const QPoint &point);
+    void onLanguageChanged(QAction* action);
+
 
 protected:
     void dataItemSelected(QModelIndex index);
     void assignDataItemToAnalysis(DataItem *item);
     void hashOperation(QCryptographicHash::Algorithm algorithm, DataInfo::DataInfoE info, QString &dialogTitle);
+    void loadLanguage(const QString& rLanguage);
+    void switchTranslator(QTranslator& translator, const QString& filename);
+    void changeEvent(QEvent *event) override;
 
 private:
     Ui::DataAnalyzerClass ui;
@@ -87,4 +93,7 @@ private:
 
     GlobalInformation m_globalInformation;
     QMenu *m_contextMenu;
+
+    QTranslator m_translator; // contains the translations for this application
+    QString m_currentLanguage; // contains the currently loaded language
 };

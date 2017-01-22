@@ -25,8 +25,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+
+    // TODO: delete
+#if 0
     QTranslator translator;
     QString locale = QLocale::system().name();
+    locale.truncate(locale.lastIndexOf('_'));
     qDebug("Locale is '%s'", qPrintable(locale));
 
     const bool result = translator.load(QString(":/translation/dataanalyzer_") + locale + ".qm");
@@ -39,6 +43,7 @@ int main(int argc, char *argv[])
     {
         qDebug("Translations database not found - using English");
     }
+#endif
     
     DataAnalyzer mainWindow;
     mainWindow.show();

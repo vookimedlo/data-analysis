@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1544</width>
-    <height>876</height>
+    <height>877</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -323,11 +323,33 @@
     <addaction name="actionFind"/>
    </widget>
    <widget class="QMenu" name="menuSettings">
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
     <property name="title">
      <string>Settings</string>
     </property>
+    <widget class="QMenu" name="menuSettings_2">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
+     <property name="title">
+      <string>Settings</string>
+     </property>
+     <widget class="QMenu" name="menuTranslations">
+      <property name="locale">
+       <locale language="English" country="UnitedStates"/>
+      </property>
+      <property name="title">
+       <string>Translations</string>
+      </property>
+      <addaction name="actionTranEnglish"/>
+      <addaction name="actionTranCzech"/>
+     </widget>
+     <addaction name="menuTranslations"/>
+    </widget>
     <addaction name="actionDatasetSettings"/>
-    <addaction name="actionSettings"/>
+    <addaction name="menuSettings_2"/>
    </widget>
    <widget class="QMenu" name="menuOperation">
     <property name="title">
@@ -568,17 +590,6 @@
     <string notr="true">Ctrl+V</string>
    </property>
   </action>
-  <action name="actionSettings">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Settings</string>
-   </property>
-   <property name="menuRole">
-    <enum>QAction::PreferencesRole</enum>
-   </property>
-  </action>
   <action name="actionOpen">
    <property name="enabled">
     <bool>false</bool>
@@ -701,6 +712,30 @@
    </property>
    <property name="menuRole">
     <enum>QAction::AboutQtRole</enum>
+   </property>
+  </action>
+  <action name="actionTranEnglish">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../../resource/DataAnalyzer.qrc">
+     <normaloff>:/images/flags/usa.png</normaloff>:/images/flags/usa.png</iconset>
+   </property>
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+  <action name="actionTranCzech">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../../resource/DataAnalyzer.qrc">
+     <normaloff>:/images/flags/czech.png</normaloff>:/images/flags/czech.png</iconset>
+   </property>
+   <property name="text">
+    <string>Čeština</string>
    </property>
   </action>
  </widget>

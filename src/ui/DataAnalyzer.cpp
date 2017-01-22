@@ -73,6 +73,24 @@ DataAnalyzer::DataAnalyzer(QWidget *parent)
     // Context menu connection
     connect(ui.detailedDataItemTreeView, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(onCustomContextMenuInDetailedDataItemTreeView(const QPoint &)));
     connect(ui.dataItemTreeView, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(onCustomContextMenuInDataItemTreeView(const QPoint &)));
+
+    // Create an exclusive translations menu
+    QActionGroup* langGroup = new QActionGroup(ui.menuTranslations);
+    langGroup->setExclusive(true);
+    langGroup->addAction(ui.actionTranEnglish);
+    langGroup->addAction(ui.actionTranCzech);
+
+    connect(langGroup, SIGNAL(triggered(QAction *)), this, SLOT(onLanguageChanged(QAction *)));
+
+    QString locale = QLocale::system().name();
+    locale.truncate(locale.lastIndexOf('_'));
+    loadLanguage(locale);
+
+    // Select/check correct language menu item
+    if (locale == "cs")
+        ui.actionTranCzech->setChecked(true);
+    else
+        ui.actionTranEnglish->setChecked(true);
 }
 
 void DataAnalyzer::onScanTriggered()
@@ -423,6 +441,16 @@ void DataAnalyzer::onCustomContextMenuInDataItemTreeView(const QPoint& point)
     }
 }
 
+void DataAnalyzer::onLanguageChanged(QAction* action)
+{
+    if (action) {
+        QString language = action == ui.actionTranCzech ? "cs" : "en";
+        
+        // load the language dependant on the action
+        loadLanguage(language);
+    }
+}
+
 void DataAnalyzer::dataItemSelected(QModelIndex index)
 {
     DataItem *item = static_cast<DataItem *>(index.internalPointer());
@@ -500,4 +528,53 @@ void DataAnalyzer::hashOperation(QCryptographicHash::Algorithm algorithm, DataIn
         dialog.setTitle(dialogTitle);
         dialog.exec();
     }
+}
+
+void DataAnalyzer::loadLanguage(const QString& language)
+{
+    if (m_currentLanguage != language)
+    {
+        m_currentLanguage = language;
+        QLocale locale = QLocale(m_currentLanguage);
+        QLocale::setDefault(locale);
+        switchTranslator(m_translator, QString(":/translation/dataanalyzer_%1.qm").arg(language));
+
+//        QString languageName = QLocale::languageToString(locale.language());
+//        ui.statusBar->showMessage(tr("Current Language changed to %1").arg(languageName));
+    }
+}
+
+void DataAnalyzer::switchTranslator(QTranslator& translator, const QString& filename)
+{
+    // remove the old translator
+    qApp->removeTranslator(&translator);
+
+    // load the new translator
+    if (translator.load(filename))
+        qApp->installTranslator(&translator);
+}
+
+void DataAnalyzer::changeEvent(QEvent *event)
+{
+    if (event)
+    {
+        switch (event->type())
+        {
+            // this event is sent if a translator is loaded
+        case QEvent::LanguageChange:
+            ui.retranslateUi(this);
+            break;
+
+            // this event is sent, if the system, language changes
+        case QEvent::LocaleChange:
+        {
+            QString locale = QLocale::system().name();
+            locale.truncate(locale.lastIndexOf('_'));
+            loadLanguage(locale);
+            break;
+        }
+        }
+    }
+    
+    QMainWindow::changeEvent(event);
 }

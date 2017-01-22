@@ -1,4 +1,3 @@
-#pragma once
 /****************************************************************************
 Data Analysis - tool for making a basic data analysis.
 Copyright(C) 2017  Michal Duda <github@vookimedlo.cz>
