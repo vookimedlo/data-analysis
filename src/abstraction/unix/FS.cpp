@@ -20,7 +20,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "../FS.h"
 
-std::wstring FS::LongPathNameToShort(std::wstring path)
+std::string FS::LongPathNameToShort(std::string path)
 {
     return path;
 }

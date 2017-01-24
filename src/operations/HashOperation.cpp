@@ -102,7 +102,7 @@ void HashOperation::startOperation()
     }
     else
     {
-        if (computeHash(m_hash, StringHelper::toQString(m_RootItem.path())));
+        if (computeHash(m_hash, StringHelper::toQString(m_RootItem.path())))
             m_RootItem.addInfo(m_info, QString(m_hash.result().toHex()).toStdString());
 
         ++numFiles;
