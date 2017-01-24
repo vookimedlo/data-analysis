@@ -20,7 +20,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "File.h"
 
-File::File(const std::wstring& name, DataItem* parent) : DataItem(name, parent)
+File::File(const std::string& name, DataItem* parent) : DataItem(name, parent)
 {
     
 }

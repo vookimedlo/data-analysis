@@ -22,6 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <functional>
 #include <memory>
+#include <QString>
 #include "../model/fs/Directory.h"
 #include "../util/ConnectionManagement.h"
 
@@ -29,25 +30,25 @@ class Operations
 {
 public:
     virtual ~Operations() {};
-    virtual void start(std::wstring dir) = 0;
+    virtual void start(QString dir) = 0;
     virtual void start() = 0;
     virtual void cancel() = 0;
     virtual bool isFinished() const = 0;
 
     //TODO: should be moved to the FileOperations.h
-    virtual std::wstring path() const = 0;
+    virtual QString path() const = 0;
     virtual uint32_t totalFilesCount() const = 0;
 
     virtual void observeProgress(std::function<void(int32_t)> observer);
     virtual void observeResult(std::function<void(std::shared_ptr<Directory>)> observer);
     virtual void observeResult(std::function<void(void)> observer);
-    virtual void observeScanDir(std::function<void(std::wstring)> observer);
+    virtual void observeScanDir(std::function<void(QString)> observer);
     virtual void observeFilesRead(std::function<void(unsigned)> observer);
 
 protected:
     CSignal<std::function<void(int32_t)>> m_observersProgress;
     CSignal<std::function<void(std::shared_ptr<Directory>)>> m_observersResult;
     CSignal<std::function<void(void)>> m_observersResultVoid;
-    CSignal<std::function<void(std::wstring)>> m_observersScanDir;
+    CSignal<std::function<void(QString)>> m_observersScanDir;
     CSignal<std::function<void(unsigned)>> m_observersFilesRead;
 };

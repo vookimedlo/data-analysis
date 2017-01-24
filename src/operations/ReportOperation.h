@@ -31,11 +31,11 @@ class ReportOperation : public Operations
 {
 public:
     ReportOperation(ReportWriter& writer, DataItem &rootItem);
-    void start(std::wstring dir) override;
+    void start(QString dir) override;
     void start() override;
     void cancel() override;
     bool isFinished() const override;
-    std::wstring path() const override;
+    QString path() const override;
     uint32_t totalFilesCount() const override;
 
 protected:

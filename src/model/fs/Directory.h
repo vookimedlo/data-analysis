@@ -29,7 +29,7 @@ class File;
 class Directory : public DataItem
 {
   public:
-    Directory(const std::wstring& name, DataItem* parent);
+    Directory(const std::string& name, DataItem* parent);
     virtual ~Directory();
 
     bool addDirectory(std::unique_ptr<Directory> &directory);

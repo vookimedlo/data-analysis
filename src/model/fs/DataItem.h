@@ -26,25 +26,25 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 class DataItem
 {
   public:
-    explicit DataItem(const std::wstring &filename, DataItem* parent = nullptr);
+    explicit DataItem(const std::string &filename, DataItem* parent = nullptr);
     virtual ~DataItem();
 
     void setSize(uint64_t size);
     void setCreationTimestamp(int64_t timestamp);
     void setModificationTimestamp(int64_t timestamp);
-    void setExtension(const std::wstring &extension);
+    void setExtension(const std::string &extension);
     void addInfo(const DataInfo::DataInfoE dataInfo, std::string value);
 
-    virtual std::wstring name() const;
+    virtual std::string name() const;
     virtual uint64_t size() const;
 	virtual int64_t creationTimestamp() const;
     virtual int64_t modificationTimestamp() const;
-    virtual std::wstring extension() const;
+    virtual std::string extension() const;
 
     virtual DataItem* parent() const;
     virtual void optimize();
 
-    std::wstring path();
+    std::string path();
     std::string info(const DataInfo::DataInfoE dataInfo);
     std::vector<DataInfo::DataInfoE> infos() const;
     bool isInfoValid(const DataInfo::DataInfoE dataInfo) const;    
@@ -56,6 +56,6 @@ private:
     uint64_t m_size;
     int64_t m_creationTimestamp;
     int64_t m_modificationTimestamp;
-    std::wstring m_name;
-    std::wstring m_extension;
+    std::string m_name;
+    std::string m_extension;
 };

@@ -36,7 +36,7 @@ void Operations::observeResult(std::function<void()> observer)
     m_observersResultVoid.connect(observer);
 }
 
-void Operations::observeScanDir(std::function<void(std::wstring)> observer)
+void Operations::observeScanDir(std::function<void(QString)> observer)
 {
     m_observersScanDir.connect(observer);
 }

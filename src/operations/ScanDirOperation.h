@@ -28,15 +28,15 @@ class ScanDirOperation : public Operations
 {
 public:
     ScanDirOperation();
-    void start(std::wstring dir) override;
+    void start(QString dir) override;
     void start() override;
     void cancel() override;
     bool isFinished() const override;
     uint32_t totalFilesCount() const override;
-    std::wstring path() const override;
+    QString path() const override;
 
 protected:
-    void doScan(std::wstring dir);
+    void doScan(QString dir);
 
 private:
     std::future<void> m_asyncScanWorker;

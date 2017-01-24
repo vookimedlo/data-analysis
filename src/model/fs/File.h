@@ -24,6 +24,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 class File : public DataItem
 {
   public:
-      File(const std::wstring& name, DataItem* parent);
+      File(const std::string& name, DataItem* parent);
       ~File();
 };

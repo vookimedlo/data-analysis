@@ -26,6 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../model/fs/File.h"
 
 #include "ScanDirOperation.h"
+#include "../util/StringHelper.h"
 
 
 ScanDirOperation::ScanDirOperation() : m_cancelWorkerActivity(false)
@@ -33,9 +34,9 @@ ScanDirOperation::ScanDirOperation() : m_cancelWorkerActivity(false)
     
 }
 
-void ScanDirOperation::start(std::wstring dir)
+void ScanDirOperation::start(QString dir)
 {
-    m_asyncScanWorker =  std::async(std::launch::async, [&](std::wstring dir) { this->doScan(dir); }, dir);
+    m_asyncScanWorker =  std::async(std::launch::async, [&](QString dir) { this->doScan(dir); }, dir);
     m_cancelWorkerActivity = false;
 }
 
@@ -59,22 +60,22 @@ uint32_t ScanDirOperation::totalFilesCount() const
     return 0;
 }
 
-std::wstring ScanDirOperation::path() const
+QString ScanDirOperation::path() const
 {
-    return std::wstring();
+    return QString();
 }
 
-void ScanDirOperation::doScan(std::wstring startDir)
+void ScanDirOperation::doScan(QString startDir)
 {
     unsigned numFiles = 0, numDirs = 0;
     DiskReader dr;
     
     m_observersScanDir.call(startDir);
 
-    std::unique_ptr<Directory> dir(std::make_unique<Directory>(std::wstring(), nullptr));
+    std::unique_ptr<Directory> dir(std::make_unique<Directory>(std::string(), nullptr));
 
     // This is weird, need to refactor and use std::shared_ptr
-    std::unique_ptr<Directory> child(std::make_unique<Directory>(startDir, dir.get()));
+    std::unique_ptr<Directory> child(std::make_unique<Directory>(StringHelper::toStdString(startDir), dir.get()));
     dir->addDirectory(child);
 
     std::queue<Directory *> q;
@@ -84,8 +85,7 @@ void ScanDirOperation::doScan(std::wstring startDir)
         auto d = q.front();
         q.pop();
 
-        std::wstring aaa(d->path());
-        m_observersScanDir.call(aaa);
+        m_observersScanDir.call(StringHelper::toQString(d->path()));
 
         ++numDirs;
 

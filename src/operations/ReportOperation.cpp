@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../model/fs/Directory.h"
 #include "../model/fs/File.h"
 #include "../util/ModelHelper.h"
+#include "../util/StringHelper.h"
 
 #include "ReportOperation.h"
 
@@ -30,7 +31,7 @@ ReportOperation::ReportOperation(ReportWriter& writer, DataItem &rootItem) : m_c
 {
 }
 
-void ReportOperation::start(std::wstring dir)
+void ReportOperation::start(QString dir)
 {
     #pragma unused(dir)
     throw std::runtime_error("Not implemented!");
@@ -51,9 +52,9 @@ bool ReportOperation::isFinished() const
     return m_asyncScanWorker.valid() ? std::future_status::ready == m_asyncScanWorker.wait_for(std::chrono::seconds(0)) : true;
 }
 
-std::wstring ReportOperation::path() const
+QString ReportOperation::path() const
 {
-    return m_RootItem.path();
+    return StringHelper::toQString(m_RootItem.path());
 }
 
 uint32_t ReportOperation::totalFilesCount() const
@@ -66,7 +67,7 @@ void ReportOperation::startOperation()
     unsigned numFiles = 0, numDirs = 0;
     std::queue<Directory *> q;
     
-    m_observersScanDir.call(m_RootItem.path());
+    m_observersScanDir.call(StringHelper::toQString(m_RootItem.path()));
 
     if (m_ReportWriter.open())
     {
@@ -82,7 +83,7 @@ void ReportOperation::startOperation()
                 auto d = q.front();
                 q.pop();
 
-                m_observersScanDir.call(d->path());
+                m_observersScanDir.call(StringHelper::toQString(d->path()));
                 ++numDirs;
 
                 for (Directory *directory : d->directories())

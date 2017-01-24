@@ -150,12 +150,7 @@ bool CSVReportWriter::writeColumn(const std::string& str)
     return m_OutputStream.good();
 }
 
-bool CSVReportWriter::writeColumn(const std::wstring& str)
-{
-    return writeColumn(StringHelper::toStdString(str));
-}
-
 bool CSVReportWriter::writeColumn(const QString& str)
 {
-    return writeColumn(StringHelper::toStdWString(str));
+    return writeColumn(StringHelper::toStdString(str));
 }

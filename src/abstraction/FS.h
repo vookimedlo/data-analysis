@@ -26,5 +26,5 @@ class FS
 public:
     virtual ~FS(){};
 
-    static std::wstring LongPathNameToShort(std::wstring path);
+    static std::string LongPathNameToShort(std::string path);
 };

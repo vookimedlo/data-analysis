@@ -41,7 +41,6 @@ public:
 
 protected:
     bool writeColumn(const std::string  &str);
-    bool writeColumn(const std::wstring &str);
     bool writeColumn(const QString      &str);
 
 private:

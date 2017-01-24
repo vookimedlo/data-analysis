@@ -36,7 +36,7 @@ public:
     OperationDialog(Operations &operations, ModeE mode, QWidget *parent);
     void setTitle(const QString &title);
 
-    void onScannedDirChangeNotification(std::wstring name);
+    void onScannedDirChangeNotification(QString name);
     void onResultReadyNotification(std::shared_ptr<Directory> directory);
     void onResultReadyNotification();
     std::shared_ptr<Directory> getResult() const;

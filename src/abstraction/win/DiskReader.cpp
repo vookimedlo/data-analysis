@@ -25,18 +25,18 @@
 #include <vector>
 #include "../../model/fs/File.h"
 #include "../../model/fs/Directory.h"
+#include "../../util/StringHelper.h"
 
 #include "../DiskReader.h"
 
 using namespace std;
-
 
 #define TICKS_PER_SECOND 10000000
 #define EPOCH_DIFFERENCE 11644473600LL
 
 bool DiskReader::readDirectoryStructure(Directory *const directory)
 {
-    wstring search_path = directory->path() + wstring(L"/*.*");
+    wstring search_path = StringHelper::toStdWString(directory->path()) + wstring(L"/*.*");
     WIN32_FIND_DATA fd;
     HANDLE hFind = ::FindFirstFile(search_path.c_str(), &fd);
     if (hFind != INVALID_HANDLE_VALUE) {
@@ -48,11 +48,10 @@ bool DiskReader::readDirectoryStructure(Directory *const directory)
                 if (!filename.compare(L".") || !filename.compare(L".."))
                     continue;
 
-                unique_ptr<Directory> dir(new Directory(wstring(fd.cFileName), directory));               
+                unique_ptr<Directory> dir(new Directory(StringHelper::toStdString(wstring(fd.cFileName)), directory));               
                 dir->setCreationTimestamp(convertWindowsTimeToUnixTime(fd.ftCreationTime));
                 dir->setModificationTimestamp(convertWindowsTimeToUnixTime(fd.ftLastWriteTime));
                 directory->addDirectory(dir);
-
             }
             // Files
             else {
@@ -60,13 +59,13 @@ bool DiskReader::readDirectoryStructure(Directory *const directory)
                 ul.HighPart = fd.nFileSizeHigh;
                 ul.LowPart = fd.nFileSizeLow;
 
-                unique_ptr<File> file(new File(wstring(fd.cFileName), directory));
+                unique_ptr<File> file(new File(StringHelper::toStdString(wstring(fd.cFileName)), directory));
                 file->setCreationTimestamp(convertWindowsTimeToUnixTime(fd.ftCreationTime));
                 file->setModificationTimestamp(convertWindowsTimeToUnixTime(fd.ftLastWriteTime));
                 
                 PTSTR extension = PathFindExtension(fd.cFileName);
                 if (*extension != '\0') {
-                    file->setExtension(extension + 1); // +1 skip dot
+                    file->setExtension(StringHelper::toStdString(std::wstring(extension + 1))); // +1 skip dot
                 }
 
                 file.get()->setSize(ul.QuadPart);

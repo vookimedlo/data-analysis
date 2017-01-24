@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 using namespace std;
 
-Directory::Directory(const wstring& name, DataItem* parent) : DataItem(name, parent)
+Directory::Directory(const string& name, DataItem* parent) : DataItem(name, parent)
 {
 }
 

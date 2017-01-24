@@ -21,13 +21,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <Windows.h>
 
 #include "../FS.h"
+#include "../../util/StringHelper.h"
 
-std::wstring FS::LongPathNameToShort(std::wstring path)
+std::string FS::LongPathNameToShort(std::string path)
 {
     wchar_t shortPath[4098];
-    DWORD bytesCount = GetShortPathName(path.c_str(), shortPath, sizeof(shortPath));
+    DWORD bytesCount = GetShortPathName(StringHelper::toStdWString(path).c_str(), shortPath, sizeof(shortPath));
     if (!bytesCount)
         *shortPath = '\0';
 
-    return shortPath;
+    return StringHelper::toStdString(std::wstring(shortPath));
 }

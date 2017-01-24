@@ -51,7 +51,7 @@ MagicOperation::~MagicOperation()
     magic_close(m_MagicCookie);
 }
 
-void MagicOperation::start(std::wstring dir)
+void MagicOperation::start(QString dir)
 {
     #pragma unused(dir)
     throw std::runtime_error("Not supported");
@@ -72,9 +72,9 @@ bool MagicOperation::isFinished() const
     return m_asyncScanWorker.valid() ? std::future_status::ready == m_asyncScanWorker.wait_for(std::chrono::seconds(0)) : true;
 }
 
-std::wstring MagicOperation::path() const
+QString MagicOperation::path() const
 {
-    return m_RootItem.path();
+    return StringHelper::toQString(m_RootItem.path());
 }
 
 uint32_t MagicOperation::totalFilesCount() const
@@ -87,7 +87,7 @@ void MagicOperation::startOperation()
     unsigned numFiles = 0, numDirs = 0;
     std::queue<Directory *> q;
     
-    m_observersScanDir.call(m_RootItem.path());
+    m_observersScanDir.call(StringHelper::toQString(m_RootItem.path()));
 
     Directory *directory = dynamic_cast<Directory *>(&m_RootItem);
     if (directory)
@@ -98,7 +98,7 @@ void MagicOperation::startOperation()
             auto d = q.front();
             q.pop();
 
-            m_observersScanDir.call(d->path());
+            m_observersScanDir.call(StringHelper::toQString(d->path()));
             ++numDirs;
 
             for (Directory *directory : d->directories())

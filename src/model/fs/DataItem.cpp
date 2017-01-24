@@ -23,7 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 using namespace std;
 
 
-DataItem::DataItem(const std::wstring& name, DataItem* parent) : m_parent(parent), m_dataInfo(), m_size(0), m_creationTimestamp(0), m_modificationTimestamp(0), m_name(name)
+DataItem::DataItem(const std::string& name, DataItem* parent) : m_parent(parent), m_dataInfo(), m_size(0), m_creationTimestamp(0), m_modificationTimestamp(0), m_name(name)
 {
 }
 
@@ -50,7 +50,7 @@ void DataItem::setModificationTimestamp(int64_t timestamp)
     m_modificationTimestamp = timestamp;
 }
 
-void DataItem::setExtension(const std::wstring& extension)
+void DataItem::setExtension(const std::string& extension)
 {
     m_extension = extension;
 }
@@ -60,7 +60,7 @@ void DataItem::addInfo(const DataInfo::DataInfoE dataInfo, std::string value)
     m_dataInfo.addInfo(dataInfo, value);
 }
 
-std::wstring DataItem::name() const
+std::string DataItem::name() const
 {
     return m_name;
 }
@@ -82,7 +82,7 @@ int64_t DataItem::modificationTimestamp() const
     return m_modificationTimestamp;
 }
 
-std::wstring DataItem::extension() const
+std::string DataItem::extension() const
 {
     return m_extension;
 }
@@ -99,13 +99,13 @@ void DataItem::optimize()
     m_extension.shrink_to_fit();
 }
 
-std::wstring DataItem::path()
+std::string DataItem::path()
 {
-    wstring p(name());
+    string p(name());
     DataItem *dir = this;
     while ((dir = dir->parent())) {
         if(!dir->name().empty())
-            p.insert(0, dir->name() + L"/");
+            p.insert(0, dir->name() + "/");
     }
 
     return p;

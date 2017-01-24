@@ -34,7 +34,7 @@ HashOperation::HashOperation(QCryptographicHash &hash, DataInfo::DataInfoE info,
 {
 }
 
-void HashOperation::start(std::wstring dir)
+void HashOperation::start(QString dir)
 {
     #pragma unused(dir)
     throw std::runtime_error("Not implemented!");
@@ -55,9 +55,9 @@ bool HashOperation::isFinished() const
     return m_asyncScanWorker.valid() ? std::future_status::ready == m_asyncScanWorker.wait_for(std::chrono::seconds(0)) : true;
 }
 
-std::wstring HashOperation::path() const
+QString HashOperation::path() const
 {
-    return m_RootItem.path();
+    return StringHelper::toQString(m_RootItem.path());
 }
 
 uint32_t HashOperation::totalFilesCount() const
@@ -70,7 +70,7 @@ void HashOperation::startOperation()
     unsigned numFiles = 0, numDirs = 0;
     std::queue<Directory *> q;
     
-    m_observersScanDir.call(m_RootItem.path());
+    m_observersScanDir.call(StringHelper::toQString(m_RootItem.path()));
 
     Directory *directory = dynamic_cast<Directory *>(&m_RootItem);
     if (directory)
@@ -81,7 +81,7 @@ void HashOperation::startOperation()
             auto d = q.front();
             q.pop();
 
-            m_observersScanDir.call(d->path());
+            m_observersScanDir.call(StringHelper::toQString(d->path()));
             ++numDirs;
 
             for (Directory *directory : d->directories())
@@ -91,7 +91,7 @@ void HashOperation::startOperation()
 
             for (File *file : d->files())
             {
-                if (computeHash(m_hash, file->path()))
+                if (computeHash(m_hash, StringHelper::toQString(file->path())))
                     file->addInfo(m_info, QString(m_hash.result().toHex()).toStdString());
 
                 ++numFiles;
@@ -102,7 +102,7 @@ void HashOperation::startOperation()
     }
     else
     {
-        if (computeHash(m_hash, m_RootItem.path()))
+        if (computeHash(m_hash, StringHelper::toQString(m_RootItem.path())));
             m_RootItem.addInfo(m_info, QString(m_hash.result().toHex()).toStdString());
 
         ++numFiles;
@@ -113,9 +113,9 @@ void HashOperation::startOperation()
     m_observersResultVoid.call();
 }
 
-bool HashOperation::computeHash(QCryptographicHash& hash, std::wstring path)
+bool HashOperation::computeHash(QCryptographicHash& hash, QString path)
 {
-    QFile file(StringHelper::toQString(path));
+    QFile file(path);
     hash.reset();
     
     if (file.open(QIODevice::ReadOnly))
