@@ -97,9 +97,9 @@ QVariant DirectoryTreeModel::headerData(int section, Qt::Orientation orientation
         switch(section)
         {
         case 0:
-            return QString("Name");
+            return QString(tr("Name"));
         case 1:
-            return QString("# of files");
+            return QString(tr("# of files"));
         default:
             return QVariant();
         }        

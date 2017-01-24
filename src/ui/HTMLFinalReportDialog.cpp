@@ -28,6 +28,7 @@ HTMLFinalReportDialog::HTMLFinalReportDialog(ReportSettings& settings, QWidget* 
     m_uiReportDialog.titleLineEdit->setText(settings.getTitle());
     m_uiReportDialog.referenceLineEdit->setText(settings.getReference());
     m_uiReportDialog.idLineEdit->setText(settings.getId());
+    m_uiReportDialog.perexTextEdit->setPlainText(settings.getPerex());
 }
 
 void HTMLFinalReportDialog::onDefault()

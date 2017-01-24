@@ -347,6 +347,7 @@ void DataAnalyzer::onHTMLReportTriggered()
         settings.setTitle(StringHelper::toQString(m_globalInformation.getReferenceNumber()));
         settings.setReference(StringHelper::toQString(m_globalInformation.getReference()));
         settings.setId(StringHelper::toQString(m_globalInformation.getId()));
+        settings.setPerex(ui.reportTextEdit->toPlainText());
 
         HTMLFinalReportDialog reportDialog(settings, this);
         reportDialog.setWindowTitle(dialogTitle); 
@@ -363,7 +364,14 @@ void DataAnalyzer::onHTMLReportTriggered()
 
             OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
             dialog.setTitle(dialogTitle);
-            dialog.exec();
+
+            if (dialog.exec() == QDialog::Accepted)
+            {
+                ui.reportTextEdit->setPlainText(settings.getPerex());
+                m_globalInformation.setReferenceNumber(StringHelper::toStdString(settings.getTitle()));
+                m_globalInformation.setReference(StringHelper::toStdString(settings.getReference()));
+                m_globalInformation.setId(StringHelper::toStdString(settings.getId()));
+            }
         }
     }
 }
