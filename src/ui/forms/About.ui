@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Michal Duda</author>
  <class>aboutDialog</class>
  <widget class="QDialog" name="aboutDialog">
   <property name="windowModality">
@@ -47,7 +48,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../resource/DataAnalyzer.qrc">:/images/1467665209-2400px.png</pixmap>
+        <pixmap resource="../../resource/DataAnalyzer.qrc">:/images/1467665209-300px.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>

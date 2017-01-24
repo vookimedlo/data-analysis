@@ -125,7 +125,7 @@
 <context>
     <name>DataAnalyzerClass</name>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="764"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="765"/>
         <source>Detail</source>
         <translation>Detail</translation>
     </message>
@@ -138,23 +138,23 @@
         <translation type="vanished">O komponentách třetích stra</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="14"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="15"/>
         <source>Data Analysis</source>
         <translation>Analýza zabavených dat</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="46"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="47"/>
         <source>Directory</source>
         <translation>Adresář</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="90"/>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="106"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="91"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="107"/>
         <source>Analysis</source>
         <translation>Analýza</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="527"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="528"/>
         <source>..... own analysis .....</source>
         <translation>..... vlastní analýza ....</translation>
     </message>
@@ -167,234 +167,234 @@
         <translation type="vanished">..... vlastní závěrečná zpráva .....</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="535"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="536"/>
         <source>Final Report</source>
         <translation>Závěrečná zpráva</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="578"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="579"/>
         <source>..... own final report .....</source>
         <translation>..... vlastní závěrečná zpráva .....</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="589"/>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="989"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="590"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="990"/>
         <source>Tags</source>
         <translation>Tagy</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="596"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="597"/>
         <source>No tag</source>
         <translation>Žádný tag</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="601"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="602"/>
         <source>Not interesting</source>
         <translation>Nezájmové</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="606"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="607"/>
         <source>Interesting</source>
         <translation>Zájmové</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="611"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="612"/>
         <source>Proof</source>
         <translation>Důkazní</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="624"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="625"/>
         <source>Preview</source>
         <translation>Náhled</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="686"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="687"/>
         <source>rotate -90°</source>
         <translation>otoč -90°</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="697"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="698"/>
         <source>rotate +90°</source>
         <translation>otoč +90°</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="725"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="726"/>
         <source>Detailed information</source>
         <translation>Detailní informace </translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="759"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="760"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="786"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="787"/>
         <source>File</source>
         <translation>Soubor</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="795"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="796"/>
         <source>Help</source>
         <translation>Nápověda</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="803"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="804"/>
         <source>Edit</source>
         <translation>Úpravy</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="816"/>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="823"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="817"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="824"/>
         <source>Settings</source>
         <translation>Nastavení</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="830"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="831"/>
         <source>Translations</source>
         <translation>Jazyk aplikace</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="842"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="843"/>
         <source>Operation</source>
         <translation>Operace</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="846"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="847"/>
         <source>Final reports</source>
         <translation>Generování závěrečné zprávy</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="854"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="855"/>
         <source>Hash computation</source>
         <translation>Hašovací operace</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="874"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="875"/>
         <source>Other operations</source>
         <translation>Ostatní operace</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="892"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="893"/>
         <source>Main operations</source>
         <translation>Hlavní operace</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="919"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="920"/>
         <source>File operations</source>
         <translation>Souborové operace</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="936"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="937"/>
         <source>Directories</source>
         <translation>Adresáře</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="942"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="943"/>
         <source>Directories only</source>
         <translation>Pouze adresáře</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="984"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="985"/>
         <source>Search</source>
         <translation>Hledání</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1003"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1004"/>
         <source>&amp;Quit</source>
         <translation>U&amp;končit</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1043"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1044"/>
         <source>Initial file system scan</source>
         <translation>Iniciální načtení souborového systému</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1054"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1055"/>
         <source>&amp;Copy</source>
         <translation>&amp;Kopírovat</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1065"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1066"/>
         <source>&amp;Cut</source>
         <translation>Vy&amp;jmout</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1076"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1077"/>
         <source>&amp;Paste</source>
         <translation>&amp;Vložit</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1087"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1088"/>
         <source>&amp;Open ...</source>
         <translation>&amp;Otevřít ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1099"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1100"/>
         <source>CSV ...</source>
         <translation>CSV ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1102"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1103"/>
         <source>Generate final report [CSV]</source>
         <translation>Vytvoření závěrečné zprávy [CSV]</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1122"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1123"/>
         <source>&amp;Search ...</source>
         <translation>&amp;Hledat ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1149"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1150"/>
         <source>RTF ...</source>
         <translation>RTF ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1152"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1153"/>
         <source>Generate final report [RTF]</source>
         <translation>Vytvoření závěrečné zprávy [RTF]</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1161"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1162"/>
         <source>SHA-1 computation ...</source>
         <translation>Výpočet SHA-1 otisku ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1170"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1171"/>
         <source>SHA3-512 computation ...</source>
         <translation>Výpočet SHA3-512 ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1179"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1180"/>
         <source>HTML ...</source>
         <translation>HTML ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1182"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1183"/>
         <source>Generate final report [HTML]</source>
         <translation>Vytvoření závěrečné zprávy [HTML]</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1187"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1188"/>
         <source>New ...</source>
         <translation>Nový ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1192"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1193"/>
         <source>Dataset settings ...</source>
         <translation>Nastvení souboru dat ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1200"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1201"/>
         <source>About Qt ...</source>
         <translation>O Qt ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1215"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1216"/>
         <source>English</source>
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1227"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1228"/>
         <source>Čeština</source>
         <translation>Čeština</translation>
     </message>
@@ -403,22 +403,22 @@
         <translation type="vanished">Ukončit</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1014"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1015"/>
         <source>About ...</source>
         <translation>O programu ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1025"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1026"/>
         <source>About components ...</source>
         <translation>O komponentách ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1028"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1029"/>
         <source>About 3rd parties components</source>
         <translation>O komponentách třetích stran</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1040"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1041"/>
         <source>Directory scan ...</source>
         <translation>Sken adresáře ...</translation>
     </message>
@@ -443,7 +443,7 @@
         <translation type="vanished">Otevřít ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1111"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1112"/>
         <source>MD5 computation ...</source>
         <translation>Výpočet MD5 otisku ...</translation>
     </message>
@@ -460,7 +460,7 @@
         <translation type="vanished">CSV</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1134"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1135"/>
         <source>Data type analysis ...</source>
         <translation>Detekce typu souboru ...</translation>
     </message>
@@ -565,182 +565,182 @@
 <context>
     <name>FinalReportDialog</name>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="125"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="126"/>
         <source>Basic data type</source>
         <translation>Základní typ objektu</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="132"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="133"/>
         <source>Probable data type</source>
         <translation>Pravděpodobný typ dat</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="139"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="140"/>
         <source>Size </source>
         <translation>Velikost</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="146"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="147"/>
         <source>MD5 fingerprint</source>
         <translation>MD5 otisk</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="153"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="154"/>
         <source>Creation date</source>
         <translation>Datum vytvoření</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="160"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="161"/>
         <source>SHA-1 fingerprint</source>
         <translation>SHA-1 otisk</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="167"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="168"/>
         <source>Modification date</source>
         <translation>Datum modifikace</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="174"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="175"/>
         <source>SHA3-512 fingerprint</source>
         <translation>SHA3-512 otisk</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="181"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="182"/>
         <source>Name</source>
         <translation>Jméno</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="188"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="189"/>
         <source>Path</source>
         <translation>Cesta</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="195"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="196"/>
         <source>Tag</source>
         <translation>Tag</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="213"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="214"/>
         <source>Preview</source>
         <translation>Náhled</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="220"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="221"/>
         <source>Analysis</source>
         <translation>Analýza</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="249"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="250"/>
         <source>Select All</source>
         <translation>Vybrat vše</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="256"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="257"/>
         <source>Clear All</source>
         <translation>Vyčistit vše</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="263"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="264"/>
         <source>Default</source>
         <translation>Vybrat výchozí</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="302"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="303"/>
         <source>Title:</source>
         <translation>Titulek:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="312"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="313"/>
         <source>Reference:</source>
         <translation>Reference:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="322"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="323"/>
         <source>ID:</source>
         <translation>ID:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="358"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="359"/>
         <source>Export to file</source>
         <translation>Výstup do souboru</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="372"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="373"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="411"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="412"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="418"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="419"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="334"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="335"/>
         <source>Perex</source>
         <translation>Perex</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="346"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="347"/>
         <source>... write perex ...</source>
         <translation>... napiš perex ...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="46"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="47"/>
         <source>Objects to export</source>
         <translation>Objekty k exportu</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="14"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="15"/>
         <source>Report Settings</source>
         <translation>Nastavení závěrečné zprávy</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="54"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="55"/>
         <source>Files</source>
         <translation>Soubory</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="61"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="62"/>
         <source>Directories</source>
         <translation>Adresáře</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="81"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="82"/>
         <source>No tag</source>
         <translation>Žádný tag</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="88"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="89"/>
         <source>Not interesting</source>
         <translation>Nezájmové</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="95"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="96"/>
         <source>Interesting</source>
         <translation>Zájmové</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="102"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="103"/>
         <source>Proof</source>
         <translation>Důkazní</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="117"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="118"/>
         <source>Properties to export</source>
         <translation>Vlastnosti dat k exportu</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="40"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="41"/>
         <source>Restrictions</source>
         <translation>Omezení</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="73"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="74"/>
         <source>Tags</source>
         <translation>Tagy</translation>
     </message>
@@ -748,33 +748,33 @@
 <context>
     <name>GlobalInformationDialog</name>
     <message>
-        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="17"/>
+        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="18"/>
         <source>Dialog</source>
         <translatorcomment>Nepoužívano - měněno aplikací na základě kontextu</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="28"/>
+        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="29"/>
         <source>Reference number:</source>
         <translation>Číslo jednací:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="38"/>
+        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="39"/>
         <source>Reference:</source>
         <translation>Stopa:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="48"/>
+        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="49"/>
         <source>ID:</source>
         <translation>ID:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="103"/>
+        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="104"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="110"/>
+        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="111"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
@@ -849,42 +849,42 @@
 <context>
     <name>OperationDialog</name>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="35"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="36"/>
         <source>Directory structure scan</source>
         <translation>Procházení adresářové struktury</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="70"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="71"/>
         <source>Tree scan:</source>
         <translation>Adresářová struktura:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="102"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="103"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="129"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="130"/>
         <source>Traversing:</source>
         <translation>Procházím:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="179"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="180"/>
         <source>Files read:</source>
         <translation>Přečteno souborů:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="276"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="277"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="291"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="292"/>
         <source>&amp;Run</source>
         <translation>&amp;Spustit</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="306"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="307"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Zrušit</translation>
     </message>
@@ -915,17 +915,17 @@
 <context>
     <name>aboutDialog</name>
     <message>
-        <location filename="../../ui/forms/About.ui" line="17"/>
+        <location filename="../../ui/forms/About.ui" line="18"/>
         <source>About DataAnalyzer</source>
         <translation>O programu</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/About.ui" line="61"/>
+        <location filename="../../ui/forms/About.ui" line="62"/>
         <source>qrc:/text/text/about.htm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../ui/forms/About.ui" line="104"/>
+        <location filename="../../ui/forms/About.ui" line="105"/>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
     </message>
