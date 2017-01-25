@@ -102,23 +102,23 @@
         <translation>Detekce typu</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="306"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="307"/>
         <source>CSV report</source>
         <translation>CSV zpráva</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="336"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="337"/>
         <source>RTF report</source>
         <translation>RTF zpráva</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="345"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="346"/>
         <source>HTML report</source>
         <translation>HTML zpráva</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="381"/>
-        <location filename="../../ui/DataAnalyzer.cpp" line="410"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="382"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="411"/>
         <source>Dataset settings</source>
         <translation>Nastvení souboru dat</translation>
     </message>
@@ -395,7 +395,7 @@
         <translation>English</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/DataAnalyzer.ui" line="1228"/>
+        <location filename="../../ui/forms/DataAnalyzer.ui" line="1231"/>
         <source>Čeština</source>
         <translation>Čeština</translation>
     </message>
@@ -760,27 +760,27 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="29"/>
+        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="31"/>
         <source>Reference number:</source>
         <translation>Číslo jednací:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="39"/>
+        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="41"/>
         <source>Reference:</source>
         <translation>Stopa:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="49"/>
+        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="51"/>
         <source>ID:</source>
         <translation>ID:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="104"/>
+        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="121"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="111"/>
+        <location filename="../../ui/forms/GlobalInformationDialog.ui" line="128"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
@@ -865,37 +865,37 @@
         <translation>Procházení adresářové struktury</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="71"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="70"/>
         <source>Tree scan:</source>
         <translation>Adresářová struktura:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="103"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="146"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="130"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="95"/>
         <source>Traversing:</source>
         <translation>Procházím:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="180"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="120"/>
         <source>Files read:</source>
         <translation>Přečteno souborů:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="277"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="285"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="292"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="300"/>
         <source>&amp;Run</source>
         <translation>&amp;Spustit</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="307"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="315"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Zrušit</translation>
     </message>

@@ -272,24 +272,18 @@ void DataAnalyzer::onMD5Triggered()
 {    
     QString dialogTitile(tr("MD5 computation"));
     hashOperation(QCryptographicHash::Md5, DataInfo::DataInfoE_MD5, dialogTitile);
-    if(m_selectedDataItem)
-        DetailsPublisher::toUI(*ui.detailsTreeWidget, *ui.tagListWidget, *m_selectedDataItem);
 }
 
 void DataAnalyzer::onSHA1Triggered()
 {
     QString dialogTitile(tr("SHA-1 computation"));
     hashOperation(QCryptographicHash::Sha1, DataInfo::DataInfoE_SHA1, dialogTitile);
-    if(m_selectedDataItem)
-        DetailsPublisher::toUI(*ui.detailsTreeWidget, *ui.tagListWidget, *m_selectedDataItem);
 }
 
 void DataAnalyzer::onSHA3_512Triggered()
 {
     QString dialogTitile(tr("SHA3-512 computation"));
     hashOperation(QCryptographicHash::Sha3_512, DataInfo::DataInfoE_SHA3_512, dialogTitile);
-    if(m_selectedDataItem)
-        DetailsPublisher::toUI(*ui.detailsTreeWidget, *ui.tagListWidget, *m_selectedDataItem);
 }
 
 void DataAnalyzer::onFileMagicTriggered()
@@ -302,8 +296,7 @@ void DataAnalyzer::onFileMagicTriggered()
         OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
         dialog.setTitle(tr("Type detection"));
         dialog.exec();
-        if(m_selectedDataItem)
-            DetailsPublisher::toUI(*ui.detailsTreeWidget, *ui.tagListWidget, *m_selectedDataItem);
+        updateDetailsTreeWidget();
     }
 }
 
@@ -543,6 +536,7 @@ void DataAnalyzer::hashOperation(QCryptographicHash::Algorithm algorithm, DataIn
         OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
         dialog.setTitle(dialogTitle);
         dialog.exec();
+        updateDetailsTreeWidget();
     }
 }
 
@@ -593,4 +587,13 @@ void DataAnalyzer::changeEvent(QEvent *event)
     }
     
     QMainWindow::changeEvent(event);
+}
+
+void DataAnalyzer::updateDetailsTreeWidget()
+{
+    if (m_selectedDataItem)
+    {
+        ui.detailsTreeWidget->clear();
+        DetailsPublisher::toUI(*ui.detailsTreeWidget, *ui.tagListWidget, *m_selectedDataItem);
+    }
 }

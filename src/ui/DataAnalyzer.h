@@ -78,6 +78,7 @@ protected:
     void loadLanguage(const QString& rLanguage);
     void switchTranslator(QTranslator& translator, const QString& filename);
     void changeEvent(QEvent *event) override;
+    void updateDetailsTreeWidget();
 
 private:
     Ui::DataAnalyzerClass ui;
