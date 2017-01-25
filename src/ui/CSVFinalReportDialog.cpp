@@ -61,6 +61,7 @@ void CSVFinalReportDialog::defaultSettings() const
     m_uiReportDialog.checkBoxBasicDataType->setCheckState(Qt::CheckState::Checked);
     m_uiReportDialog.checkBoxProbableDataType->setCheckState(Qt::CheckState::Checked);
     m_uiReportDialog.checkBoxSize->setCheckState(Qt::CheckState::Checked);
+    m_uiReportDialog.checkBoxExtension->setCheckState(Qt::CheckState::Checked);
     m_uiReportDialog.checkBoxCreationDate->setCheckState(Qt::CheckState::Checked);
     m_uiReportDialog.checkBoxModificationDate->setCheckState(Qt::CheckState::Checked);
     m_uiReportDialog.checkBoxTag->setCheckState(Qt::CheckState::Checked);

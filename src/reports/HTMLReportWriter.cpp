@@ -167,6 +167,12 @@ bool HTMLReportWriter::write(DataItem& dataItem)
         }
         write("<br />");
     }
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Extension))
+    {
+        write(addPreparedStringInTag(prepareString(tr("Extension")), "span", "key"));
+        write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.extension())), "span", "value"));
+        write("<br />");
+    }
 
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_BasicDataType))
     {

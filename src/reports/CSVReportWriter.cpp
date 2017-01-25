@@ -54,8 +54,8 @@ bool CSVReportWriter::open()
         writeColumn(tr("Tag"));
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_BasicDataType))
         writeColumn(tr("Type"));
-//    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Extension))
-//    writeColumn(tr("Extension"));
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Extension))
+        writeColumn(tr("Extension"));
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Path))
         writeColumn(tr("Path"));
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_MD5))
@@ -114,8 +114,8 @@ bool CSVReportWriter::write(DataItem& dataItem)
         writeColumn(TagHelper::tagToString(tag));
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_BasicDataType))
         writeColumn(QString(dynamic_cast<const File *>(&dataItem) ? tr("File") : tr("Directory")));
-    //    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Extension))
-    //    writeColumn(dataItem.extension());
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Extension))
+        writeColumn(dataItem.extension());
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Path))
         writeColumn(ModelHelper::removePartOfPath(dataItem, m_rootPath));
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_MD5))

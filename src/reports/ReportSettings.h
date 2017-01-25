@@ -35,7 +35,7 @@ public:
         RestrictionE_Proof = 1 << 6,
     };
 
-    enum PropertiesE
+    enum PropertiesE : uint64_t
     {
         PropertiesE_BasicDataType = 1,
         PropertiesE_ProbableDataType = 1 << 2,
@@ -50,6 +50,7 @@ public:
         PropertiesE_Name = 1 << 11,
         PropertiesE_Path = 1 << 12,
         PropertiesE_Tag = 1 << 13,
+        PropertiesE_Extension = 1 << 14,
     };
 
     ReportSettings();
@@ -86,5 +87,5 @@ private:
     QString m_reference;
     QString m_perex;
     uint32_t m_restrictions;
-    uint32_t m_properties;
+    uint64_t m_properties;
 };

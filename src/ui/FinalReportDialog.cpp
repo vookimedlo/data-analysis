@@ -49,6 +49,8 @@ void FinalReportDialog::onAccept()
         m_reportSettings.addProperty(ReportSettings::PropertiesE_ProbableDataType);
     if (m_uiReportDialog.checkBoxSize->isChecked())
         m_reportSettings.addProperty(ReportSettings::PropertiesE_Size);
+    if (m_uiReportDialog.checkBoxExtension->isChecked())
+        m_reportSettings.addProperty(ReportSettings::PropertiesE_Extension);
     if (m_uiReportDialog.checkBoxCreationDate->isChecked())
         m_reportSettings.addProperty(ReportSettings::PropertiesE_CreationDate);
     if (m_uiReportDialog.checkBoxModificationDate->isChecked())
@@ -105,6 +107,7 @@ void FinalReportDialog::changeCheckBoxState(Qt::CheckState state)
     m_uiReportDialog.checkBoxBasicDataType->setCheckState(state);
     m_uiReportDialog.checkBoxProbableDataType->setCheckState(state);
     m_uiReportDialog.checkBoxSize->setCheckState(state);
+    m_uiReportDialog.checkBoxExtension->setCheckState(state);
     m_uiReportDialog.checkBoxCreationDate->setCheckState(state);
     m_uiReportDialog.checkBoxModificationDate->setCheckState(state);
     m_uiReportDialog.checkBoxMD5->setCheckState(state);
