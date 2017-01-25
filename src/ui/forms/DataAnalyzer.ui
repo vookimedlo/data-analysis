@@ -635,8 +635,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>357</width>
-              <height>458</height>
+              <width>393</width>
+              <height>431</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -779,7 +779,7 @@
      <x>0</x>
      <y>0</y>
      <width>1544</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -1215,6 +1215,9 @@
    <property name="text">
     <string>English</string>
    </property>
+   <property name="menuRole">
+    <enum>QAction::ApplicationSpecificRole</enum>
+   </property>
   </action>
   <action name="actionTranCzech">
    <property name="checkable">
@@ -1226,6 +1229,9 @@
    </property>
    <property name="text">
     <string>Čeština</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::ApplicationSpecificRole</enum>
    </property>
   </action>
  </widget>
