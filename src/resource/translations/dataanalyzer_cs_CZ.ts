@@ -77,48 +77,48 @@
 <context>
     <name>DataAnalyzer</name>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="69"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="70"/>
         <source>Open file externally</source>
         <translation>Otevřít v externím programu</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="273"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="274"/>
         <source>MD5 computation</source>
         <translation>Výpočet MD5 otisku</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="279"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="280"/>
         <source>SHA-1 computation</source>
         <translation>Výpočet SHA-1 otisku</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="285"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="286"/>
         <source>SHA3-512 computation</source>
         <translation>Výpočet SHA3-512 otisku</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="297"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="298"/>
         <source>Type detection</source>
         <translation>Detekce typu</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="307"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="308"/>
         <source>CSV report</source>
         <translation>CSV zpráva</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="337"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="338"/>
         <source>RTF report</source>
         <translation>RTF zpráva</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="346"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="347"/>
         <source>HTML report</source>
         <translation>HTML zpráva</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="382"/>
-        <location filename="../../ui/DataAnalyzer.cpp" line="411"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="383"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="412"/>
         <source>Dataset settings</source>
         <translation>Nastvení souboru dat</translation>
     </message>
@@ -473,27 +473,27 @@
 <context>
     <name>DataItemTreeModel</name>
     <message>
-        <location filename="../../controller/DataItemTreeModel.cpp" line="116"/>
+        <location filename="../../controller/DataItemTreeModel.cpp" line="117"/>
         <source>Name</source>
         <translation>Jméno</translation>
     </message>
     <message>
-        <location filename="../../controller/DataItemTreeModel.cpp" line="118"/>
+        <location filename="../../controller/DataItemTreeModel.cpp" line="119"/>
         <source># of files</source>
         <translation>Počet souborů</translation>
     </message>
     <message>
-        <location filename="../../controller/DataItemTreeModel.cpp" line="120"/>
+        <location filename="../../controller/DataItemTreeModel.cpp" line="121"/>
         <source>Size</source>
         <translation>Velikost</translation>
     </message>
     <message>
-        <location filename="../../controller/DataItemTreeModel.cpp" line="122"/>
+        <location filename="../../controller/DataItemTreeModel.cpp" line="123"/>
         <source>Extension</source>
         <translation>Přípona</translation>
     </message>
     <message>
-        <location filename="../../controller/DataItemTreeModel.cpp" line="124"/>
+        <location filename="../../controller/DataItemTreeModel.cpp" line="125"/>
         <source>Modification timestamp</source>
         <translation>Datum změny</translation>
     </message>
@@ -501,37 +501,37 @@
 <context>
     <name>DetailsPublisher</name>
     <message>
-        <location filename="../../controller/DetailsPublisher.cpp" line="34"/>
+        <location filename="../../controller/DetailsPublisher.cpp" line="35"/>
         <source>Full path</source>
         <translation>Celá cesta</translation>
     </message>
     <message>
-        <location filename="../../controller/DetailsPublisher.cpp" line="38"/>
+        <location filename="../../controller/DetailsPublisher.cpp" line="39"/>
         <source>Name</source>
         <translation>Jméno</translation>
     </message>
     <message>
-        <location filename="../../controller/DetailsPublisher.cpp" line="42"/>
+        <location filename="../../controller/DetailsPublisher.cpp" line="43"/>
         <source>Size</source>
         <translation>Velikost</translation>
     </message>
     <message>
-        <location filename="../../controller/DetailsPublisher.cpp" line="46"/>
+        <location filename="../../controller/DetailsPublisher.cpp" line="47"/>
         <source>Creation timestamp</source>
         <translation>Datum vytvoření</translation>
     </message>
     <message>
-        <location filename="../../controller/DetailsPublisher.cpp" line="50"/>
+        <location filename="../../controller/DetailsPublisher.cpp" line="51"/>
         <source>Modification timestamp</source>
         <translation>Datum změny</translation>
     </message>
     <message>
-        <location filename="../../controller/DetailsPublisher.cpp" line="62"/>
+        <location filename="../../controller/DetailsPublisher.cpp" line="63"/>
         <source>MD5 fingerprint</source>
         <translation>MD5 otisk</translation>
     </message>
     <message>
-        <location filename="../../controller/DetailsPublisher.cpp" line="67"/>
+        <location filename="../../controller/DetailsPublisher.cpp" line="68"/>
         <source>Probable data type</source>
         <translation>Pravděpodobný typ dat</translation>
     </message>
@@ -540,12 +540,12 @@
         <translation type="vanished">Detekce typu dat</translation>
     </message>
     <message>
-        <location filename="../../controller/DetailsPublisher.cpp" line="76"/>
+        <location filename="../../controller/DetailsPublisher.cpp" line="77"/>
         <source>SHA-1 fingerprint</source>
         <translation>SHA-1 otisk</translation>
     </message>
     <message>
-        <location filename="../../controller/DetailsPublisher.cpp" line="80"/>
+        <location filename="../../controller/DetailsPublisher.cpp" line="81"/>
         <source>SHA3-512 fingerprint</source>
         <translation>SHA3-512 otisk</translation>
     </message>
@@ -553,12 +553,12 @@
 <context>
     <name>DirectoryTreeModel</name>
     <message>
-        <location filename="../../controller/DirectoryTreeModel.cpp" line="100"/>
+        <location filename="../../controller/DirectoryTreeModel.cpp" line="101"/>
         <source>Name</source>
         <translation>Jméno</translation>
     </message>
     <message>
-        <location filename="../../controller/DirectoryTreeModel.cpp" line="102"/>
+        <location filename="../../controller/DirectoryTreeModel.cpp" line="103"/>
         <source># of files</source>
         <translation>Počet souborů</translation>
     </message>

@@ -22,6 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QLabel>
 #include <QListWidget>
 #include <QTreeWidget>
+#include "../util/compiler.h"
 #include "../util/StringHelper.h"
 #include "../model/fs/DataItem.h"
 
@@ -93,7 +94,7 @@ void DetailsPublisher::toUI(QTreeWidget& treeWidget, QListWidget& tagListWidget,
 
 void DetailsPublisher::toModel(QTreeWidget& treeWidget, QListWidget& tagListWidget, DataItem& item)
 {
-    #pragma unused(treeWidget)
+    UNUSED_VARIABLE(treeWidget);
     if (tagListWidget.currentRow() >= 0)
         item.addInfo(DataInfo::DataInfoE_Tag, QString::number(tagListWidget.currentRow()).toStdString());
 }

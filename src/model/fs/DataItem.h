@@ -37,7 +37,7 @@ class DataItem
 
     virtual std::string name() const;
     virtual uint64_t size() const;
-	virtual int64_t creationTimestamp() const;
+    virtual int64_t creationTimestamp() const;
     virtual int64_t modificationTimestamp() const;
     virtual std::string extension() const;
 

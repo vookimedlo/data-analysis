@@ -19,6 +19,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
 #include "../model/fs/Directory.h"
+#include "../util/compiler.h"
 #include "../util/ModelHelper.h"
 #include "../util/StringHelper.h"
 
@@ -37,7 +38,7 @@ DirectoryTreeModel::~DirectoryTreeModel()
 
 int DirectoryTreeModel::columnCount(const QModelIndex &parent) const
 {
-     #pragma unused(parent)
+    UNUSED_VARIABLE(parent);
     return 2;
 }
 

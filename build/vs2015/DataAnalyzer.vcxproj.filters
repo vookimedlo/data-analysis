@@ -367,6 +367,9 @@
     <ClInclude Include="..\..\src\model\GlobalInformation.h">
       <Filter>Source Files\Model</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\util\compiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DataAnalyzer.rc" />

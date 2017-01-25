@@ -22,6 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <queue>
 #include "../model/fs/Directory.h"
 #include "../model/fs/File.h"
+#include "../util/compiler.h"
 #include "../util/ModelHelper.h"
 #include "../util/StringHelper.h"
 
@@ -33,7 +34,7 @@ ReportOperation::ReportOperation(ReportWriter& writer, DataItem &rootItem) : m_c
 
 void ReportOperation::start(QString dir)
 {
-    #pragma unused(dir)
+    UNUSED_VARIABLE(dir);
     throw std::runtime_error("Not implemented!");
 }
 

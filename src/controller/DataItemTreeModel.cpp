@@ -22,6 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "../model/fs/Directory.h"
 #include "../model/fs/File.h"
+#include "../util/compiler.h"
 #include "../util/ModelHelper.h"
 #include "../util/StringHelper.h"
 
@@ -42,7 +43,7 @@ DataItemTreeModel::~DataItemTreeModel()
 
 int DataItemTreeModel::columnCount(const QModelIndex &parent) const
 {    
-    #pragma unused(parent)
+    UNUSED_VARIABLE(parent);
     return m_mode == DataItemTreeModelE_NoDetails ? 2 : 5;
 }
 

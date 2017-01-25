@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../abstraction/FS.h"
 #include "../model/fs/Directory.h"
 #include "../model/fs/File.h"
+#include "../util/compiler.h"
 #include "../util/ModelHelper.h"
 #include "../util/StringHelper.h"
 
@@ -53,7 +54,7 @@ MagicOperation::~MagicOperation()
 
 void MagicOperation::start(QString dir)
 {
-    #pragma unused(dir)
+    UNUSED_VARIABLE(dir);
     throw std::runtime_error("Not supported");
 }
 

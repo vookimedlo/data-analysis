@@ -45,6 +45,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../reports/RTFReportWriter.h"
 #include "../ui/CSVFinalReportDialog.h"
 #include "../ui/HTMLFinalReportDialog.h"
+#include "../util/compiler.h"
 #include "../util/StringHelper.h"
 
 #include "DataAnalyzer.h"
@@ -250,7 +251,7 @@ void DataAnalyzer::onClockwiseRotate()
 
 void DataAnalyzer::onTagChanged(int row)
 {
-    #pragma unused(row)
+    UNUSED_VARIABLE(row);
     if (m_selectedDataItem)
         DetailsPublisher::toModel(*ui.detailsTreeWidget, *ui.tagListWidget, *m_selectedDataItem);    
 }

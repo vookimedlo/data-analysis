@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #include "../model/fs/Directory.h"
 #include "../model/fs/File.h"
+#include "../util/compiler.h"
 #include "../util/ModelHelper.h"
 #include "../util/StringHelper.h"
 
@@ -36,7 +37,7 @@ HashOperation::HashOperation(QCryptographicHash &hash, DataInfo::DataInfoE info,
 
 void HashOperation::start(QString dir)
 {
-    #pragma unused(dir)
+    UNUSED_VARIABLE(dir);
     throw std::runtime_error("Not implemented!");
 }
 
