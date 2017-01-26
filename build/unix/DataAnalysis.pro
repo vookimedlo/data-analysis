@@ -99,6 +99,8 @@ FORMS += \
     ../../src/ui/forms/FinalReportDialog.ui \
     ../../src/ui/forms/GlobalInformationDialog.ui
 
+macx: ICON = ../../src/resource/AppIcon/macos/icon.icns
+
 unix:!macx: LIBS += -lmagic
 
 macx: LIBS += -L$$PWD/../../src/3rdParty/libmagic/macos/lib/ -lmagic.1
