@@ -92,7 +92,7 @@ void ScanDirOperation::doScan(QString startDir)
 #ifdef DEBUG_VERBOSE_SCAN
         std::wcerr << "Scanning: " << d->path() << std::endl;
 #endif
-        bool rslt = dr.readDirectoryStructure(d);
+        dr.readDirectoryStructure(d);
         d->optimize();
 
         for (Directory *directory : d->directories())

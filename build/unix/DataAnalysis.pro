@@ -85,7 +85,8 @@ HEADERS  += \
     ../../src/reports/HTMLReportThumbnailGenerator.h \
     ../../src/reports/ReportThumbnail.h \
     ../../src/reports/ReportThumbnailGenerator.h \
-    ../../src/model/GlobalInformation.h
+    ../../src/model/GlobalInformation.h \
+    ../../src/util/compiler.h
 
 
 RESOURCES += \

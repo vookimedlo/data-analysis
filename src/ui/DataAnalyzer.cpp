@@ -189,6 +189,7 @@ void DataAnalyzer::onDataItemSelected(QModelIndex index)
 
 void DataAnalyzer::onDataItemCurrentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
+    UNUSED_VARIABLE(previous);
     onDataItemSelected(current);
 }
 
@@ -200,6 +201,7 @@ void DataAnalyzer::onDetailedDataItemSelected(QModelIndex index)
 
 void DataAnalyzer::onDetailedDataItemCurrentChanged(const QModelIndex& current, const QModelIndex& previous)
 {
+    UNUSED_VARIABLE(previous);
     onDetailedDataItemSelected(current);
 }
 
