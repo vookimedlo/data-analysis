@@ -35,7 +35,12 @@ public:
     HTMLFinalReportDialog(ReportSettings &settings, QWidget *parent = Q_NULLPTR);
 
 public Q_SLOTS:
+    void onAccept() override;
     void onDefault() override;
+    void onFileSelect() override;
+
+protected:
+    bool checkChosenFile(const QString &filename) const override;
 
 private:
     void defaultSettings() const;

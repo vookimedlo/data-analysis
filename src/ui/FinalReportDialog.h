@@ -32,10 +32,14 @@ public:
     FinalReportDialog(ReportSettings &settings, QWidget *parent = Q_NULLPTR);
 
 public Q_SLOTS:
-    void onAccept();
+    virtual void onAccept();
     void onClearAll();
     virtual void onDefault();
+    virtual void onFileSelect();
     virtual void onSelectAll();
+
+protected:
+    virtual bool checkChosenFile(const QString &filename) const;
 
 private:
     void changeCheckBoxState(Qt::CheckState state);

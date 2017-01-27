@@ -554,11 +554,28 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>fileSelectionToolButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FinalReportDialog</receiver>
+   <slot>onFileSelect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>733</x>
+     <y>560</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>377</x>
+     <y>309</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onSelectAll()</slot>
   <slot>onClearAll()</slot>
   <slot>onDefault()</slot>
   <slot>onAccept()</slot>
+  <slot>onFileSelect()</slot>
  </slots>
 </ui>

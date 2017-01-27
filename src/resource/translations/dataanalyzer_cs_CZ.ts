@@ -82,43 +82,43 @@
         <translation>Otevřít v externím programu</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="274"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="276"/>
         <source>MD5 computation</source>
         <translation>Výpočet MD5 otisku</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="280"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="282"/>
         <source>SHA-1 computation</source>
         <translation>Výpočet SHA-1 otisku</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="286"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="288"/>
         <source>SHA3-512 computation</source>
         <translation>Výpočet SHA3-512 otisku</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="298"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="300"/>
         <source>Type detection</source>
         <translation>Detekce typu</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="308"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="310"/>
         <source>CSV report</source>
         <translation>CSV zpráva</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="338"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="337"/>
         <source>RTF report</source>
         <translation>RTF zpráva</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="347"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="346"/>
         <source>HTML report</source>
         <translation>HTML zpráva</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="383"/>
-        <location filename="../../ui/DataAnalyzer.cpp" line="412"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="379"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="408"/>
         <source>Dataset settings</source>
         <translation>Nastvení souboru dat</translation>
     </message>
@@ -750,6 +750,36 @@
         <source>Tags</source>
         <translation>Tagy</translation>
     </message>
+    <message>
+        <location filename="../../ui/FinalReportDialog.cpp" line="113"/>
+        <source>No file has been selected for saving.</source>
+        <translation>Nebyl vybrán žádný soubor pro uložení.</translation>
+    </message>
+    <message>
+        <location filename="../../ui/FinalReportDialog.cpp" line="114"/>
+        <source>Select the file for saving.</source>
+        <translation>Vyberte soubor pro uložení.</translation>
+    </message>
+    <message>
+        <location filename="../../ui/FinalReportDialog.cpp" line="125"/>
+        <source>Chosen file already exists.</source>
+        <translation>Vybraný soubor již existuje.</translation>
+    </message>
+    <message>
+        <location filename="../../ui/FinalReportDialog.cpp" line="126"/>
+        <source>Do you want to overwrite the chosen file?</source>
+        <translation>Chcete přepsat zvolený soubor?</translation>
+    </message>
+    <message>
+        <location filename="../../ui/FinalReportDialog.cpp" line="137"/>
+        <source>Chosen file cannot be opened for writing.</source>
+        <translation>Zvolený soubor nemůže být otevřen pro zápis.</translation>
+    </message>
+    <message>
+        <location filename="../../ui/FinalReportDialog.cpp" line="138"/>
+        <source>Choose another file.</source>
+        <translation>Vyberte jiný soubor.</translation>
+    </message>
 </context>
 <context>
     <name>GlobalInformationDialog</name>
@@ -783,6 +813,49 @@
         <location filename="../../ui/forms/GlobalInformationDialog.ui" line="128"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
+    </message>
+</context>
+<context>
+    <name>HTMLFinalReportDialog</name>
+    <message>
+        <location filename="../../ui/HTMLFinalReportDialog.cpp" line="92"/>
+        <source>No file has been selected for saving.</source>
+        <translation>Nebyl vybrán žádný soubor pro uložení.</translation>
+    </message>
+    <message>
+        <location filename="../../ui/HTMLFinalReportDialog.cpp" line="93"/>
+        <source>Select the file for saving.</source>
+        <translation>Vyberte soubor pro uložení.</translation>
+    </message>
+    <message>
+        <location filename="../../ui/HTMLFinalReportDialog.cpp" line="107"/>
+        <source>Directory &apos;%1&apos; exists, but should be used for the report related files.</source>
+        <translation>Adresář  &apos;%1&apos; existuje, nicméně má být využit pro uložení souborů sovisejících se zprávou.</translation>
+    </message>
+    <message>
+        <location filename="../../ui/HTMLFinalReportDialog.cpp" line="108"/>
+        <source>Either remove the directory, or select a different file for report saving.</source>
+        <translation>Vymažte adresář, nebo vyberte jiný soubor pro uložení.</translation>
+    </message>
+    <message>
+        <location filename="../../ui/HTMLFinalReportDialog.cpp" line="119"/>
+        <source>Chosen file already exists.</source>
+        <translation>Vybraný soubor již existuje.</translation>
+    </message>
+    <message>
+        <location filename="../../ui/HTMLFinalReportDialog.cpp" line="120"/>
+        <source>Do you want to overwrite the chosen file?</source>
+        <translation>Chcete přepsat zvolený soubor?</translation>
+    </message>
+    <message>
+        <location filename="../../ui/HTMLFinalReportDialog.cpp" line="131"/>
+        <source>Chosen file cannot be opened for writing.</source>
+        <translation>Zvolený soubor nemůže být otevřen pro zápis.</translation>
+    </message>
+    <message>
+        <location filename="../../ui/HTMLFinalReportDialog.cpp" line="132"/>
+        <source>Choose another file.</source>
+        <translation>Vyberte jiný soubor.</translation>
     </message>
 </context>
 <context>

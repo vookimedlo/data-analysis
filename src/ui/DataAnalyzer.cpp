@@ -314,9 +314,6 @@ void DataAnalyzer::onCSVReportTriggered()
 
         if (reportDialog.exec() == QDialog::Accepted)
         {
-            // TODO: remove
-            settings.setFilePath("C:/tmp/report.csv");
-
             QString rootPath = StringHelper::toQString(m_topLevelDirectory->directories()[0]->name());
             CSVReportWriter writer(settings, rootPath);
             ReportOperation operation(writer, *(m_topLevelDirectory->directories()[0]));
@@ -357,10 +354,7 @@ void DataAnalyzer::onHTMLReportTriggered()
         reportDialog.setWindowTitle(dialogTitle); 
 
         if (reportDialog.exec() == QDialog::Accepted)
-        {
-            // TODO: remove
-            settings.setFilePath("C:/tmp/report.html");
-            
+        {            
             HTMLReportThumbnailGenerator generator;
             QString rootPath = StringHelper::toQString(m_topLevelDirectory->directories()[0]->name());
             HTMLReportWriter writer(settings, generator, rootPath);

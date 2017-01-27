@@ -18,6 +18,7 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
+#include <QMessageBox>
 #include "../reports/ReportSettings.h"
 
 #include "FinalReportDialog.h"
@@ -91,9 +92,57 @@ void FinalReportDialog::onDefault()
 
 }
 
+void FinalReportDialog::onFileSelect()
+{
+
+}
+
 void FinalReportDialog::onSelectAll()
 {
     changeCheckBoxState(Qt::CheckState::Checked);
+}
+
+bool FinalReportDialog::checkChosenFile(const QString& filename) const
+{
+    QFile f(filename);
+
+    if (filename.isEmpty())
+    {
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setText(tr("No file has been selected for saving."));
+        msgBox.setInformativeText(tr("Select the file for saving."));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+        msgBox.exec();
+        return false;
+    }
+
+    if (f.exists())
+    {
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Question);
+        msgBox.setText(tr("Chosen file already exists."));
+        msgBox.setInformativeText(tr("Do you want to overwrite the chosen file?"));
+        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+        if (msgBox.exec() != QMessageBox::Ok)
+            return false;
+    }
+
+    if (!f.open(QIODevice::Truncate | QIODevice::WriteOnly))
+    {
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setText(tr("Chosen file cannot be opened for writing."));
+        msgBox.setInformativeText(tr("Choose another file."));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+        msgBox.exec();
+        return false;
+    }
+
+    return true;
 }
 
 void FinalReportDialog::changeCheckBoxState(Qt::CheckState state)

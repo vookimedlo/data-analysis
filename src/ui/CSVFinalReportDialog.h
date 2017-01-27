@@ -32,7 +32,9 @@ public:
     CSVFinalReportDialog(ReportSettings &settings, QWidget *parent = Q_NULLPTR);
 
 public Q_SLOTS:
+    void onAccept() override;
     void onDefault() override;
+    void onFileSelect() override;
     void onSelectAll() override;
 
 private:

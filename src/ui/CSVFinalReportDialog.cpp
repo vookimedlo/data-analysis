@@ -18,6 +18,8 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
+#include <QFileDialog>
+#include <QStandardPaths>
 #include "../reports/ReportSettings.h"
 
 #include "CSVFinalReportDialog.h"
@@ -37,10 +39,32 @@ CSVFinalReportDialog::CSVFinalReportDialog(ReportSettings& settings, QWidget* pa
     defaultSettings();
 }
 
+void CSVFinalReportDialog::onAccept()
+{
+    if (checkChosenFile(m_uiReportDialog.exportToFileLineEdit->text()))
+        FinalReportDialog::onAccept();
+}
+
 void CSVFinalReportDialog::onDefault()
 {
     onClearAll();
     defaultSettings();
+}
+
+void CSVFinalReportDialog::onFileSelect()
+{
+    QFileDialog dialog(this);
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    dialog.setDefaultSuffix("csv");
+    dialog.setOption(QFileDialog::DontConfirmOverwrite, true);
+    dialog.setDirectory(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
+    if (dialog.exec() == QDialog::Accepted)
+    {
+        if (!dialog.selectedFiles().isEmpty())
+            m_uiReportDialog.exportToFileLineEdit->setText(dialog.selectedFiles()[0]);
+        else
+            m_uiReportDialog.exportToFileLineEdit->setText("");
+    }
 }
 
 void CSVFinalReportDialog::onSelectAll()
