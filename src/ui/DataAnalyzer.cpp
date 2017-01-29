@@ -31,8 +31,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_About.h"
 #include "ui_FinalReportDialog.h"
 #include "../controller/DetailsPublisher.h"
+#include "../controller/SearchSettings.h"
 #include "../model/GlobalInformation.h"
-#include "../model/fs/Directory.h"
 #include "../model/fs/File.h"
 #include "../operations/MagicOperation.h"
 #include "../operations/HashOperation.h"
@@ -43,20 +43,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../reports/HTMLReportWriter.h"
 #include "../reports/ReportSettings.h"
 #include "../reports/RTFReportWriter.h"
+#include "../ui/SearchDialog.h"
 #include "../ui/CSVFinalReportDialog.h"
 #include "../ui/HTMLFinalReportDialog.h"
 #include "../util/compiler.h"
 #include "../util/StringHelper.h"
 
 #include "DataAnalyzer.h"
+#include "../operations/SearchOperation.h"
 
 DataAnalyzer::DataAnalyzer(QWidget *parent)
     : QMainWindow(parent),
       m_directoryModel(nullptr),
       m_fileDirectoryModel(nullptr),
+      m_searchFileDirectoryModel(nullptr),
       m_detailedDataItemModel(nullptr),
       m_detailedDataItemSortFilterProxyModel(new (std::nothrow) DataItemSortFilterProxyModel()),
       m_selectedDataItem(nullptr),
+      m_searchResult(std::string("Search Results"), nullptr),
       m_globalInformation()
 {
     ui.setupUi(this);
@@ -94,6 +98,12 @@ DataAnalyzer::DataAnalyzer(QWidget *parent)
         ui.actionTranEnglish->setChecked(true);
 }
 
+DataAnalyzer::~DataAnalyzer()
+{
+    m_searchResult.directories().clear();
+    m_searchResult.files().clear();
+}
+
 void DataAnalyzer::onScanTriggered()
 {
     ScanDirOperation operation;
@@ -109,6 +119,7 @@ void DataAnalyzer::onScanTriggered()
 
         m_topLevelDirectory = dialog.getResult();
 
+        m_searchFileDirectoryModel.reset(nullptr);
         m_directoryModel.reset(new (std::nothrow) DirectoryTreeModel(m_topLevelDirectory.get()));
         m_fileDirectoryModel.reset(new (std::nothrow) DataItemTreeModel(m_topLevelDirectory.get(), DataItemTreeModel::DataItemTreeModelE_NoDetails));
         onDirOnly(ui.dirOnlyCheckBox->checkState() == Qt::CheckState::Checked);
@@ -386,6 +397,10 @@ void DataAnalyzer::onNewTriggered()
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
 
+        m_searchFileDirectoryModel.reset();
+        ui.searchDataItemTreeView->setModel(nullptr);
+        ui.searchDataItemTreeView->reset();
+
         m_directoryModel.reset();
         m_fileDirectoryModel.reset();
         ui.detailedDataItemTreeView->setModel(nullptr);
@@ -400,6 +415,36 @@ void DataAnalyzer::onNewTriggered()
         m_topLevelDirectory.reset();
         m_selectedDataItem = nullptr;
         ui.detailedDataItemTreeView->header()->setSortIndicator(0, Qt::AscendingOrder);
+    }
+}
+
+void DataAnalyzer::onSearchTriggered()
+{
+    if (m_topLevelDirectory || m_selectedDataItem)
+    {
+        SearchSettings settings(m_searchResult);
+        SearchDialog dialog(settings, this);
+        if (dialog.exec() == QDialog::Accepted)
+        {
+            ui.searchDataItemTreeView->setModel(nullptr);
+            ui.searchDataItemTreeView->reset();
+            m_searchFileDirectoryModel.reset(nullptr);
+            
+            // TODO: This is not good, we have to use shared pointers
+            m_searchResult.directories().clear();
+            m_searchResult.files().clear();
+
+            QString dialogTitle(tr("Searching ..."));
+            SearchOperation operation(settings, m_selectedDataItem ? *m_selectedDataItem : *(m_topLevelDirectory->directories()[0]));
+            OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
+            dialog.setTitle(dialogTitle);
+
+            if (dialog.exec() == QDialog::Accepted)
+            {
+                m_searchFileDirectoryModel.reset(new SearchDataItemTreeModel(&m_searchResult, SearchDataItemTreeModel::DataItemTreeModelE_NoDetails));
+                ui.searchDataItemTreeView->setModel(m_searchFileDirectoryModel.get());
+            }
+        }
     }
 }
 

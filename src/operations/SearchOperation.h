@@ -19,28 +19,30 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include "DataItem.h"
-#include <vector>
-#include <memory>
+#include <future>
+#include "../operations/Operations.h"
 
-//Forward declarations
-class File;
+/// Forward declarations
+class DataItem;
+class SearchSettings;
 
-class Directory : public DataItem
+class SearchOperation : public Operations
 {
-  public:
-    Directory(const std::string& name, DataItem* parent);
-    virtual ~Directory();
+public:
+    SearchOperation(SearchSettings& settings, DataItem &rootItem);
+    void start(QString dir) override;
+    void start() override;
+    void cancel() override;
+    bool isFinished() const override;
+    QString path() const override;
+    uint32_t totalFilesCount() const override;
 
-    bool addDirectory(Directory *directory);
-    bool addFile(File *file);
-    //std::vector<std::reference_wrapper<Directory>> directories();
-    std::vector<Directory *> &directories();
-    std::vector<File *> &files();
-    //std::vector<std::reference_wrapper<File>> files();
-    void optimize() override;
+protected:
+    void startOperation();
 
-  private:
-    std::vector<Directory *> m_directories;
-    std::vector<File *> m_files;
+private:
+    std::future<void> m_asyncScanWorker;
+    bool m_cancelWorkerActivity;
+    SearchSettings &m_settings;
+    DataItem &m_RootItem;
 };

@@ -76,7 +76,7 @@ void ScanDirOperation::doScan(QString startDir)
 
     // This is weird, need to refactor and use std::shared_ptr
     std::unique_ptr<Directory> child(std::make_unique<Directory>(StringHelper::toStdString(startDir), dir.get()));
-    dir->addDirectory(child);
+    dir->addDirectory(child.release());
 
     std::queue<Directory *> q;
     q.push(dir->directories()[0]);

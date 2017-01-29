@@ -19,28 +19,22 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include "DataItem.h"
-#include <vector>
-#include <memory>
+#include <QDialog>
+#include "ui_SearchDialog.h"
 
-//Forward declarations
-class File;
+class SearchSettings;
 
-class Directory : public DataItem
+class SearchDialog : public QDialog
 {
-  public:
-    Directory(const std::string& name, DataItem* parent);
-    virtual ~Directory();
+    Q_OBJECT
 
-    bool addDirectory(Directory *directory);
-    bool addFile(File *file);
-    //std::vector<std::reference_wrapper<Directory>> directories();
-    std::vector<Directory *> &directories();
-    std::vector<File *> &files();
-    //std::vector<std::reference_wrapper<File>> files();
-    void optimize() override;
+public:
+    SearchDialog(SearchSettings &settings, QWidget *parent = Q_NULLPTR);
 
-  private:
-    std::vector<Directory *> m_directories;
-    std::vector<File *> m_files;
+public Q_SLOTS:
+    void onAccept();
+
+protected:
+    Ui::SearchDialog m_uiSearchDialog;
+    SearchSettings &m_settings;
 };
