@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 
 SearchDataItemTreeModel::SearchDataItemTreeModel(Directory *root, DataItemTreeModelE mode, QObject *parent)
-    : QAbstractItemModel(parent), rootItem(root), directoryIcon(QPixmap(":/images/folder-20110506-300px.png")), fileIcon(QPixmap(":/images/matt-icons_file-x-generic-300px.png")), m_mode(mode)
+    : DataItemTreeModel(root, mode, parent)
 {
     directoryIcon = directoryIcon.scaledToWidth(16);
     fileIcon = fileIcon.scaledToWidth(16);
@@ -39,132 +39,6 @@ SearchDataItemTreeModel::SearchDataItemTreeModel(Directory *root, DataItemTreeMo
 SearchDataItemTreeModel::~SearchDataItemTreeModel()
 {
 
-}
-
-int SearchDataItemTreeModel::columnCount(const QModelIndex &parent) const
-{    
-    UNUSED_VARIABLE(parent);
-    return m_mode == DataItemTreeModelE_NoDetails ? 2 : 5;
-}
-
-QVariant SearchDataItemTreeModel::data(const QModelIndex &index, int role) const
-{
-    if (!index.isValid())
-        return QVariant();
-
-    if (role == Qt::DecorationRole)
-    {
-        switch (index.column())
-        {
-        case ColumnTypeE_Name:
-        {
-            DataItem *item = static_cast<DataItem*>(index.internalPointer());
-            return dynamic_cast<Directory*>(item) ? directoryIcon: fileIcon;
-        }
-        default:
-            break;
-        }
-    }
-
-    if (role == Qt::TextAlignmentRole)
-    {
-        switch (index.column())
-        {
-        case ColumnTypeE_FilesCount:
-        case ColumnTypeE_Size:
-            return int(Qt::AlignRight | Qt::AlignVCenter);
-        default:
-            return int(Qt::AlignVCenter);
-        }
-    }
-
-    if (role != Qt::DisplayRole)
-        return QVariant();
-
-    DataItem *item = static_cast<DataItem*>(index.internalPointer());
-    switch(index.column())
-    {
-    case ColumnTypeE_Name:
-        return StringHelper::toQString(item->name());
-    case ColumnTypeE_FilesCount:
-        return ModelHelper::filesCount(*item);
-    case ColumnTypeE_Size:
-        return QString::number(item->size());
-    case ColumnTypeE_Extension:
-        return StringHelper::toQString(item->extension());
-    case ColumnTypeE_ModificationTimestamp:
-        return QDateTime::fromTime_t(item->modificationTimestamp()).toString(Qt::SystemLocaleShortDate);
-    default:
-        throw std::runtime_error("not implemented");
-    }
-}
-
-Qt::ItemFlags SearchDataItemTreeModel::flags(const QModelIndex &index) const
-{
-    if (!index.isValid())
-        return 0;
-
-    return QAbstractItemModel::flags(index);
-}
-
-QVariant SearchDataItemTreeModel::headerData(int section, Qt::Orientation orientation, int role) const
-{
-    if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-    {
-        switch(section)
-        {
-        case ColumnTypeE_Name:
-            return QString(tr("Name"));
-        case ColumnTypeE_FilesCount:
-            return QString(tr("# of files"));
-        case ColumnTypeE_Size:
-            return QString(tr("Size"));
-        case ColumnTypeE_Extension:
-            return QString(tr("Extension"));
-        case ColumnTypeE_ModificationTimestamp:
-            return QString(tr("Modification timestamp"));
-        default:
-            return QVariant();
-        }        
-    }
-    return QVariant();
-}
-
-QModelIndex SearchDataItemTreeModel::index(int row, int column, const QModelIndex &parent)
-const
-{
-    if (!hasIndex(row, column, parent))
-        return QModelIndex();
-
-    DataItem *parentDataItem = nullptr;
-
-    if (!parent.isValid())
-        parentDataItem = rootItem;
-    else
-        parentDataItem = static_cast<DataItem*>(parent.internalPointer());
-
-    Directory *parentItem = dynamic_cast<Directory *>(parentDataItem);
-
-    if(!parentItem)
-    {
-        return QModelIndex();
-    }
-
-    
-    DataItem *childItem = nullptr;
-    if (row < parentItem->directories().size())
-    {
-        childItem = parentItem->directories()[row];
-    } 
-    else if (parentItem->directories().size() <= row && parentItem->files().size())
-    {
-        childItem = parentItem->files()[row - parentItem->directories().size()];
-    }
-
-    if (childItem)
-        return createIndex(row, column, childItem);
-    else
-        return QModelIndex();
 }
 
 QModelIndex SearchDataItemTreeModel::parent(const QModelIndex &index) const
@@ -202,24 +76,4 @@ QModelIndex SearchDataItemTreeModel::parent(const QModelIndex &index) const
     // In this case, the parent is not the same when selecting all cells in a row (default selection mode).
     // The parent should always be column 0, and the correct implementations should return createIndex(row , 0).
     return createIndex(row, 0, parentNode);
-}
-
-int SearchDataItemTreeModel::rowCount(const QModelIndex &parent) const
-{
-    Directory *parentItem;
-    if (parent.column() > 0)
-        return 0;
-
-    if (!parent.isValid())
-        parentItem = rootItem;
-    else
-    {
-        DataItem *parentDataItem = static_cast<DataItem*>(parent.internalPointer());;
-        parentItem = dynamic_cast<Directory *>(parentDataItem);
-        if (!parentItem)
-            return 0;
-    }
-       
-
-    return parentItem->directories().size() + parentItem->files().size();
 }

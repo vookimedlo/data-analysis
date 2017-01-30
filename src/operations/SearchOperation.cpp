@@ -86,18 +86,27 @@ void SearchOperation::startOperation()
             if (m_settings.isDirectoryEnabled())
             {
                 bool isSearched = false;
-                if (m_settings.isNameEnabled())
-                    isSearched |= StringHelper::toQString(directory->name()).contains(m_settings.getName());
+                bool hasFailed = false;
+                if (m_settings.isNameEnabled() && !hasFailed)
+                {
+                    isSearched = StringHelper::toQString(directory->name()).contains(m_settings.getName());
+                    hasFailed = !isSearched;
+                }
 
-                if (m_settings.isExtensionEnabled())
-                    isSearched |= StringHelper::toQString(directory->extension()).contains(m_settings.getExtension());
+                if (m_settings.isExtensionEnabled() && !hasFailed)
+                {
+                    isSearched = StringHelper::toQString(directory->extension()).contains(m_settings.getExtension());
+                    hasFailed = !isSearched;
+                }
 #if 0
-                //Dir sizes are not supported
-                if (m_settings.isSizeEnabled())
-                    isSearched |= m_settings.getSize().first <= directory->size() && directory->size() <= m_settings.getSize().second;
+                if (m_settings.isSizeEnabled() && !hasFailed)
+                {
+                    isSearched = m_settings.getSize().first <= directory->size() && directory->size() <= m_settings.getSize().second;
+                    hasFailed = !isSearched;
+                }
 #endif
 
-                if (isSearched)
+                if (isSearched && !hasFailed)
                     m_settings.getSearchResult().addDirectory(directory);
             }
 
@@ -112,16 +121,26 @@ void SearchOperation::startOperation()
                 for (File *file : d->files())
                 {
                     bool isSearched = false;
-                    if (m_settings.isNameEnabled())
-                        isSearched |= StringHelper::toQString(file->name()).contains(m_settings.getName());
+                    bool hasFailed = false;
+                    if (m_settings.isNameEnabled() && !hasFailed)
+                    {
+                        isSearched = StringHelper::toQString(file->name()).contains(m_settings.getName());
+                        hasFailed = !isSearched;
+                    }
+                        
+                    if (m_settings.isExtensionEnabled() && !hasFailed)
+                    {
+                        isSearched = StringHelper::toQString(file->extension()).contains(m_settings.getExtension());
+                        hasFailed = !isSearched;
+                    }
 
-                    if (m_settings.isExtensionEnabled())
-                        isSearched |= StringHelper::toQString(file->extension()).contains(m_settings.getExtension());
+                    if (m_settings.isSizeEnabled() && !hasFailed)
+                    {
+                        isSearched = m_settings.getSize().first <= file->size() && file->size() <= m_settings.getSize().second;
+                        hasFailed = !isSearched;
+                    }
 
-                    if (m_settings.isSizeEnabled())
-                        isSearched |= m_settings.getSize().first <= file->size() && file->size() <= m_settings.getSize().second;
-
-                    if (isSearched)
+                    if (isSearched && !hasFailed)
                         m_settings.getSearchResult().addFile(file);
 
                     ++numFiles;
@@ -141,16 +160,26 @@ void SearchOperation::startOperation()
     else
     {
         bool isSearched = false;
-        if (m_settings.isNameEnabled())
-            isSearched |= StringHelper::toQString(m_RootItem.name()).contains(m_settings.getName());
+        bool hasFailed = false;
+        if (m_settings.isNameEnabled() && !hasFailed)
+        {
+            isSearched = StringHelper::toQString(m_RootItem.name()).contains(m_settings.getName());
+            hasFailed = !isSearched;
+        }
 
-        if (m_settings.isExtensionEnabled())
-            isSearched |= StringHelper::toQString(m_RootItem.extension()).contains(m_settings.getExtension());
+        if (m_settings.isExtensionEnabled() && !hasFailed)
+        {
+            isSearched = StringHelper::toQString(m_RootItem.extension()).contains(m_settings.getExtension());
+            hasFailed = !isSearched;
+        }
 
-        if (m_settings.isSizeEnabled())
-            isSearched |= m_settings.getSize().first <= m_RootItem.size() && m_RootItem.size() <= m_settings.getSize().second;
+        if (m_settings.isSizeEnabled() && !hasFailed)
+        {
+            isSearched = m_settings.getSize().first <= m_RootItem.size() && m_RootItem.size() <= m_settings.getSize().second;
+            hasFailed = !isSearched;
+        }
 
-        if (isSearched)
+        if (isSearched && !hasFailed)
             m_settings.getSearchResult().addFile(dynamic_cast<File *>(&m_RootItem));
 
         ++numFiles;

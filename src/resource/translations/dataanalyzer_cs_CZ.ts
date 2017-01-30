@@ -118,12 +118,12 @@
     </message>
     <message>
         <location filename="../../ui/DataAnalyzer.cpp" line="390"/>
-        <location filename="../../ui/DataAnalyzer.cpp" line="451"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="453"/>
         <source>Dataset settings</source>
         <translation>Nastvení souboru dat</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="435"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="437"/>
         <source>Searching ...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -981,29 +981,24 @@
 <context>
     <name>SearchDataItemTreeModel</name>
     <message>
-        <location filename="../../controller/SearchDataItemTreeModel.cpp" line="117"/>
         <source>Name</source>
-        <translation type="unfinished">Jméno</translation>
+        <translation type="obsolete">Jméno</translation>
     </message>
     <message>
-        <location filename="../../controller/SearchDataItemTreeModel.cpp" line="119"/>
         <source># of files</source>
-        <translation type="unfinished">Počet souborů</translation>
+        <translation type="obsolete">Počet souborů</translation>
     </message>
     <message>
-        <location filename="../../controller/SearchDataItemTreeModel.cpp" line="121"/>
         <source>Size</source>
-        <translation type="unfinished">Velikost</translation>
+        <translation type="obsolete">Velikost</translation>
     </message>
     <message>
-        <location filename="../../controller/SearchDataItemTreeModel.cpp" line="123"/>
         <source>Extension</source>
-        <translation type="unfinished">Přípona</translation>
+        <translation type="obsolete">Přípona</translation>
     </message>
     <message>
-        <location filename="../../controller/SearchDataItemTreeModel.cpp" line="125"/>
         <source>Modification timestamp</source>
-        <translation type="unfinished">Datum změny</translation>
+        <translation type="obsolete">Datum změny</translation>
     </message>
 </context>
 <context>
