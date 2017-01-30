@@ -46,15 +46,15 @@ bool DiskReader::readDirectoryStructure(Directory *const directory)
                 file->setModificationTimestamp(info.lastModified().toTime_t());
                 file->setExtension(StringHelper::toStdString(info.suffix())); // +1 skip dot
 
-                file.get()->setSize(info.size());
-                directory->addFile(file);
+                file->setSize(info.size());
+                directory->addFile(file.release());
             }
             if (info.isDir())
             {
                 unique_ptr<Directory> dir(new Directory(StringHelper::toStdString(info.fileName()), directory));
                 dir->setCreationTimestamp(info.created().toTime_t());
                 dir->setModificationTimestamp(info.lastModified().toTime_t());
-                directory->addDirectory(dir);
+                directory->addDirectory(dir.release());
             }
         }
     }

@@ -21,6 +21,8 @@ SOURCES += \
     ../../src/controller/DataItemTreeModel.cpp \
     ../../src/controller/DetailsPublisher.cpp \
     ../../src/controller/DirectoryTreeModel.cpp \
+    ../../src/controller/SearchDataItemTreeModel.cpp \
+    ../../src/controller/SearchSettings.cpp \
     ../../src/model/fs/DataInfo.cpp \
     ../../src/model/fs/DataItem.cpp \
     ../../src/model/fs/Directory.cpp \
@@ -29,6 +31,7 @@ SOURCES += \
     ../../src/operations/Operations.cpp \
     ../../src/operations/ReportOperation.cpp \
     ../../src/operations/ScanDirOperation.cpp \
+    ../../src/operations/SearchOperation.cpp \
     ../../src/reports/CSVReportWriter.cpp \
     ../../src/reports/RTFReportWriter.cpp \
     ../../src/ui/DataAnalyzer.cpp \
@@ -45,6 +48,7 @@ SOURCES += \
     ../../src/ui/FinalReportDialog.cpp \
     ../../src/ui/HTMLFinalReportDialog.cpp \
     ../../src/ui/GlobalInformationDialog.cpp \
+    ../../src/ui/SearchDialog.cpp \
     ../../src/reports/CopyReportThumbnail.cpp \
     ../../src/reports/HTMLReportThumbnailGenerator.cpp \
     ../../src/model/GlobalInformation.cpp
@@ -56,6 +60,8 @@ HEADERS  += \
     ../../src/controller/DataItemTreeModel.h \
     ../../src/controller/DetailsPublisher.h \
     ../../src/controller/DirectoryTreeModel.h \
+    ../../src/controller/SearchDataItemTreeModel.h \
+    ../../src/controller/SearchSettings.h \
     ../../src/model/fs/DataInfo.h \
     ../../src/model/fs/DataItem.h \
     ../../src/model/fs/Directory.h \
@@ -64,6 +70,7 @@ HEADERS  += \
     ../../src/operations/Operations.h \
     ../../src/operations/ReportOperation.h \
     ../../src/operations/ScanDirOperation.h \
+    ../../src/operations/SearchOperation.h \
     ../../src/reports/CSVReportWriter.h \
     ../../src/reports/ReportWriter.h \
     ../../src/reports/RTFReportWriter.h \
@@ -81,6 +88,7 @@ HEADERS  += \
     ../../src/ui/FinalReportDialog.h \
     ../../src/ui/HTMLFinalReportDialog.h \
     ../../src/ui/GlobalInformationDialog.h \
+    ../../src/ui/SearchDialog.h \
     ../../src/reports/CopyReportThumbnail.h \
     ../../src/reports/HTMLReportThumbnailGenerator.h \
     ../../src/reports/ReportThumbnail.h \
@@ -97,7 +105,8 @@ FORMS += \
     ../../src/ui/forms/DataAnalyzer.ui \
     ../../src/ui/forms/OperationDialog.ui \
     ../../src/ui/forms/FinalReportDialog.ui \
-    ../../src/ui/forms/GlobalInformationDialog.ui
+    ../../src/ui/forms/GlobalInformationDialog.ui \
+    ../../src/ui/forms/SearchDialog.ui
 
 macx: ICON = ../../src/resource/AppIcon/macos/icon.icns
 
