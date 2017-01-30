@@ -60,7 +60,7 @@ DataAnalyzer::DataAnalyzer(QWidget *parent)
       m_detailedDataItemModel(nullptr),
       m_detailedDataItemSortFilterProxyModel(new (std::nothrow) DataItemSortFilterProxyModel()),
       m_selectedDataItem(nullptr),
-      m_searchResult(std::string("Search Results"), nullptr),
+      m_searchResult(std::string(StringHelper::toStdString(tr("Search Root"))), nullptr),
       m_globalInformation()
 {
     ui.setupUi(this);
@@ -96,12 +96,14 @@ DataAnalyzer::DataAnalyzer(QWidget *parent)
         ui.actionTranCzech->setChecked(true);
     else
         ui.actionTranEnglish->setChecked(true);
+
+    m_searchResult.addDirectory(new Directory(std::string(StringHelper::toStdString(tr("Search Results"))), &m_searchResult));
 }
 
 DataAnalyzer::~DataAnalyzer()
 {
-    m_searchResult.directories().clear();
-    m_searchResult.files().clear();
+    m_searchResult.directories()[0]->directories().clear();
+    m_searchResult.directories()[0]->files().clear();
 }
 
 void DataAnalyzer::onScanTriggered()
@@ -113,6 +115,8 @@ void DataAnalyzer::onScanTriggered()
         // Do the disconnection before the model is cleared
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+
 
         ui.detailsTreeWidget->clear();
         ui.previewWidget->clear();
@@ -204,6 +208,11 @@ void DataAnalyzer::onDataItemCurrentChanged(const QModelIndex &current, const QM
     onDataItemSelected(current);
 }
 
+void DataAnalyzer::onSearchDataItemCurrentChanged(const QModelIndex& current, const QModelIndex& previous)
+{
+    UNUSED_VARIABLE(previous);
+    onDataItemSelected(current);
+}
 
 void DataAnalyzer::onDetailedDataItemSelected(QModelIndex index)
 {
@@ -396,17 +405,22 @@ void DataAnalyzer::onNewTriggered()
         // Do the disconnection before the model is cleared
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
 
-        m_searchFileDirectoryModel.reset();
         ui.searchDataItemTreeView->setModel(nullptr);
         ui.searchDataItemTreeView->reset();
+        m_searchFileDirectoryModel.reset();
 
-        m_directoryModel.reset();
-        m_fileDirectoryModel.reset();
         ui.detailedDataItemTreeView->setModel(nullptr);
         ui.detailedDataItemTreeView->reset();
         m_detailedDataItemSortFilterProxyModel->setSourceModel(nullptr);
         m_detailedDataItemModel.reset();
+
+        ui.dataItemTreeView->setModel(nullptr);
+        ui.dataItemTreeView->reset();
+        m_directoryModel.reset();
+        m_fileDirectoryModel.reset();
+
 
         ui.detailsTreeWidget->clear();
         ui.previewWidget->clear();
@@ -422,17 +436,18 @@ void DataAnalyzer::onSearchTriggered()
 {
     if (m_topLevelDirectory || m_selectedDataItem)
     {
-        SearchSettings settings(m_searchResult);
+        SearchSettings settings(*(m_searchResult.directories()[0]));
         SearchDialog dialog(settings, this);
         if (dialog.exec() == QDialog::Accepted)
         {
+            disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
             ui.searchDataItemTreeView->setModel(nullptr);
             ui.searchDataItemTreeView->reset();
             m_searchFileDirectoryModel.reset(nullptr);
             
             // TODO: This is not good, we have to use shared pointers
-            m_searchResult.directories().clear();
-            m_searchResult.files().clear();
+            m_searchResult.directories()[0]->directories().clear();
+            m_searchResult.directories()[0]->files().clear();
 
             QString dialogTitle(tr("Searching ..."));
             SearchOperation operation(settings, m_selectedDataItem ? *m_selectedDataItem : *(m_topLevelDirectory->directories()[0]));
@@ -443,6 +458,8 @@ void DataAnalyzer::onSearchTriggered()
             {
                 m_searchFileDirectoryModel.reset(new SearchDataItemTreeModel(&m_searchResult, SearchDataItemTreeModel::DataItemTreeModelE_NoDetails));
                 ui.searchDataItemTreeView->setModel(m_searchFileDirectoryModel.get());
+                connect(ui.searchDataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+
             }
         }
     }

@@ -89,25 +89,25 @@ void SearchOperation::startOperation()
                 bool hasFailed = false;
                 if (m_settings.isNameEnabled() && !hasFailed)
                 {
-                    isSearched = StringHelper::toQString(directory->name()).contains(m_settings.getName());
+                    isSearched = StringHelper::toQString(d->name()).contains(m_settings.getName());
                     hasFailed = !isSearched;
                 }
 
                 if (m_settings.isExtensionEnabled() && !hasFailed)
                 {
-                    isSearched = StringHelper::toQString(directory->extension()).contains(m_settings.getExtension());
+                    isSearched = StringHelper::toQString(d->extension()).contains(m_settings.getExtension());
                     hasFailed = !isSearched;
                 }
 #if 0
                 if (m_settings.isSizeEnabled() && !hasFailed)
                 {
-                    isSearched = m_settings.getSize().first <= directory->size() && directory->size() <= m_settings.getSize().second;
+                    isSearched = m_settings.getSize().first <= d->size() && d->size() <= m_settings.getSize().second;
                     hasFailed = !isSearched;
                 }
 #endif
 
                 if (isSearched && !hasFailed)
-                    m_settings.getSearchResult().addDirectory(directory);
+                    m_settings.getSearchResult().addDirectory(d);
             }
 
 

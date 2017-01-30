@@ -49,23 +49,23 @@ QModelIndex SearchDataItemTreeModel::parent(const QModelIndex &index) const
     DataItem *childItem = static_cast<DataItem*>(index.internalPointer());
     if (!childItem || rootItem == childItem)
         return QModelIndex();
-    //DataItem *parentNode = dynamic_cast<DataItem *>(childItem->parent());
-    auto itpd = std::find(rootItem->directories().begin(), rootItem->directories().end(), childItem);
-    auto itpf = std::find(rootItem->files().begin(), rootItem->files().end(), childItem);
-    DataItem *parentNode = (itpd == rootItem->directories().end() && itpf == rootItem->files().end()) ? dynamic_cast<DataItem *>(childItem->parent()) : rootItem;
+
+    auto itpd = std::find(rootItem->directories()[0]->directories().begin(), rootItem->directories()[0]->directories().end(), childItem);
+    auto itpf = std::find(rootItem->directories()[0]->files().begin(), rootItem->directories()[0]->files().end(), childItem);
+    DataItem *parentNode = (itpd == rootItem->directories()[0]->directories().end() && itpf == rootItem->directories()[0]->files().end()) ? dynamic_cast<DataItem *>(childItem->parent()) : rootItem->directories()[0];
     if (!parentNode)
         return QModelIndex();
-//    Directory *grandparentNode = dynamic_cast<Directory *>(parentNode->parent());
+
     Directory *grandparentNode = parentNode == rootItem ? nullptr : 
-                                            (std::find(rootItem->directories().begin(), rootItem->directories().end(), parentNode->parent()) == rootItem->directories().end()
-                                            && std::find(rootItem->files().begin(), rootItem->files().end(), parentNode->parent()) == rootItem->files().end())
+                                            (std::find(rootItem->directories()[0]->directories().begin(), rootItem->directories()[0]->directories().end(), parentNode->parent()) == rootItem->directories()[0]->directories().end()
+                                            && std::find(rootItem->directories()[0]->files().begin(), rootItem->directories()[0]->files().end(), parentNode->parent()) == rootItem->directories()[0]->files().end())
                                             ? dynamic_cast<Directory *>(parentNode->parent())
-                                            : rootItem;
+                                            : rootItem->directories()[0];
     if (!grandparentNode)
         return QModelIndex();
 
     if (parentNode == rootItem)
-    return QModelIndex();
+        return QModelIndex();
 
     auto container = grandparentNode->directories();
 
