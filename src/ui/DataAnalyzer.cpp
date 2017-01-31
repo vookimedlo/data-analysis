@@ -117,7 +117,6 @@ void DataAnalyzer::onScanTriggered()
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
 
-
         ui.detailsTreeWidget->clear();
         ui.previewWidget->clear();
 
@@ -126,7 +125,6 @@ void DataAnalyzer::onScanTriggered()
         m_searchFileDirectoryModel.reset(nullptr);
         m_directoryModel.reset(new (std::nothrow) DirectoryTreeModel(m_topLevelDirectory.get()));
         m_fileDirectoryModel.reset(new (std::nothrow) DataItemTreeModel(m_topLevelDirectory.get(), DataItemTreeModel::DataItemTreeModelE_NoDetails));
-        onDirOnly(ui.dirOnlyCheckBox->checkState() == Qt::CheckState::Checked);
 
         // Remove model binding so we can delete the old one
         ui.detailedDataItemTreeView->reset();
@@ -140,6 +138,7 @@ void DataAnalyzer::onScanTriggered()
 
         ui.detailedDataItemTreeView->setModel(m_detailedDataItemSortFilterProxyModel.get());
 
+        onDirOnly(ui.dirOnlyCheckBox->checkState() == Qt::CheckState::Checked);
 
         // Columns resize policy
         if (ui.dataItemTreeView->header()->count() > 0)
@@ -161,6 +160,8 @@ void DataAnalyzer::onScanTriggered()
 
         connect(ui.detailedDataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
         connect(ui.dataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+
+        ui.fileOperationsTabWidget->setCurrentWidget(ui.scannedDataTab);          
     }
 }
 
@@ -222,7 +223,8 @@ void DataAnalyzer::onDetailedDataItemSelected(QModelIndex index)
 void DataAnalyzer::onDetailedDataItemCurrentChanged(const QModelIndex& current, const QModelIndex& previous)
 {
     UNUSED_VARIABLE(previous);
-    onDetailedDataItemSelected(current);
+    if (ui.detailedDataItemTreeView->model() && ui.detailedDataItemTreeView->selectionModel()->hasSelection())
+        onDetailedDataItemSelected(current);
 }
 
 void DataAnalyzer::onAnalysisTextChange()
@@ -251,6 +253,13 @@ void DataAnalyzer::onDirOnly(bool showOnlyDirs)
     for (int i = 1; i < ui.dataItemTreeView->header()->count(); ++i)
     {
         ui.dataItemTreeView->header()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+    }
+
+    if (ui.dataItemTreeView->model())
+    {
+        ui.dataItemTreeView->selectionModel()->select(ui.dataItemTreeView->model()->index(0, 0, ui.dataItemTreeView->rootIndex()), QItemSelectionModel::Rows | QItemSelectionModel::ClearAndSelect);
+        onDataItemSelected(ui.dataItemTreeView->model()->index(0, 0, ui.dataItemTreeView->rootIndex()));
+        ui.dataItemTreeView->expand(ui.dataItemTreeView->model()->index(0, 0, ui.dataItemTreeView->rootIndex()));
     }
 
     connect(ui.dataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
@@ -429,6 +438,8 @@ void DataAnalyzer::onNewTriggered()
         m_topLevelDirectory.reset();
         m_selectedDataItem = nullptr;
         ui.detailedDataItemTreeView->header()->setSortIndicator(0, Qt::AscendingOrder);
+
+        ui.fileOperationsTabWidget->setCurrentWidget(ui.scannedDataTab);
     }
 }
 
@@ -459,6 +470,15 @@ void DataAnalyzer::onSearchTriggered()
                 m_searchFileDirectoryModel.reset(new SearchDataItemTreeModel(&m_searchResult, SearchDataItemTreeModel::DataItemTreeModelE_NoDetails));
                 ui.searchDataItemTreeView->setModel(m_searchFileDirectoryModel.get());
                 connect(ui.searchDataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+                ui.fileOperationsTabWidget->setCurrentWidget(ui.searchTab);
+
+                if (ui.searchDataItemTreeView->model())
+                {
+                    ui.searchDataItemTreeView->expand(ui.searchDataItemTreeView->model()->index(0, 0, ui.searchDataItemTreeView->rootIndex()));
+                    ui.searchDataItemTreeView->selectionModel()->select(ui.searchDataItemTreeView->model()->index(0, 0, ui.searchDataItemTreeView->rootIndex()), QItemSelectionModel::Rows | QItemSelectionModel::ClearAndSelect);
+                    onDataItemSelected(ui.searchDataItemTreeView->model()->index(0, 0, ui.searchDataItemTreeView->rootIndex()));
+                }
+
 
             }
         }
@@ -532,29 +552,23 @@ void DataAnalyzer::dataItemSelected(QModelIndex index)
     {
         if (QImageReader::supportedImageFormats().indexOf(StringHelper::toQString(item->extension()).toLower().toLatin1()) != -1)
         {
-            QPixmap pixmap(StringHelper::toQString(file->path()));
-            QPixmap scaledPixmap;
+            try
+            {
+                QImageReader imageReader(StringHelper::toQString(file->path()));
+                QPixmap pixmap = QPixmap::fromImageReader(&imageReader);
+                QPixmap scaledPixmap;
 
-            if (pixmap.width() > pixmap.height())
-                scaledPixmap = pixmap.scaledToWidth(ui.previewWidget->size().width());
-            else
-                scaledPixmap = pixmap.scaledToHeight(ui.previewWidget->size().height());
+                if (pixmap.width() > pixmap.height())
+                    scaledPixmap = pixmap.scaledToWidth(ui.previewWidget->size().width());
+                else
+                    scaledPixmap = pixmap.scaledToHeight(ui.previewWidget->size().height());
 
-            ui.previewWidget->setPixmap(scaledPixmap);
-        }
-        else if (QImageReader::supportedImageFormats().indexOf(StringHelper::toQString(item->extension()).toLower().toLatin1()) != -1)
-        {
-            QImageReader imageReader(StringHelper::toQString(file->path()));
-            QPixmap pixmap = QPixmap::fromImageReader(&imageReader);
-            QPixmap scaledPixmap;
-
-            if (pixmap.width() > pixmap.height())
-                scaledPixmap = pixmap.scaledToWidth(ui.previewWidget->size().width());
-            else
-                scaledPixmap = pixmap.scaledToHeight(ui.previewWidget->size().height());
-
-            ui.previewWidget->setPixmap(scaledPixmap);
-
+                ui.previewWidget->setPixmap(scaledPixmap);
+            }
+            catch (...)
+            {
+                ui.previewWidget->clear();
+            }
         }
         else
         {

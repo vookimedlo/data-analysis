@@ -925,16 +925,16 @@
    <widget class="QWidget" name="dockWidgetContents">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QTabWidget" name="tabWidget">
+      <widget class="QTabWidget" name="fileOperationsTabWidget">
        <property name="tabShape">
         <enum>QTabWidget::Triangular</enum>
        </property>
        <property name="currentIndex">
         <number>0</number>
        </property>
-       <widget class="QWidget" name="tab">
+       <widget class="QWidget" name="scannedDataTab">
         <attribute name="title">
-         <string>Directories</string>
+         <string>Scanned Data</string>
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
@@ -980,7 +980,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tab_3">
+       <widget class="QWidget" name="searchTab">
         <attribute name="title">
          <string>Search</string>
         </attribute>
@@ -1021,7 +1021,7 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tab_4">
+       <widget class="QWidget" name="tagsTab">
         <attribute name="title">
          <string>Tags</string>
         </attribute>
@@ -1041,6 +1041,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Meta+Ctrl+Q</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
    <property name="menuRole">
     <enum>QAction::QuitRole</enum>
@@ -1080,7 +1083,10 @@
     <string>Initial file system scan</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Meta+Ctrl+S</string>
+    <string>Meta+Alt+S</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionCopy">
@@ -1093,6 +1099,9 @@
    <property name="shortcut">
     <string notr="true">Ctrl+C</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionCut">
    <property name="enabled">
@@ -1103,6 +1112,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+X</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionPaste">
@@ -1115,6 +1127,9 @@
    <property name="shortcut">
     <string notr="true">Ctrl+V</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionOpen">
    <property name="enabled">
@@ -1125,6 +1140,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+O</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionFinalReportCSV">
@@ -1150,6 +1168,9 @@
    <property name="shortcut">
     <string notr="true">Meta+Ctrl+M</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionFind">
    <property name="text">
@@ -1157,6 +1178,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+F</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionFileMagic">
@@ -1169,6 +1193,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Meta+Ctrl+T</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionFinalReportRTF">
@@ -1218,7 +1245,13 @@
   </action>
   <action name="actionNew">
    <property name="text">
-    <string>New ...</string>
+    <string>&amp;New ...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionDatasetSettings">
