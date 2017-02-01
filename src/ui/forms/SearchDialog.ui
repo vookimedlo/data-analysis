@@ -8,11 +8,14 @@
     <x>0</x>
     <y>0</y>
     <width>789</width>
-    <height>253</height>
+    <height>279</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Search</string>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_4">
    <item>
@@ -41,6 +44,13 @@
          <widget class="QCheckBox" name="sizeCheckBox">
           <property name="text">
            <string>Size between</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="containsCheckBox">
+          <property name="text">
+           <string>Contains</string>
           </property>
          </widget>
         </item>
@@ -86,6 +96,13 @@
            </widget>
           </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="containsLineEdit">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -204,6 +221,8 @@
   <tabstop>sizeCheckBox</tabstop>
   <tabstop>sizeLeftLineEdit</tabstop>
   <tabstop>sizeRightLineEdit</tabstop>
+  <tabstop>containsLineEdit</tabstop>
+  <tabstop>containsCheckBox</tabstop>
   <tabstop>fileCheckBox</tabstop>
   <tabstop>directoryCheckBox</tabstop>
   <tabstop>okButton</tabstop>
@@ -219,7 +238,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>778</x>
-     <y>238</y>
+     <y>264</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -298,12 +317,28 @@
    <slot>onAccept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>639</x>
-     <y>226</y>
+     <x>697</x>
+     <y>264</y>
     </hint>
     <hint type="destinationlabel">
      <x>487</x>
      <y>233</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>containsCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>containsLineEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>76</x>
+     <y>119</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>217</x>
+     <y>120</y>
     </hint>
    </hints>
   </connection>

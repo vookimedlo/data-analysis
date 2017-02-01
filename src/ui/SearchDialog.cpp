@@ -47,6 +47,9 @@ void SearchDialog::onAccept()
     if (m_uiSearchDialog.sizeCheckBox->isChecked())
         m_settings.enableSize(lowerSize, upperSize);
 
+    if (m_uiSearchDialog.containsCheckBox->isChecked())
+        m_settings.enableContains(m_uiSearchDialog.containsLineEdit->text());
+
     accept();
 }
 

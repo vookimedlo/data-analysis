@@ -41,6 +41,9 @@ protected:
     void startOperation();
 
 private:
+    bool containsText(const QString &text, const QString &textToSearch);
+
+private:
     std::future<void> m_asyncScanWorker;
     bool m_cancelWorkerActivity;
     SearchSettings &m_settings;

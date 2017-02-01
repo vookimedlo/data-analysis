@@ -20,7 +20,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "SearchSettings.h"
 
-SearchSettings::SearchSettings(Directory& searchResult) : m_searchResult(searchResult), m_nameRequested(false), m_extensionRequested(false), m_sizeRequested(false), m_sizeLowerBound(0), m_sizeUpperBound(0), m_directoryRequested(false), m_fileRequested(false)
+SearchSettings::SearchSettings(Directory& searchResult) : m_searchResult(searchResult), m_nameRequested(false), m_extensionRequested(false), m_sizeRequested(false), m_sizeLowerBound(0), m_sizeUpperBound(0), m_containsRequested(false), m_contains(), m_directoryRequested(false), m_fileRequested(false)
 {
 
 }
@@ -42,6 +42,12 @@ void SearchSettings::enableSize(uint64_t lowerBound, uint64_t upperBound)
     m_sizeLowerBound = lowerBound;
     m_sizeUpperBound = upperBound;
     m_sizeRequested = true;
+}
+
+void SearchSettings::enableContains(const QString value)
+{
+    m_contains = value;
+    m_containsRequested = true;
 }
 
 void SearchSettings::enableDirectory()
@@ -74,6 +80,11 @@ std::pair<uint64_t, uint64_t> SearchSettings::getSize() const
     return std::pair<uint64_t, uint64_t>(m_sizeLowerBound, m_sizeUpperBound);
 }
 
+QString SearchSettings::getContains() const
+{
+    return m_contains;
+}
+
 bool SearchSettings::isNameEnabled() const
 {
     return m_nameRequested;
@@ -87,6 +98,11 @@ bool SearchSettings::isExtensionEnabled() const
 bool SearchSettings::isSizeEnabled() const
 {
     return m_sizeRequested;
+}
+
+bool SearchSettings::isContainedEnabled() const
+{
+    return m_containsRequested;
 }
 
 bool SearchSettings::isDirectoryEnabled() const

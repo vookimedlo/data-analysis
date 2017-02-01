@@ -32,6 +32,7 @@ public:
     void enableName(const QString value);
     void enableExtension(const QString value);
     void enableSize(uint64_t lowerBound, uint64_t upperBound);
+    void enableContains(const QString value);
     void enableDirectory();
     void enableFile();
 
@@ -39,11 +40,12 @@ public:
     QString getName() const;
     QString getExtension() const;
     std::pair<uint64_t, uint64_t> getSize() const;
-
+    QString getContains() const;
 
     bool isNameEnabled() const;
     bool isExtensionEnabled() const;
     bool isSizeEnabled() const;
+    bool isContainedEnabled() const;
     bool isDirectoryEnabled() const;
     bool isFileEnabled() const;
 
@@ -59,6 +61,9 @@ private:
     bool m_sizeRequested;
     uint64_t m_sizeLowerBound;
     uint64_t m_sizeUpperBound;
+
+    bool m_containsRequested;
+    QString m_contains;
 
     bool m_directoryRequested;
     bool m_fileRequested;

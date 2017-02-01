@@ -20,6 +20,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <future>
 #include <queue>
+#include <QFile>
+#include <QTextCodec>
+#include <QTextStream>
 #include "../controller/SearchSettings.h"
 #include "../model/fs/Directory.h"
 #include "../model/fs/File.h"
@@ -140,6 +143,54 @@ void SearchOperation::startOperation()
                         hasFailed = !isSearched;
                     }
 
+                    if (m_settings.isContainedEnabled() && !hasFailed)
+                    {
+                        //isSearched = m_settings.getContains();
+
+                        QFile qfile(StringHelper::toQString(file->path()));
+                        qfile.open(QIODevice::ReadOnly);
+
+//                        if(qfile.canReadLine())
+                        {
+                            const QByteArray byteArray(qfile.readAll());
+                            //QTextStream stream(&qfile);
+                            //                        const QString &text = stream.readAll();
+
+                            QTextCodec::ConverterState state;
+                            QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+                            {
+                                codec->toUnicode(byteArray.constData(), byteArray.size(), &state);
+                            }
+                            if (state.invalidChars > 0)
+                            {
+                                codec = QTextCodec::codecForUtfText(byteArray, QTextCodec::codecForName("System"));
+                                if (codec)
+                                {
+                                    isSearched = containsText(codec->toUnicode(byteArray), m_settings.getContains());
+                                }
+                                else
+                                {
+//                                    qDebug() << "Not a valid UTF-8 sequence.";
+                                    codec = QTextCodec::codecForLocale();
+                                    if (codec)
+                                    {
+                                        isSearched = containsText(codec->toUnicode(byteArray), m_settings.getContains());
+                                    }
+                                    else
+                                    {
+                                        isSearched = false;    
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                isSearched = containsText(codec->toUnicode(byteArray), m_settings.getContains());
+                            }
+                        }
+
+                        hasFailed = !isSearched;
+                    }
+
                     if (isSearched && !hasFailed)
                         m_settings.getSearchResult().addFile(file);
 
@@ -188,4 +239,9 @@ void SearchOperation::startOperation()
     }
 
     m_observersResultVoid.call();
+}
+
+bool SearchOperation::containsText(const QString& text, const QString& textToSearch)
+{
+    return text.contains(textToSearch, Qt::CaseInsensitive);
 }

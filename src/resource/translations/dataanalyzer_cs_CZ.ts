@@ -1037,52 +1037,57 @@
         <translation>Hledání</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="21"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="24"/>
         <source>Data Properties</source>
         <translation>Vlastnosti dat</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="29"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="32"/>
         <source>Name</source>
         <translation>Jméno</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="36"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="39"/>
         <source>Extension</source>
         <translation>Přípona</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="43"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="46"/>
         <source>Size between</source>
         <translation>Velikost mezi</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="77"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="53"/>
+        <source>Contains</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../ui/forms/SearchDialog.ui" line="87"/>
         <source>and</source>
         <translation>a</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="100"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="117"/>
         <source>Basic Data Types</source>
         <translation>Základní datové typy</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="106"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="123"/>
         <source>File</source>
         <translation>Soubor</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="116"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="133"/>
         <source>Directory</source>
         <translation>Adresář</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="184"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="201"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="191"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="208"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>

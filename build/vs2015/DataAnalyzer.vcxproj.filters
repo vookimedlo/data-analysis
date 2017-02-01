@@ -299,13 +299,13 @@
     <CustomBuild Include="..\..\src\ui\forms\SearchDialog.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\..\src\ui\SearchDialog.h">
-      <Filter>Source Files\UI</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\..\src\controller\SearchSettings.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="..\..\src\controller\SearchDataItemTreeModel.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\SearchDialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -410,7 +410,7 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\operations\SearchOperation.h">
-      <Filter>Source Files\Operation</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
