@@ -71,6 +71,14 @@ void SearchDialog::onAccept()
             m_settings.enableContains(m_uiSearchDialog.containsLineEdit->text());
     }
 
+    if (m_uiSearchDialog.tagNotInterestingcheckBox->isChecked())
+        m_settings.enableTagNotInteresing();
+
+    if (m_uiSearchDialog.tagInterestingCheckBox->isChecked())
+        m_settings.enableTagInteresing();
+
+    if (m_uiSearchDialog.tagProofCheckBox->isChecked())
+        m_settings.enableTagProof();
+
     accept();
 }
-

@@ -85,6 +85,21 @@ void SearchSettings::enableContains(const QRegularExpression& value)
     m_containsTextRegExpEnabled = true;
 }
 
+void SearchSettings::enableTagNotInteresing()
+{
+    m_tagNotInteresting = true;
+}
+
+void SearchSettings::enableTagInteresing()
+{
+    m_tagInteresting = true;
+}
+
+void SearchSettings::enableTagProof()
+{
+    m_tagProof = true;
+}
+
 void SearchSettings::enableDirectory()
 {
     m_directoryEnabled = true;
@@ -178,4 +193,24 @@ bool SearchSettings::isDirectoryEnabled() const
 bool SearchSettings::isFileEnabled() const
 {
     return m_fileEnabled;
+}
+
+bool SearchSettings::isNoTagEnabled() const
+{
+    return !m_tagProof && !m_tagInteresting && !m_tagNotInteresting;
+}
+
+bool SearchSettings::isNotInteresingTagEnabled() const
+{
+    return m_tagNotInteresting;
+}
+
+bool SearchSettings::isInterestingTagEnabled() const
+{
+    return m_tagInteresting;
+}
+
+bool SearchSettings::isProofTagEnabled() const
+{
+    return m_tagProof;
 }

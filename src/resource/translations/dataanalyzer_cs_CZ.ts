@@ -1089,12 +1089,32 @@
         <translation>Adresář</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="242"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="197"/>
+        <source>Tags</source>
+        <translation>Tagy</translation>
+    </message>
+    <message>
+        <location filename="../../ui/forms/SearchDialog.ui" line="203"/>
+        <source>Not interesting</source>
+        <translation>Nezájmové</translation>
+    </message>
+    <message>
+        <location filename="../../ui/forms/SearchDialog.ui" line="210"/>
+        <source>Interesting</source>
+        <translation>Zájmové</translation>
+    </message>
+    <message>
+        <location filename="../../ui/forms/SearchDialog.ui" line="217"/>
+        <source>Proof</source>
+        <translation>Důkazní</translation>
+    </message>
+    <message>
+        <location filename="../../ui/forms/SearchDialog.ui" line="298"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="249"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="305"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
@@ -1117,7 +1137,7 @@
         <translation>Důkazní</translation>
     </message>
     <message>
-        <location filename="../../util/TagHelper.cpp" line="36"/>
+        <location filename="../../util/TagHelper.cpp" line="37"/>
         <source>No tag</source>
         <translation>Žádný tag</translation>
     </message>

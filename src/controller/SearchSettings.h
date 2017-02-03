@@ -40,6 +40,10 @@ public:
     void enableContains(const QString value);
     void enableContains(const QRegularExpression &value);
     
+    void enableTagNotInteresing();
+    void enableTagInteresing();
+    void enableTagProof();
+
     void enableDirectory();
     void enableFile();
 
@@ -61,6 +65,10 @@ public:
     bool isContainedTextRegExpEnabled() const;
     bool isDirectoryEnabled() const;
     bool isFileEnabled() const;
+    bool isNoTagEnabled() const;
+    bool isNotInteresingTagEnabled() const;
+    bool isInterestingTagEnabled() const;
+    bool isProofTagEnabled() const;
 
 private:
     Directory &m_searchResult;
@@ -86,4 +94,9 @@ private:
 
     bool m_directoryEnabled;
     bool m_fileEnabled;
+
+    bool m_tagNotInteresting;
+    bool m_tagInteresting;
+    bool m_tagProof;
+
 };

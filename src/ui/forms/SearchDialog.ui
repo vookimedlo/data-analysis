@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>789</width>
-    <height>279</height>
+    <height>308</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -175,6 +175,62 @@
           </property>
          </widget>
         </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="tagsGroupBox">
+       <property name="title">
+        <string>Tags</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QCheckBox" name="tagNotInterestingcheckBox">
+          <property name="text">
+           <string>Not interesting</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="tagInterestingCheckBox">
+          <property name="text">
+           <string>Interesting</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="tagProofCheckBox">
+          <property name="text">
+           <string>Proof</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
        </layout>
       </widget>
      </item>
@@ -262,10 +318,16 @@
   <tabstop>sizeCheckBox</tabstop>
   <tabstop>sizeLeftLineEdit</tabstop>
   <tabstop>sizeRightLineEdit</tabstop>
-  <tabstop>containsLineEdit</tabstop>
   <tabstop>containsCheckBox</tabstop>
+  <tabstop>containsLineEdit</tabstop>
   <tabstop>fileCheckBox</tabstop>
   <tabstop>directoryCheckBox</tabstop>
+  <tabstop>nameRegExpCheckBox</tabstop>
+  <tabstop>extensionRegExpCheckBox</tabstop>
+  <tabstop>containsRegExpCheckBox</tabstop>
+  <tabstop>tagNotInterestingcheckBox</tabstop>
+  <tabstop>tagInterestingCheckBox</tabstop>
+  <tabstop>tagProofCheckBox</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
@@ -279,7 +341,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>778</x>
-     <y>264</y>
+     <y>293</y>
     </hint>
     <hint type="destinationlabel">
      <x>179</x>
@@ -359,7 +421,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>697</x>
-     <y>264</y>
+     <y>293</y>
     </hint>
     <hint type="destinationlabel">
      <x>487</x>

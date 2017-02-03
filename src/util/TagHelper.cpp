@@ -26,12 +26,13 @@ std::string TagHelper::tagToString(uint8_t tagId)
 {
     switch (tagId)
     {
-    case 1:
+    case TagHelperE_NotInteresting:
         return tr("Not interesting").toStdString();
-    case 2:
+    case TagHelperE_Interesting:
         return tr("Interesting").toStdString();
-    case 3:
+    case TagHelperE_Proof:
         return tr("Proof").toStdString();
+    case TagHelperE_NoTag:
     default:
         return tr("No tag").toStdString();
     }

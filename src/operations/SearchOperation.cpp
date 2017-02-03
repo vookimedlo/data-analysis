@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../util/compiler.h"
 #include "../util/ModelHelper.h"
 #include "../util/StringHelper.h"
+#include "../util/TagHelper.h"
 
 #include "SearchOperation.h"
 
@@ -169,6 +170,33 @@ bool SearchOperation::hasDataItemMatch(const DataItem* item)
     else if (m_settings.isExtensionRegExpEnabled() && !hasFailed)
     {
         isSearched = m_settings.getExtensionRegExp().match(StringHelper::toQString(item->extension())).hasMatch();
+        hasFailed = !isSearched;
+    }
+
+    if (!m_settings.isNoTagEnabled())
+    {
+        const int tag = item->isInfoValid(DataInfo::DataInfoE_Tag) ? StringHelper::toQString(const_cast<DataItem *>(item)->info(DataInfo::DataInfoE_Tag)).toInt() : 0;
+
+        switch (tag)
+        {
+        case TagHelper::TagHelperE::TagHelperE_NotInteresting:
+            if (m_settings.isNotInteresingTagEnabled())
+                isSearched = true;
+            break;
+        case TagHelper::TagHelperE::TagHelperE_Interesting:
+            if (m_settings.isInterestingTagEnabled())
+                isSearched = true;
+            break;
+        case TagHelper::TagHelperE::TagHelperE_Proof:
+            if (m_settings.isProofTagEnabled())
+                isSearched = true;
+            break;
+        case TagHelper::TagHelperE::TagHelperE_NoTag:
+        default:
+            isSearched = false;
+            break;
+        }
+
         hasFailed = !isSearched;
     }
 

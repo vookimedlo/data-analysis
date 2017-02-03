@@ -28,6 +28,14 @@ class TagHelper
     Q_DECLARE_TR_FUNCTIONS(TagHelper);
 
 public:
+    enum TagHelperE
+    {
+        TagHelperE_NoTag = 0,
+        TagHelperE_NotInteresting = 1,
+        TagHelperE_Interesting = 2,
+        TagHelperE_Proof = 3,
+    };
+
     static std::string tagToString(uint8_t tagId);
 };
 
