@@ -25,10 +25,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 SearchDialog::SearchDialog(SearchSettings &settings, QWidget* parent) : QDialog(parent), m_settings(settings)
 {
     m_uiSearchDialog.setupUi(this);
+    QRegularExpression rx("0|[1-9][0-9]{0,17}");
+    QValidator *validator = new QRegularExpressionValidator(rx, this);
+    m_uiSearchDialog.sizeLeftLineEdit->setValidator(validator);
+    m_uiSearchDialog.sizeRightLineEdit->setValidator(validator);
 }
 
 void SearchDialog::onAccept()
 {
+    static QRegularExpression::PatternOptions reOpts = QRegularExpression::PatternOption::CaseInsensitiveOption | QRegularExpression::PatternOption::UseUnicodePropertiesOption | QRegularExpression::PatternOption::MultilineOption;
+
     uint64_t lowerSize = m_uiSearchDialog.sizeLeftLineEdit->text().toULongLong();
     uint64_t upperSize = m_uiSearchDialog.sizeRightLineEdit->text().toULongLong();
 
@@ -39,16 +45,31 @@ void SearchDialog::onAccept()
         m_settings.enableFile();
 
     if (m_uiSearchDialog.nameCheckBox->isChecked())
-        m_settings.enableName(m_uiSearchDialog.nameLineEdit->text());
+    {
+        if (m_uiSearchDialog.nameRegExpCheckBox->isChecked())
+            m_settings.enableName(QRegularExpression(m_uiSearchDialog.nameLineEdit->text(), reOpts));
+        else
+            m_settings.enableName(m_uiSearchDialog.nameLineEdit->text());
+    }
 
     if (m_uiSearchDialog.extensionCheckBox->isChecked())
-        m_settings.enableExtension(m_uiSearchDialog.extensionLineEdit->text());
-
+    {
+        if (m_uiSearchDialog.extensionRegExpCheckBox->isChecked())
+            m_settings.enableExtension(QRegularExpression(m_uiSearchDialog.extensionLineEdit->text(), reOpts));
+        else
+            m_settings.enableExtension(m_uiSearchDialog.extensionLineEdit->text());
+    }
+        
     if (m_uiSearchDialog.sizeCheckBox->isChecked())
         m_settings.enableSize(lowerSize, upperSize);
 
     if (m_uiSearchDialog.containsCheckBox->isChecked())
-        m_settings.enableContains(m_uiSearchDialog.containsLineEdit->text());
+    {
+        if (m_uiSearchDialog.containsRegExpCheckBox->isChecked())
+            m_settings.enableContains(QRegularExpression(m_uiSearchDialog.containsLineEdit->text(), reOpts));
+        else
+            m_settings.enableContains(m_uiSearchDialog.containsLineEdit->text());
+    }
 
     accept();
 }

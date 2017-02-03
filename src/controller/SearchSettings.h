@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cstdint>
 #include <utility>
+#include <QRegularExpression>
 #include <QString>
 
 class Directory;
@@ -30,41 +31,59 @@ class SearchSettings
 public:
     explicit SearchSettings(Directory &searchResult);
     void enableName(const QString value);
+    void enableName(const QRegularExpression &value);
+
     void enableExtension(const QString value);
+    void enableExtension(const QRegularExpression &value);
+
     void enableSize(uint64_t lowerBound, uint64_t upperBound);
     void enableContains(const QString value);
+    void enableContains(const QRegularExpression &value);
+    
     void enableDirectory();
     void enableFile();
 
     Directory &getSearchResult() const;
     QString getName() const;
+    QRegularExpression getNameRegExp() const;
     QString getExtension() const;
+    QRegularExpression getExtensionRegExp() const;
     std::pair<uint64_t, uint64_t> getSize() const;
-    QString getContains() const;
+    QString getContainedText() const;
+    QRegularExpression getContainedTextRegExp() const;
 
     bool isNameEnabled() const;
+    bool isNameRegExpEnabled() const;
     bool isExtensionEnabled() const;
+    bool isExtensionRegExpEnabled() const;
     bool isSizeEnabled() const;
-    bool isContainedEnabled() const;
+    bool isContainedTextEnabled() const;
+    bool isContainedTextRegExpEnabled() const;
     bool isDirectoryEnabled() const;
     bool isFileEnabled() const;
 
 private:
     Directory &m_searchResult;
 
-    bool m_nameRequested;
+    bool m_nameEnabled;
     QString m_name;
+    bool m_nameRegExpEnabled;
+    QRegularExpression m_nameRegExp;
 
-    bool m_extensionRequested;
+    bool m_extensionEnabled;
     QString m_extension;
-    
-    bool m_sizeRequested;
+    bool m_extensionRegExpEnabled;
+    QRegularExpression m_extensionRegExp;
+
+    bool m_sizeEnabled;
     uint64_t m_sizeLowerBound;
     uint64_t m_sizeUpperBound;
 
-    bool m_containsRequested;
-    QString m_contains;
+    bool m_containsTextEnabled;
+    QString m_containsText;
+    bool m_containsTextRegExpEnabled;
+    QRegularExpression m_containsTextRegExp;
 
-    bool m_directoryRequested;
-    bool m_fileRequested;
+    bool m_directoryEnabled;
+    bool m_fileEnabled;
 };

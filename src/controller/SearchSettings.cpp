@@ -20,7 +20,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "SearchSettings.h"
 
-SearchSettings::SearchSettings(Directory& searchResult) : m_searchResult(searchResult), m_nameRequested(false), m_extensionRequested(false), m_sizeRequested(false), m_sizeLowerBound(0), m_sizeUpperBound(0), m_containsRequested(false), m_contains(), m_directoryRequested(false), m_fileRequested(false)
+SearchSettings::SearchSettings(Directory& searchResult) : m_searchResult(searchResult),
+                                                          m_nameEnabled(false),
+                                                          m_nameRegExpEnabled(false),
+                                                          m_extensionEnabled(false),
+                                                          m_extensionRegExpEnabled(false),
+                                                          m_sizeEnabled(false),
+                                                          m_sizeLowerBound(0),
+                                                          m_sizeUpperBound(0),
+                                                          m_containsTextEnabled(false),
+                                                          m_containsTextRegExpEnabled(false),
+                                                          m_directoryEnabled(false),
+                                                          m_fileEnabled(false)
 {
 
 }
@@ -28,36 +39,60 @@ SearchSettings::SearchSettings(Directory& searchResult) : m_searchResult(searchR
 void SearchSettings::enableName(const QString value)
 {
     m_name = value;
-    m_nameRequested = true;
+    m_nameEnabled = true;
+    m_nameRegExpEnabled = false;
+}
+
+void SearchSettings::enableName(const QRegularExpression& value)
+{
+    m_nameRegExp = value;
+    m_nameEnabled = false;
+    m_nameRegExpEnabled = true;
 }
 
 void SearchSettings::enableExtension(const QString value)
 {
     m_extension = value;
-    m_extensionRequested = true;
+    m_extensionEnabled = true;
+    m_extensionRegExpEnabled = false;
+}
+
+void SearchSettings::enableExtension(const QRegularExpression& value)
+{
+    m_extensionRegExp = value;
+    m_extensionEnabled = false;
+    m_extensionRegExpEnabled = false;
 }
 
 void SearchSettings::enableSize(uint64_t lowerBound, uint64_t upperBound)
 {
     m_sizeLowerBound = lowerBound;
     m_sizeUpperBound = upperBound;
-    m_sizeRequested = true;
+    m_sizeEnabled = true;
 }
 
 void SearchSettings::enableContains(const QString value)
 {
-    m_contains = value;
-    m_containsRequested = true;
+    m_containsText = value;
+    m_containsTextEnabled = true;
+    m_containsTextRegExpEnabled = false;
+}
+
+void SearchSettings::enableContains(const QRegularExpression& value)
+{
+    m_containsTextRegExp = value;
+    m_containsTextEnabled = false;
+    m_containsTextRegExpEnabled = true;
 }
 
 void SearchSettings::enableDirectory()
 {
-    m_directoryRequested = true;
+    m_directoryEnabled = true;
 }
 
 void SearchSettings::enableFile()
 {
-    m_fileRequested = true;
+    m_fileEnabled = true;
 }
 
 Directory& SearchSettings::getSearchResult() const
@@ -70,9 +105,19 @@ QString SearchSettings::getName() const
     return m_name;
 }
 
+QRegularExpression SearchSettings::getNameRegExp() const
+{
+    return m_nameRegExp;
+}
+
 QString SearchSettings::getExtension() const
 {
     return m_extension;
+}
+
+QRegularExpression SearchSettings::getExtensionRegExp() const
+{
+    return m_extensionRegExp;
 }
 
 std::pair<uint64_t, uint64_t> SearchSettings::getSize() const
@@ -80,37 +125,57 @@ std::pair<uint64_t, uint64_t> SearchSettings::getSize() const
     return std::pair<uint64_t, uint64_t>(m_sizeLowerBound, m_sizeUpperBound);
 }
 
-QString SearchSettings::getContains() const
+QString SearchSettings::getContainedText() const
 {
-    return m_contains;
+    return m_containsText;
+}
+
+QRegularExpression SearchSettings::getContainedTextRegExp() const
+{
+    return m_containsTextRegExp;
 }
 
 bool SearchSettings::isNameEnabled() const
 {
-    return m_nameRequested;
+    return m_nameEnabled;
+}
+
+bool SearchSettings::isNameRegExpEnabled() const
+{
+    return m_nameRegExpEnabled;
 }
 
 bool SearchSettings::isExtensionEnabled() const
 {
-    return m_extensionRequested;
+    return m_extensionEnabled;
+}
+
+bool SearchSettings::isExtensionRegExpEnabled() const
+{
+    return m_extensionRegExpEnabled;
 }
 
 bool SearchSettings::isSizeEnabled() const
 {
-    return m_sizeRequested;
+    return m_sizeEnabled;
 }
 
-bool SearchSettings::isContainedEnabled() const
+bool SearchSettings::isContainedTextEnabled() const
 {
-    return m_containsRequested;
+    return m_containsTextEnabled;
+}
+
+bool SearchSettings::isContainedTextRegExpEnabled() const
+{
+    return m_containsTextRegExpEnabled;
 }
 
 bool SearchSettings::isDirectoryEnabled() const
 {
-    return m_directoryRequested;
+    return m_directoryEnabled;
 }
 
 bool SearchSettings::isFileEnabled() const
 {
-    return m_fileRequested;
+    return m_fileEnabled;
 }

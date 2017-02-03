@@ -88,28 +88,7 @@ void SearchOperation::startOperation()
 
             if (m_settings.isDirectoryEnabled())
             {
-                bool isSearched = false;
-                bool hasFailed = false;
-                if (m_settings.isNameEnabled() && !hasFailed)
-                {
-                    isSearched = StringHelper::toQString(d->name()).contains(m_settings.getName());
-                    hasFailed = !isSearched;
-                }
-
-                if (m_settings.isExtensionEnabled() && !hasFailed)
-                {
-                    isSearched = StringHelper::toQString(d->extension()).contains(m_settings.getExtension());
-                    hasFailed = !isSearched;
-                }
-#if 0
-                if (m_settings.isSizeEnabled() && !hasFailed)
-                {
-                    isSearched = m_settings.getSize().first <= d->size() && d->size() <= m_settings.getSize().second;
-                    hasFailed = !isSearched;
-                }
-#endif
-
-                if (isSearched && !hasFailed)
+                if (hasDataItemMatch(directory))
                     m_settings.getSearchResult().addDirectory(d);
             }
 
@@ -123,75 +102,7 @@ void SearchOperation::startOperation()
             {
                 for (File *file : d->files())
                 {
-                    bool isSearched = false;
-                    bool hasFailed = false;
-                    if (m_settings.isNameEnabled() && !hasFailed)
-                    {
-                        isSearched = StringHelper::toQString(file->name()).contains(m_settings.getName());
-                        hasFailed = !isSearched;
-                    }
-                        
-                    if (m_settings.isExtensionEnabled() && !hasFailed)
-                    {
-                        isSearched = StringHelper::toQString(file->extension()).contains(m_settings.getExtension());
-                        hasFailed = !isSearched;
-                    }
-
-                    if (m_settings.isSizeEnabled() && !hasFailed)
-                    {
-                        isSearched = m_settings.getSize().first <= file->size() && file->size() <= m_settings.getSize().second;
-                        hasFailed = !isSearched;
-                    }
-
-                    if (m_settings.isContainedEnabled() && !hasFailed)
-                    {
-                        //isSearched = m_settings.getContains();
-
-                        QFile qfile(StringHelper::toQString(file->path()));
-                        qfile.open(QIODevice::ReadOnly);
-
-//                        if(qfile.canReadLine())
-                        {
-                            const QByteArray byteArray(qfile.readAll());
-                            //QTextStream stream(&qfile);
-                            //                        const QString &text = stream.readAll();
-
-                            QTextCodec::ConverterState state;
-                            QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-                            {
-                                codec->toUnicode(byteArray.constData(), byteArray.size(), &state);
-                            }
-                            if (state.invalidChars > 0)
-                            {
-                                codec = QTextCodec::codecForUtfText(byteArray, QTextCodec::codecForName("System"));
-                                if (codec)
-                                {
-                                    isSearched = containsText(codec->toUnicode(byteArray), m_settings.getContains());
-                                }
-                                else
-                                {
-//                                    qDebug() << "Not a valid UTF-8 sequence.";
-                                    codec = QTextCodec::codecForLocale();
-                                    if (codec)
-                                    {
-                                        isSearched = containsText(codec->toUnicode(byteArray), m_settings.getContains());
-                                    }
-                                    else
-                                    {
-                                        isSearched = false;    
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                isSearched = containsText(codec->toUnicode(byteArray), m_settings.getContains());
-                            }
-                        }
-
-                        hasFailed = !isSearched;
-                    }
-
-                    if (isSearched && !hasFailed)
+                    if (hasDataItemMatch(file))
                         m_settings.getSearchResult().addFile(file);
 
                     ++numFiles;
@@ -210,27 +121,7 @@ void SearchOperation::startOperation()
     }
     else
     {
-        bool isSearched = false;
-        bool hasFailed = false;
-        if (m_settings.isNameEnabled() && !hasFailed)
-        {
-            isSearched = StringHelper::toQString(m_RootItem.name()).contains(m_settings.getName());
-            hasFailed = !isSearched;
-        }
-
-        if (m_settings.isExtensionEnabled() && !hasFailed)
-        {
-            isSearched = StringHelper::toQString(m_RootItem.extension()).contains(m_settings.getExtension());
-            hasFailed = !isSearched;
-        }
-
-        if (m_settings.isSizeEnabled() && !hasFailed)
-        {
-            isSearched = m_settings.getSize().first <= m_RootItem.size() && m_RootItem.size() <= m_settings.getSize().second;
-            hasFailed = !isSearched;
-        }
-
-        if (isSearched && !hasFailed)
+        if (hasDataItemMatch(&m_RootItem))
             m_settings.getSearchResult().addFile(dynamic_cast<File *>(&m_RootItem));
 
         ++numFiles;
@@ -244,4 +135,101 @@ void SearchOperation::startOperation()
 bool SearchOperation::containsText(const QString& text, const QString& textToSearch)
 {
     return text.contains(textToSearch, Qt::CaseInsensitive);
+}
+
+bool SearchOperation::containsText(const QString& text, const QRegularExpression& textToSearch)
+{
+    return textToSearch.match(text).hasMatch();
+}
+
+bool SearchOperation::hasDataItemMatch(const DataItem* item)
+{
+    bool isSearched = false;
+    bool hasFailed = false;
+
+    if (!item)
+        return false;
+
+    if (m_settings.isNameEnabled() && !hasFailed)
+    {
+        isSearched = StringHelper::toQString(item->name()).contains(m_settings.getName());
+        hasFailed = !isSearched;
+    }
+    else if (m_settings.isNameRegExpEnabled() && !hasFailed)
+    {
+        isSearched = m_settings.getNameRegExp().match(StringHelper::toQString(item->name())).hasMatch();
+        hasFailed = !isSearched;
+    }
+
+    if (m_settings.isExtensionEnabled() && !hasFailed)
+    {
+        isSearched = StringHelper::toQString(item->extension()).contains(m_settings.getExtension());
+        hasFailed = !isSearched;
+    }
+    else if (m_settings.isExtensionRegExpEnabled() && !hasFailed)
+    {
+        isSearched = m_settings.getExtensionRegExp().match(StringHelper::toQString(item->extension())).hasMatch();
+        hasFailed = !isSearched;
+    }
+
+    const File *file = dynamic_cast<const File *>(item);
+    if (file)
+    {
+        if (m_settings.isSizeEnabled() && !hasFailed)
+        {
+            isSearched = m_settings.getSize().first <= file->size() && file->size() <= m_settings.getSize().second;
+            hasFailed = !isSearched;
+        }
+
+        if ((m_settings.isContainedTextEnabled() || m_settings.isContainedTextRegExpEnabled()) && !hasFailed)
+        {
+            //isSearched = m_settings.getContainedText();
+
+            QFile qfile(StringHelper::toQString(const_cast<File *>(file)->path()));
+            if (qfile.open(QIODevice::ReadOnly))
+            {
+                const QByteArray byteArray(qfile.readAll());
+
+                QTextCodec::ConverterState state;
+                QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+                {
+                    if (m_settings.isContainedTextEnabled())
+                        isSearched = containsText(codec->toUnicode(byteArray.constData(), byteArray.size(), &state), m_settings.getContainedText());
+                    else
+                        isSearched = containsText(codec->toUnicode(byteArray.constData(), byteArray.size(), &state), m_settings.getContainedTextRegExp());
+                }
+                if (state.invalidChars > 0)
+                {
+                    isSearched = false;
+                    codec = QTextCodec::codecForUtfText(byteArray, QTextCodec::codecForName("System"));
+                    if (codec)
+                    {
+                        if (m_settings.isContainedTextEnabled())
+                            isSearched = containsText(codec->toUnicode(byteArray), m_settings.getContainedText());
+                        else
+                            isSearched = containsText(codec->toUnicode(byteArray), m_settings.getContainedTextRegExp());
+                    }
+                    else
+                    {
+                        codec = QTextCodec::codecForLocale();
+                        if (codec)
+                        {
+                            if (m_settings.isContainedTextEnabled())
+                                isSearched = containsText(codec->toUnicode(byteArray), m_settings.getContainedText());
+                            else
+                                isSearched = containsText(codec->toUnicode(byteArray), m_settings.getContainedTextRegExp());
+                        }
+                    }
+                }
+            }
+            else
+            {
+                isSearched = false;
+            }
+
+            hasFailed = !isSearched;
+        }
+    }
+
+    return isSearched && !hasFailed;
 }

@@ -42,6 +42,9 @@ protected:
 
 private:
     bool containsText(const QString &text, const QString &textToSearch);
+    bool containsText(const QString &text, const QRegularExpression &textToSearch);
+
+    bool hasDataItemMatch(const DataItem *item);
 
 private:
     std::future<void> m_asyncScanWorker;

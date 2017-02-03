@@ -17,7 +17,7 @@
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_4">
+  <layout class="QVBoxLayout" name="verticalLayout_5">
    <item>
     <widget class="QGroupBox" name="dataPropertiesGroupBox">
      <property name="title">
@@ -101,6 +101,47 @@
          <widget class="QLineEdit" name="containsLineEdit">
           <property name="enabled">
            <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QCheckBox" name="nameRegExpCheckBox">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>RegExp</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="extensionRegExpCheckBox">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>RegExp</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string notr="true"/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="containsRegExpCheckBox">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>RegExp</string>
           </property>
          </widget>
         </item>
@@ -339,6 +380,118 @@
     <hint type="destinationlabel">
      <x>217</x>
      <y>120</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>nameCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>nameRegExpCheckBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>24</x>
+     <y>44</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>716</x>
+     <y>46</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>extensionCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>extensionRegExpCheckBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>64</x>
+     <y>66</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>732</x>
+     <y>71</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>containsCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>containsRegExpCheckBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>59</x>
+     <y>113</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>732</x>
+     <y>122</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>nameCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>nameLineEdit</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>30</x>
+     <y>36</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>247</x>
+     <y>46</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>extensionCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>extensionLineEdit</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>53</x>
+     <y>69</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>171</x>
+     <y>74</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sizeCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>sizeLeftLineEdit</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>49</x>
+     <y>92</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>167</x>
+     <y>95</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>containsCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>containsLineEdit</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>71</x>
+     <y>111</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>181</x>
+     <y>119</y>
     </hint>
    </hints>
   </connection>

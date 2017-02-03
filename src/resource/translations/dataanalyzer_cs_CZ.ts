@@ -1059,7 +1059,7 @@
     <message>
         <location filename="../../ui/forms/SearchDialog.ui" line="53"/>
         <source>Contains</source>
-        <translation type="unfinished"></translation>
+        <translation>Obsahují</translation>
     </message>
     <message>
         <location filename="../../ui/forms/SearchDialog.ui" line="87"/>
@@ -1068,26 +1068,33 @@
     </message>
     <message>
         <location filename="../../ui/forms/SearchDialog.ui" line="117"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="127"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="144"/>
+        <source>RegExp</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../ui/forms/SearchDialog.ui" line="158"/>
         <source>Basic Data Types</source>
         <translation>Základní datové typy</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="123"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="164"/>
         <source>File</source>
         <translation>Soubor</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="133"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="174"/>
         <source>Directory</source>
         <translation>Adresář</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="201"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="242"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/SearchDialog.ui" line="208"/>
+        <location filename="../../ui/forms/SearchDialog.ui" line="249"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
@@ -1125,7 +1132,8 @@
     <message>
         <location filename="../../ui/forms/About.ui" line="62"/>
         <source>qrc:/text/text/about.htm</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Translation sest in the code</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../ui/forms/About.ui" line="105"/>
