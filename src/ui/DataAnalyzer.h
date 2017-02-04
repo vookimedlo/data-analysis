@@ -49,9 +49,12 @@ public:
 public Q_SLOTS:
     void onScanTriggered();
     void onDataItemSelected(QModelIndex index);
+    void onDataItemClicked(QModelIndex index);
     void onDataItemCurrentChanged(const QModelIndex &current, const QModelIndex &previous);
+    void onSearchDDataItemClicked(QModelIndex index);
     void onSearchDataItemCurrentChanged(const QModelIndex &current, const QModelIndex &previous);
     void onDetailedDataItemSelected(QModelIndex index);
+    void onDetailedDataItemClicked(QModelIndex index);
     void onDetailedDataItemCurrentChanged(const QModelIndex &current, const QModelIndex &previous);
     void onAnalysisTextChange();
     void onDirOnly(bool showOnlyDirs);

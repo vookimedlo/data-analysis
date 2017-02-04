@@ -74,6 +74,7 @@ DataAnalyzer::DataAnalyzer(QWidget *parent)
     m_contextMenu->addAction(tr("Open file externally"), this, SLOT(onOpenFileExternallyTriggered()));
     m_contextMenu->addSeparator();
     m_contextMenu->addMenu(ui.menuOperation);
+    m_contextMenu->addMenu(ui.menuEdit);
 
     // Context menu connection
     connect(ui.detailedDataItemTreeView, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(onCustomContextMenuInDetailedDataItemTreeView(const QPoint &)));
@@ -114,8 +115,11 @@ void DataAnalyzer::onScanTriggered()
     {
         // Do the disconnection before the model is cleared
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDataItemCurrentClicked(const QModelIndex &)));
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDetailedDataItemClicked(const QModelIndex &)));
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onSearchDDataItemClicked(const QModelIndex &)));
 
         ui.detailsTreeWidget->clear();
         ui.previewWidget->clear();
@@ -159,7 +163,9 @@ void DataAnalyzer::onScanTriggered()
         }
 
         connect(ui.detailedDataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        connect(ui.detailedDataItemTreeView, SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDetailedDataItemClicked(const QModelIndex &)));
         connect(ui.dataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        connect(ui.dataItemTreeView, SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDataItemCurrentClicked(const QModelIndex &)));
 
         ui.fileOperationsTabWidget->setCurrentWidget(ui.scannedDataTab);          
     }
@@ -174,6 +180,7 @@ void DataAnalyzer::onDataItemSelected(QModelIndex index)
     {
         // Do the disconnection before the model is cleared
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDetailedDataItemClicked(const QModelIndex &)));
 
         // Remove model binding so we can delete the old one
         m_detailedDataItemSortFilterProxyModel->setSourceModel(nullptr);
@@ -198,15 +205,28 @@ void DataAnalyzer::onDataItemSelected(QModelIndex index)
         }       
 
         connect(ui.detailedDataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        connect(ui.detailedDataItemTreeView, SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDetailedDataItemClicked(const QModelIndex &)));
     }
 
     dataItemSelected(index);
+}
+
+void DataAnalyzer::onDataItemClicked(QModelIndex index)
+{
+    if (ui.dataItemTreeView->model() && ui.dataItemTreeView->selectionModel()->hasSelection())
+        onDataItemSelected(index);
 }
 
 void DataAnalyzer::onDataItemCurrentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     UNUSED_VARIABLE(previous);
     onDataItemSelected(current);
+}
+
+void DataAnalyzer::onSearchDDataItemClicked(QModelIndex index)
+{
+    if (ui.searchDataItemTreeView->model() && ui.searchDataItemTreeView->selectionModel()->hasSelection())
+        onDataItemSelected(index);
 }
 
 void DataAnalyzer::onSearchDataItemCurrentChanged(const QModelIndex& current, const QModelIndex& previous)
@@ -218,6 +238,12 @@ void DataAnalyzer::onSearchDataItemCurrentChanged(const QModelIndex& current, co
 void DataAnalyzer::onDetailedDataItemSelected(QModelIndex index)
 {
     dataItemSelected(m_detailedDataItemSortFilterProxyModel->mapToSource(index));
+}
+
+void DataAnalyzer::onDetailedDataItemClicked(QModelIndex index)
+{
+    if (ui.detailedDataItemTreeView->model() && ui.detailedDataItemTreeView->selectionModel()->hasSelection())
+        onDetailedDataItemSelected(index);
 }
 
 void DataAnalyzer::onDetailedDataItemCurrentChanged(const QModelIndex& current, const QModelIndex& previous)
@@ -240,6 +266,7 @@ void DataAnalyzer::onDirOnly(bool showOnlyDirs)
 
     // Do the disconnection before the model is cleared
     disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+    disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDataItemClicked(const QModelIndex &)));
 
     if (showOnlyDirs)
         ui.dataItemTreeView->setModel(m_directoryModel.get());
@@ -263,6 +290,7 @@ void DataAnalyzer::onDirOnly(bool showOnlyDirs)
     }
 
     connect(ui.dataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+    connect(ui.dataItemTreeView, SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDataItemClicked(const QModelIndex &)));
 }
 
 void DataAnalyzer::onCounterClockwiseRotate()
@@ -413,8 +441,11 @@ void DataAnalyzer::onNewTriggered()
     {
         // Do the disconnection before the model is cleared
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDataItemCurrentClicked(const QModelIndex &)));
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDetailedDataItemClicked(const QModelIndex &)));
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+        disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onSearchDDataItemClicked(const QModelIndex &)));
 
         ui.searchDataItemTreeView->setModel(nullptr);
         ui.searchDataItemTreeView->reset();
@@ -452,6 +483,8 @@ void DataAnalyzer::onSearchTriggered()
         if (dialog.exec() == QDialog::Accepted)
         {
             disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+            disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onSearchDDataItemClicked(const QModelIndex &)));
+
             ui.searchDataItemTreeView->setModel(nullptr);
             ui.searchDataItemTreeView->reset();
             m_searchFileDirectoryModel.reset(nullptr);
@@ -470,6 +503,8 @@ void DataAnalyzer::onSearchTriggered()
                 m_searchFileDirectoryModel.reset(new SearchDataItemTreeModel(&m_searchResult, SearchDataItemTreeModel::DataItemTreeModelE_NoDetails));
                 ui.searchDataItemTreeView->setModel(m_searchFileDirectoryModel.get());
                 connect(ui.searchDataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+                connect(ui.searchDataItemTreeView->selectionModel(), SIGNAL(currentClicked(const QModelIndex&)), this, SLOT(onSearchDataItemClicked(const QModelIndex &)));
+
                 ui.fileOperationsTabWidget->setCurrentWidget(ui.searchTab);
 
                 if (ui.searchDataItemTreeView->model())
@@ -478,8 +513,6 @@ void DataAnalyzer::onSearchTriggered()
                     ui.searchDataItemTreeView->selectionModel()->select(ui.searchDataItemTreeView->model()->index(0, 0, ui.searchDataItemTreeView->rootIndex()), QItemSelectionModel::Rows | QItemSelectionModel::ClearAndSelect);
                     onDataItemSelected(ui.searchDataItemTreeView->model()->index(0, 0, ui.searchDataItemTreeView->rootIndex()));
                 }
-
-
             }
         }
     }
@@ -542,6 +575,11 @@ void DataAnalyzer::onLanguageChanged(QAction* action)
 void DataAnalyzer::dataItemSelected(QModelIndex index)
 {
     DataItem *item = static_cast<DataItem *>(index.internalPointer());
+ 
+    /* Skip already proecessed item. */
+    if (m_selectedDataItem == item)
+        return;
+    
     m_selectedDataItem = item;
 
     ui.detailsTreeWidget->clear();

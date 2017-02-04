@@ -31,7 +31,10 @@ SearchSettings::SearchSettings(Directory& searchResult) : m_searchResult(searchR
                                                           m_containsTextEnabled(false),
                                                           m_containsTextRegExpEnabled(false),
                                                           m_directoryEnabled(false),
-                                                          m_fileEnabled(false)
+                                                          m_fileEnabled(false),
+                                                          m_tagNotInteresting(false),
+                                                          m_tagInteresting(false),
+                                                          m_tagProof(false)
 {
 
 }
