@@ -27,7 +27,8 @@
         <file alias="flags/usa.png">flags/BevelledUSA.png</file>
     </qresource>
     <qresource prefix="/text">
-        <file>text/about.htm</file>
+        <file alias="about.html">text/about.htm</file>
+        <file alias="about.cs.html">text/about.cs.htm</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="dataanalysis.css">css/dataanalysis.css</file>

@@ -320,6 +320,7 @@ void DataAnalyzer::onAbout()
     Ui::aboutDialog uiAbout;
     QDialog dialog(this);
     uiAbout.setupUi(&dialog);
+    uiAbout.textBrowser->setSource(tr("qrc:/text/about.html"));
     dialog.exec();
 }
 
