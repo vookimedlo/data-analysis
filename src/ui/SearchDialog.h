@@ -1,3 +1,4 @@
+#pragma once
 /****************************************************************************
 Data Analysis - tool for making a basic data analysis.
 Copyright(C) 2017  Michal Duda <github@vookimedlo.cz>
@@ -18,23 +19,22 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include "../model/fs/DataInfo.h"
+#include <QDialog>
+#include "ui_SearchDialog.h"
 
-#include "TagHelper.h"
+class SearchSettings;
 
-std::string TagHelper::tagToString(uint8_t tagId)
+class SearchDialog : public QDialog
 {
-    switch (tagId)
-    {
-    case TagHelperE_NotInteresting:
-        return tr("Not interesting").toStdString();
-    case TagHelperE_Interesting:
-        return tr("Interesting").toStdString();
-    case TagHelperE_Proof:
-        return tr("Proof").toStdString();
-    case TagHelperE_NoTag:
-    default:
-        return tr("No tag").toStdString();
-    }
-}
+    Q_OBJECT
 
+public:
+    SearchDialog(SearchSettings &settings, QWidget *parent = Q_NULLPTR);
+
+public Q_SLOTS:
+    void onAccept();
+
+protected:
+    Ui::SearchDialog m_uiSearchDialog;
+    SearchSettings &m_settings;
+};

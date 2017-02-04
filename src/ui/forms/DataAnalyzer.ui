@@ -635,8 +635,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>393</width>
-              <height>431</height>
+              <width>357</width>
+              <height>458</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -779,7 +779,7 @@
      <x>0</x>
      <y>0</y>
      <width>1544</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -925,16 +925,16 @@
    <widget class="QWidget" name="dockWidgetContents">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QTabWidget" name="tabWidget">
+      <widget class="QTabWidget" name="fileOperationsTabWidget">
        <property name="tabShape">
         <enum>QTabWidget::Triangular</enum>
        </property>
        <property name="currentIndex">
         <number>0</number>
        </property>
-       <widget class="QWidget" name="tab">
+       <widget class="QWidget" name="scannedDataTab">
         <attribute name="title">
-         <string>Directories</string>
+         <string>Scanned Data</string>
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
@@ -980,12 +980,48 @@
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="tab_3">
+       <widget class="QWidget" name="searchTab">
         <attribute name="title">
          <string>Search</string>
         </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <widget class="QTreeView" name="searchDataItemTreeView">
+           <property name="contextMenuPolicy">
+            <enum>Qt::CustomContextMenu</enum>
+           </property>
+           <property name="editTriggers">
+            <set>QAbstractItemView::NoEditTriggers</set>
+           </property>
+           <property name="showDropIndicator" stdset="0">
+            <bool>false</bool>
+           </property>
+           <property name="alternatingRowColors">
+            <bool>true</bool>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="uniformRowHeights">
+            <bool>true</bool>
+           </property>
+           <property name="animated">
+            <bool>true</bool>
+           </property>
+           <attribute name="headerCascadingSectionResizes">
+            <bool>true</bool>
+           </attribute>
+           <attribute name="headerStretchLastSection">
+            <bool>false</bool>
+           </attribute>
+          </widget>
+         </item>
+        </layout>
        </widget>
-       <widget class="QWidget" name="tab_4">
+       <widget class="QWidget" name="tagsTab">
         <attribute name="title">
          <string>Tags</string>
         </attribute>
@@ -1005,6 +1041,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Meta+Ctrl+Q</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
    <property name="menuRole">
     <enum>QAction::QuitRole</enum>
@@ -1044,7 +1083,10 @@
     <string>Initial file system scan</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Meta+Ctrl+S</string>
+    <string>Meta+Alt+S</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionCopy">
@@ -1057,6 +1099,9 @@
    <property name="shortcut">
     <string notr="true">Ctrl+C</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionCut">
    <property name="enabled">
@@ -1067,6 +1112,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+X</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionPaste">
@@ -1079,6 +1127,9 @@
    <property name="shortcut">
     <string notr="true">Ctrl+V</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionOpen">
    <property name="enabled">
@@ -1089,6 +1140,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+O</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionFinalReportCSV">
@@ -1114,16 +1168,19 @@
    <property name="shortcut">
     <string notr="true">Meta+Ctrl+M</string>
    </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
   </action>
   <action name="actionFind">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="text">
     <string>&amp;Search ...</string>
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+F</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionFileMagic">
@@ -1136,6 +1193,9 @@
    </property>
    <property name="shortcut">
     <string notr="true">Meta+Ctrl+T</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionFinalReportRTF">
@@ -1185,7 +1245,13 @@
   </action>
   <action name="actionNew">
    <property name="text">
-    <string>New ...</string>
+    <string>&amp;New ...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
   <action name="actionDatasetSettings">
@@ -1528,6 +1594,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionFind</sender>
+   <signal>triggered()</signal>
+   <receiver>DataAnalyzerClass</receiver>
+   <slot>onSearchTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>771</x>
+     <y>438</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onScanTriggered()</slot>
@@ -1549,5 +1631,6 @@
   <slot>onNewTriggered()</slot>
   <slot>onDatasetSettingsTriggered()</slot>
   <slot>onAboutQtTriggered()</slot>
+  <slot>onSearchTriggered()</slot>
  </slots>
 </ui>

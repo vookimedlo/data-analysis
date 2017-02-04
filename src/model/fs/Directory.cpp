@@ -39,21 +39,19 @@ Directory::~Directory()
     m_files.clear();
 }
 
-bool Directory::addDirectory(std::unique_ptr<Directory> &directory)
+bool Directory::addDirectory(Directory *directory)
 {
-    if (Directory *f = directory.get()) {
-        m_directories.push_back(f);
-        directory.release();
+    if (directory) {
+        m_directories.push_back(directory);
         return true;
     }
     return false;
 }
 
-bool Directory::addFile(std::unique_ptr<File> &file)
+bool Directory::addFile(File *file)
 {
-    if (File *f = file.get()) {
-        m_files.push_back(f);
-        file.release();
+    if (file) {
+        m_files.push_back(file);
         return true;
     }
     return false;

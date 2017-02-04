@@ -1,3 +1,4 @@
+#pragma once
 /****************************************************************************
 Data Analysis - tool for making a basic data analysis.
 Copyright(C) 2017  Michal Duda <github@vookimedlo.cz>
@@ -18,23 +19,19 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include "../model/fs/DataInfo.h"
+#include "DataItemTreeModel.h"
 
-#include "TagHelper.h"
+/// Forward declarations
+class Directory;
 
-std::string TagHelper::tagToString(uint8_t tagId)
+class SearchDataItemTreeModel : public DataItemTreeModel
 {
-    switch (tagId)
-    {
-    case TagHelperE_NotInteresting:
-        return tr("Not interesting").toStdString();
-    case TagHelperE_Interesting:
-        return tr("Interesting").toStdString();
-    case TagHelperE_Proof:
-        return tr("Proof").toStdString();
-    case TagHelperE_NoTag:
-    default:
-        return tr("No tag").toStdString();
-    }
-}
+    Q_OBJECT
+
+public:
+    explicit SearchDataItemTreeModel(Directory *root, DataItemTreeModelE mode, QObject *parent = nullptr);
+    ~SearchDataItemTreeModel();
+
+    QModelIndex parent(const QModelIndex &index) const override;
+};
 

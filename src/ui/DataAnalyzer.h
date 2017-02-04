@@ -26,8 +26,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../controller/DataItemSortFilterProxyModel.h"
 #include "../controller/DataItemTreeModel.h"
 #include "../controller/DirectoryTreeModel.h"
+#include "../controller/SearchDataItemTreeModel.h"
 #include "../model/GlobalInformation.h"
 #include "../model/fs/DataInfo.h"
+#include "../model/fs/Directory.h"
 
 // Forward declarations
 class DataItem;
@@ -42,12 +44,17 @@ class DataAnalyzer : public QMainWindow
 
 public:
     DataAnalyzer(QWidget *parent = Q_NULLPTR);
+    ~DataAnalyzer();
 
 public Q_SLOTS:
     void onScanTriggered();
     void onDataItemSelected(QModelIndex index);
+    void onDataItemClicked(QModelIndex index);
     void onDataItemCurrentChanged(const QModelIndex &current, const QModelIndex &previous);
+    void onSearchDDataItemClicked(QModelIndex index);
+    void onSearchDataItemCurrentChanged(const QModelIndex &current, const QModelIndex &previous);
     void onDetailedDataItemSelected(QModelIndex index);
+    void onDetailedDataItemClicked(QModelIndex index);
     void onDetailedDataItemCurrentChanged(const QModelIndex &current, const QModelIndex &previous);
     void onAnalysisTextChange();
     void onDirOnly(bool showOnlyDirs);
@@ -64,6 +71,7 @@ public Q_SLOTS:
     void onRTFReportTriggered();
     void onHTMLReportTriggered();
     void onNewTriggered();
+    void onSearchTriggered();
     void onDatasetSettingsTriggered();
     void onOpenFileExternallyTriggered();
     void onCustomContextMenuInDetailedDataItemTreeView(const QPoint &point);
@@ -86,11 +94,13 @@ private:
     
     std::unique_ptr<DirectoryTreeModel> m_directoryModel;
     std::unique_ptr<DataItemTreeModel> m_fileDirectoryModel;
+    std::unique_ptr<SearchDataItemTreeModel> m_searchFileDirectoryModel;
 
     std::unique_ptr<DataItemTreeModel> m_detailedDataItemModel;
     std::unique_ptr<DataItemSortFilterProxyModel> m_detailedDataItemSortFilterProxyModel;
     DataItem *m_analysisDataItem;
     DataItem *m_selectedDataItem;
+    Directory m_searchResult;
 
     GlobalInformation m_globalInformation;
     QMenu *m_contextMenu;

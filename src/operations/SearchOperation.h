@@ -1,3 +1,4 @@
+#pragma once
 /****************************************************************************
 Data Analysis - tool for making a basic data analysis.
 Copyright(C) 2017  Michal Duda <github@vookimedlo.cz>
@@ -18,23 +19,36 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include "../model/fs/DataInfo.h"
+#include <future>
+#include "../operations/Operations.h"
 
-#include "TagHelper.h"
+/// Forward declarations
+class DataItem;
+class SearchSettings;
 
-std::string TagHelper::tagToString(uint8_t tagId)
+class SearchOperation : public Operations
 {
-    switch (tagId)
-    {
-    case TagHelperE_NotInteresting:
-        return tr("Not interesting").toStdString();
-    case TagHelperE_Interesting:
-        return tr("Interesting").toStdString();
-    case TagHelperE_Proof:
-        return tr("Proof").toStdString();
-    case TagHelperE_NoTag:
-    default:
-        return tr("No tag").toStdString();
-    }
-}
+public:
+    SearchOperation(SearchSettings& settings, DataItem &rootItem);
+    void start(QString dir) override;
+    void start() override;
+    void cancel() override;
+    bool isFinished() const override;
+    QString path() const override;
+    uint32_t totalFilesCount() const override;
 
+protected:
+    void startOperation();
+
+private:
+    bool containsText(const QString &text, const QString &textToSearch);
+    bool containsText(const QString &text, const QRegularExpression &textToSearch);
+
+    bool hasDataItemMatch(const DataItem *item);
+
+private:
+    std::future<void> m_asyncScanWorker;
+    bool m_cancelWorkerActivity;
+    SearchSettings &m_settings;
+    DataItem &m_RootItem;
+};
