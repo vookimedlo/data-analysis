@@ -20,11 +20,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
 #include <string>
+#include <QString>
 
 class FS
 {
 public:
     virtual ~FS(){};
 
+    static const QString systemRootPath();
+    static const QString homeDir();
+    static const QString tmpDir();
     static std::string LongPathNameToShort(std::string path);
 };

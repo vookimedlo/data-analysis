@@ -18,7 +18,25 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
+#include <QDir>
+#include <QStandardPaths>
+
 #include "../FS.h"
+
+const QString FS::systemRootPath()
+{
+    return "/";
+}
+
+const QString FS::homeDir()
+{
+    return QDir::homePath();
+}
+
+const QString FS::tmpDir()
+{
+    return QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+}
 
 std::string FS::LongPathNameToShort(std::string path)
 {
