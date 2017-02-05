@@ -77,68 +77,68 @@
 <context>
     <name>DataAnalyzer</name>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="63"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="64"/>
         <source>Search Root</source>
         <translation>Kořen výsledků hledání</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="74"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="75"/>
         <source>Open file externally</source>
         <translation>Otevřít v externím programu</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="101"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="102"/>
         <source>Search Results</source>
         <translation>Výsledky hledání</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="323"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="325"/>
         <source>qrc:/text/about.html</source>
         <translation>qrc:/text/about.cs.html</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="334"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="336"/>
         <source>MD5 computation</source>
         <translation>Výpočet MD5 otisku</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="340"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="342"/>
         <source>SHA-1 computation</source>
         <translation>Výpočet SHA-1 otisku</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="346"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="348"/>
         <source>SHA3-512 computation</source>
         <translation>Výpočet SHA3-512 otisku</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="358"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="360"/>
         <source>Type detection</source>
         <translation>Detekce typu</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="368"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="370"/>
         <source>CSV report</source>
         <translation>CSV zpráva</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="395"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="397"/>
         <source>RTF report</source>
         <translation>RTF zpráva</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="404"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="406"/>
         <source>HTML report</source>
         <translation>HTML zpráva</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="437"/>
-        <location filename="../../ui/DataAnalyzer.cpp" line="524"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="439"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="526"/>
         <source>Dataset settings</source>
         <translation>Nastvení souboru dat</translation>
     </message>
     <message>
-        <location filename="../../ui/DataAnalyzer.cpp" line="497"/>
+        <location filename="../../ui/DataAnalyzer.cpp" line="499"/>
         <source>Searching ...</source>
         <translation>Vyhledávání ...</translation>
     </message>

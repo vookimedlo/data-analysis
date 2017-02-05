@@ -19,9 +19,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
 #include <Windows.h>
+#include <QDir>
+#include <QStandardPaths>
 
 #include "../FS.h"
 #include "../../util/StringHelper.h"
+
+const QString FS::systemRootPath()
+{
+    return "c:";
+}
+
+const QString FS::homeDir()
+{
+    return QDir::homePath();
+}
+
+const QString FS::tmpDir()
+{
+    return QStandardPaths::writableLocation(QStandardPaths::TempLocation);
+}
 
 std::string FS::LongPathNameToShort(std::string path)
 {
