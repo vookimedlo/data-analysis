@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "OperationDialog.h"
 #include "ui_About.h"
 #include "ui_FinalReportDialog.h"
+#include "../abstraction/fs.h"
 #include "../controller/DetailsPublisher.h"
 #include "../controller/SearchSettings.h"
 #include "../model/GlobalInformation.h"
@@ -111,6 +112,7 @@ void DataAnalyzer::onScanTriggered()
 {
     ScanDirOperation operation;
     OperationDialog dialog(operation, OperationDialog::ModeE_DirSelect, this);
+    dialog.setPath(FS::systemRootPath());
     if (dialog.exec() == QDialog::Accepted)
     {
         // Do the disconnection before the model is cleared

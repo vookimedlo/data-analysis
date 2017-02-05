@@ -44,6 +44,11 @@ void OperationDialog::setTitle(const QString& title)
     setWindowTitle(title);
 }
 
+void OperationDialog::setPath(const QString &value)
+{
+    labelScanFSValue->setText(value);
+}
+
 void OperationDialog::onScannedDirChangeNotification(QString name)
 {
     scannedDirChanged(name);
@@ -103,6 +108,7 @@ void OperationDialog::onCancel()
 void OperationDialog::onDirSelect()
 {
     QFileDialog dialog(this);
+    dialog.setDirectory(labelScanFSValue->text());
     dialog.setFileMode(QFileDialog::Directory);
     dialog.setOption(QFileDialog::ShowDirsOnly, true);
     if (dialog.exec() == QDialog::Accepted)
