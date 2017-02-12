@@ -27,12 +27,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../util/ModelHelper.h"
 #include "../util/StringHelper.h"
 #include "../util/TagHelper.h"
+#include "ReportSettings.h"
 
 #include "RTFReportWriter.h"
 
 
 
-RTFReportWriter::RTFReportWriter(std::string outputFilePath, const QString &rootPath) : ReportWriter(rootPath), m_OutputStream(), m_OutputFilePath(outputFilePath)
+RTFReportWriter::RTFReportWriter(const ReportSettings &reportSettings, const QString &rootPath) : ReportWriter(rootPath), m_OutputStream(), m_ReportSettings(reportSettings)
 {
 }
 
@@ -43,16 +44,19 @@ RTFReportWriter::~RTFReportWriter()
 
 bool RTFReportWriter::open()
 {
-    m_OutputStream.open(m_OutputFilePath);
+    m_OutputStream.open(StringHelper::toStdString(m_ReportSettings.getFilePath()));
 
     m_OutputStream << "{\\rtf1\\ansi\\ansicpg1250\\deff0\\nouicompat\\deflang1029{\\fonttbl{\\f0\\fnil\\fcharset238 Calibri;}{\\f1\\fnil\\fcharset0 Calibri;}}" << std::endl;
     m_OutputStream << "{\\*\\generator Riched20 10.0.14393}\\viewkind4\\uc1\\pard\\sa200\\sl276\\slmult1\\f0\\fs22";
-    m_OutputStream << "Protokol" << std::endl;
-    m_OutputStream << "digitalni stopa c. " << std::endl;
-    m_OutputStream << "cislo" << std::endl;
+    m_OutputStream << rtfEscapeString(m_ReportSettings.getTitle()) << std::endl;
+    m_OutputStream << "\\par " << std::endl;
+    m_OutputStream << rtfEscapeString(m_ReportSettings.getReference()) << std::endl;
+    m_OutputStream << "\\par " << std::endl;
+    m_OutputStream << rtfEscapeString(m_ReportSettings.getId()) << std::endl;
+    m_OutputStream << "\\par " << std::endl;
 
     m_OutputStream << "\\pard\\sb500\\sa200\\sl276\\slmult1\\qj\\fs24";
-    m_OutputStream << "Zde bude nejake uvodni slovo";
+    m_OutputStream << rtfEscapeString(m_ReportSettings.getPerex()) << std::endl;
     m_OutputStream << "\\par" << std::endl;
 
     m_OutputStream << "\\pard\\sb500\\sa200\\sl276\\slmult1 ---------------------------------------------------------------------------------------------------------------\\par" << std::endl;
@@ -62,11 +66,27 @@ bool RTFReportWriter::open()
 
 bool RTFReportWriter::write(DataItem& dataItem)
 {
+    if (m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_Directories))
+        return true;
+
+    uint8_t tag = dataItem.isInfoValid(DataInfo::DataInfoE_Tag) ? StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_Tag)).toUInt() : 0;
+
+    if (!m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_NotImporatant) && tag == 1)
+        return true;
+
+    if (!m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_Imporatant) && tag == 2)
+        return true;
+
+    if (!m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_Proof) && tag == 3)
+        return true;
+
+    if (!m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_NoTag) && tag == 0)
+        return true;
+
     m_OutputStream << "\\pard\\sa200\\sl276\\slmult1\\b ";
     m_OutputStream << rtfEscapeString(dataItem.name());
     m_OutputStream << " \\b0 - ";
 
-    uint8_t tag = dataItem.isInfoValid(DataInfo::DataInfoE_Tag) ? QString::fromStdString(dataItem.info(DataInfo::DataInfoE_Tag)).toUInt() : 0;
     m_OutputStream << rtfEscapeString(TagHelper::tagToString(tag));
     m_OutputStream << "\\par " << std::endl;
 
@@ -74,11 +94,14 @@ bool RTFReportWriter::write(DataItem& dataItem)
     m_OutputStream << rtfEscapeString(dataItem.path());
     m_OutputStream << "\\i0 \\par " << std::endl;
 
-    // "Technicky popis souboru (velikost, cas vytvoreni a posledni upravy, atributy...)";
-    m_OutputStream << "Size: ";
-    m_OutputStream << rtfEscapeString(QString::number(dataItem.size()));
-    m_OutputStream << " (in bytes)";
-    m_OutputStream << "\\line ";
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Size))
+    {
+        m_OutputStream << "Size: ";
+        m_OutputStream << rtfEscapeString(QString::number(dataItem.size()));
+        m_OutputStream << " (in bytes)";
+        m_OutputStream << "\\line ";
+    }
+
     m_OutputStream << "Creation Date: ";
     m_OutputStream << rtfEscapeString(QDateTime::fromTime_t(dataItem.creationTimestamp()).toString(Qt::SystemLocaleShortDate));
     m_OutputStream << "\\line ";
@@ -91,7 +114,7 @@ bool RTFReportWriter::write(DataItem& dataItem)
     m_OutputStream << "\\par ";
 
     m_OutputStream << "\\pard\\sa200\\sl276\\slmult1 ";
-    m_OutputStream << "Nahled (pokud je to mozne)";
+    m_OutputStream << "Preview (if possible)";
     m_OutputStream << "\\par ";
 
     //m_OutputStream << "Metadata ze souboru pokud jsou k dispozici";

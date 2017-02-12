@@ -19,32 +19,24 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include <fstream>
-#include <string>
-#include <QCoreApplication>
+#include "ui_FinalReportDialog.h"
+#include "FinalReportDialog.h"
 
-#include "ReportWriter.h"
-
-// Forward declarations
 class ReportSettings;
 
-class RTFReportWriter : public ReportWriter
+class RTFFinalReportDialog : public FinalReportDialog
 {
-    Q_DECLARE_TR_FUNCTIONS(RTFReportWriter);
+    Q_OBJECT
 
 public:
-    explicit RTFReportWriter(const ReportSettings &reportSettings, const QString &rootPath);
-    ~RTFReportWriter() override;
-    bool open() override;
-    bool write(DataItem &dataiItem) override;
-    bool close() override;
+    RTFFinalReportDialog(ReportSettings &settings, QWidget *parent = Q_NULLPTR);
 
-protected:
-    static std::string rtfEscapeString(const QString      &str);
-    static std::string rtfEscapeString(const std::string  &str);
-    static std::string rtfEscapeString(const std::wstring &str);
+public Q_SLOTS:
+    void onAccept() override;
+    void onDefault() override;
+    void onFileSelect() override;
+    void onSelectAll() override;
 
 private:
-    std::ofstream m_OutputStream;
-    const ReportSettings &m_ReportSettings;
+    void defaultSettings() const;
 };

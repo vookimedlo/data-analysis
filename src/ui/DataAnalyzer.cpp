@@ -52,6 +52,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "DataAnalyzer.h"
 #include "../operations/SearchOperation.h"
+#include "RTFFinalReportDialog.h"
 
 DataAnalyzer::DataAnalyzer(QWidget *parent)
     : QMainWindow(parent),
@@ -389,13 +390,33 @@ void DataAnalyzer::onRTFReportTriggered()
 {
     if (m_topLevelDirectory)
     {
-        QString rootPath = StringHelper::toQString(m_topLevelDirectory->directories()[0]->name());
-        RTFReportWriter writer("C:/tmp/report.rtf", rootPath);
-        ReportOperation operation(writer, *(m_topLevelDirectory->directories()[0]));
+        QString dialogTitle(tr("RTF report"));
+        ReportSettings settings;
+        settings.setTitle(StringHelper::toQString(m_globalInformation.getReferenceNumber()));
+        settings.setReference(StringHelper::toQString(m_globalInformation.getReference()));
+        settings.setId(StringHelper::toQString(m_globalInformation.getId()));
+        settings.setPerex(ui.reportTextEdit->toPlainText());
 
-        OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
-        dialog.setTitle(tr("RTF report"));
-        dialog.exec();
+        RTFFinalReportDialog reportDialog(settings, this);
+        reportDialog.setWindowTitle(dialogTitle);
+
+        if (reportDialog.exec() == QDialog::Accepted)
+        {
+            QString rootPath = StringHelper::toQString(m_topLevelDirectory->directories()[0]->name());
+            RTFReportWriter writer(settings, rootPath);
+            ReportOperation operation(writer, *(m_topLevelDirectory->directories()[0]));
+
+            OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
+            dialog.setTitle(dialogTitle);
+
+            if (dialog.exec() == QDialog::Accepted)
+            {
+                ui.reportTextEdit->setPlainText(settings.getPerex());
+                m_globalInformation.setReferenceNumber(StringHelper::toStdString(settings.getTitle()));
+                m_globalInformation.setReference(StringHelper::toStdString(settings.getReference()));
+                m_globalInformation.setId(StringHelper::toStdString(settings.getId()));
+            }
+        }
     }
 }
 

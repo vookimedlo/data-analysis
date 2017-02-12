@@ -1199,9 +1199,6 @@
    </property>
   </action>
   <action name="actionFinalReportRTF">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="icon">
     <iconset resource="../../resource/DataAnalyzer.qrc">
      <normaloff>:/images/frame-adriankierman-report-page-rtf.png</normaloff>:/images/frame-adriankierman-report-page-rtf.png</iconset>

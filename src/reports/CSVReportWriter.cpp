@@ -19,13 +19,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
 #include <QDateTime>
-#include "ReportSettings.h"
+
 #include "../model/fs/DataItem.h"
 #include "../model/fs/Directory.h"
 #include "../model/fs/File.h"
 #include "../util/ModelHelper.h"
 #include "../util/StringHelper.h"
 #include "../util/TagHelper.h"
+#include "ReportSettings.h"
 
 #include "CSVReportWriter.h"
 
