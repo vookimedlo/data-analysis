@@ -981,7 +981,7 @@
         <translation>Adresářová struktura:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="146"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="161"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -996,17 +996,17 @@
         <translation>Přečteno souborů:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="285"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="300"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="300"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="315"/>
         <source>&amp;Run</source>
         <translation>&amp;Spustit</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="315"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="330"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Zrušit</translation>
     </message>
