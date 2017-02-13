@@ -19,15 +19,28 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
 #include <QFile>
+#include <QString>
+#include "../model/fs/DataItem.h"
+#include "../model/fs/File.h"
+#include "../util/StringHelper.h"
 
 #include "CopyReportThumbnail.h"
 
 
-CopyReportThumbnail::CopyReportThumbnail(const QString& originalPath) : m_originalPath(originalPath)
+CopyReportThumbnail::CopyReportThumbnail(const DataItem& item) : m_item(item)
 {
+}
+
+bool CopyReportThumbnail::inlineThumbnail(QString& outInlinedData)
+{
+    return false;
 }
 
 bool CopyReportThumbnail::write(const QString& pathName)
 {
-    return QFile::copy(m_originalPath, pathName);
+    const File *file = dynamic_cast<const File *>(&m_item);
+    if (!file)
+        return false;
+
+    return QFile::copy(StringHelper::toQString(const_cast<DataItem&>(m_item).path()), pathName);
 }

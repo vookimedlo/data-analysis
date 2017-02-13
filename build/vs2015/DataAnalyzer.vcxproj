@@ -173,6 +173,8 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  "$(OutDir)"
     <ClCompile Include="..\..\src\reports\HTMLReportThumbnailGenerator.cpp" />
     <ClCompile Include="..\..\src\reports\HTMLReportWriter.cpp" />
     <ClCompile Include="..\..\src\reports\ReportSettings.cpp" />
+    <ClCompile Include="..\..\src\reports\RTFReportThumbnail.cpp" />
+    <ClCompile Include="..\..\src\reports\RTFReportThumbnailGenerator.cpp" />
     <ClCompile Include="..\..\src\ui\CSVFinalReportDialog.cpp" />
     <ClCompile Include="..\..\src\ui\FinalReportDialog.cpp" />
     <ClCompile Include="..\..\src\ui\GlobalInformationDialog.cpp" />
@@ -410,6 +412,8 @@ xcopy /Y ..\..\src\3rdParty\libmagic\win32\magic.mgc  "$(OutDir)"
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_MULTIMEDIA_LIB -DQT_MULTIMEDIAWIDGETS_LIB -DQT_SQL_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB "-I.\..\..\src\3rdParty\libmagic\x64\include" "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtMultimedia" "-I$(QTDIR)\include\QtMultimediaWidgets" "-I$(QTDIR)\include\QtSql" "-I$(QTDIR)\include\QtSvg" "-I$(QTDIR)\include\QtWidgets"</Command>
     </CustomBuild>
+    <ClInclude Include="..\..\src\reports\RTFReportThumbnail.h" />
+    <ClInclude Include="..\..\src\reports\RTFReportThumbnailGenerator.h" />
     <ClInclude Include="GeneratedFiles\ui_SearchDialog.h" />
     <CustomBuild Include="..\..\src\ui\FinalReportDialog.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

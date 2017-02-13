@@ -127,7 +127,7 @@ bool HTMLReportWriter::write(DataItem& dataItem)
     QString thumbnailName(QString::number(m_UniqueNumber++) + (fileInfo.completeSuffix().isEmpty() ? "" : ( "." + fileInfo.completeSuffix())));
     QString thumbnailURL(htmlOutput.baseName() + "/" + thumbnailName);
     QDir thumbnailDir(thumbnailPath);
-    std::unique_ptr<ReportThumbnail> thumbnail = m_ReportThumbnailGenerator.generate(originalPathName);
+    std::unique_ptr<ReportThumbnail> thumbnail = m_ReportThumbnailGenerator.generate(dataItem);
 
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Preview))
     {

@@ -22,14 +22,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QString>
 #include "ReportThumbnail.h"
 
+class DataItem;
+
 class CopyReportThumbnail : public ReportThumbnail
 {
 public:
-    explicit CopyReportThumbnail(const QString &originalName);
+    explicit CopyReportThumbnail(const DataItem& item);
     virtual ~CopyReportThumbnail() {}
 
+    bool inlineThumbnail(QString& outInlinedData) override;
     bool write(const QString& pathName) override;
 
 private:
-    QString m_originalPath;
+    const DataItem& m_item;
 };

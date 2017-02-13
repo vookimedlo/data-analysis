@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDate>
 #include <QString>
 
+
 #include "../model/fs/DataItem.h"
 #include "../model/fs/Directory.h"
 #include "../model/fs/File.h"
@@ -28,12 +29,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../util/StringHelper.h"
 #include "../util/TagHelper.h"
 #include "ReportSettings.h"
+#include "ReportThumbnailGenerator.h"
 
 #include "RTFReportWriter.h"
 
 
 
-RTFReportWriter::RTFReportWriter(const ReportSettings &reportSettings, const QString &rootPath) : ReportWriter(rootPath), m_OutputStream(), m_ReportSettings(reportSettings)
+RTFReportWriter::RTFReportWriter(const ReportSettings &reportSettings, ReportThumbnailGenerator &reportThumbnailGenerator, const QString &rootPath) : ReportWriter(rootPath), m_OutputStream(), m_ReportSettings(reportSettings), m_ReportThumbnailGenerator(reportThumbnailGenerator)
 {
 }
 
@@ -47,7 +49,8 @@ bool RTFReportWriter::open()
     m_OutputStream.open(StringHelper::toStdString(m_ReportSettings.getFilePath()));
 
     m_OutputStream << "{\\rtf1\\ansi\\ansicpg1250\\deff0\\nouicompat\\deflang1029{\\fonttbl{\\f0\\fnil\\fcharset238 Calibri;}{\\f1\\fnil\\fcharset0 Calibri;}}" << std::endl;
-    m_OutputStream << "{\\*\\generator Riched20 10.0.14393}\\viewkind4\\uc1\\pard\\sa200\\sl276\\slmult1\\f0\\fs22";
+    m_OutputStream << "{\\*\\generator Riched20 10.0.14393}\\viewkind4\\uc1\\pard\\sa200\\sl276\\slmult1\\f0\\fs22 ";
+    m_OutputStream << "\\line " << std::endl;
     m_OutputStream << rtfEscapeString(m_ReportSettings.getTitle()) << std::endl;
     m_OutputStream << "\\par " << std::endl;
     m_OutputStream << rtfEscapeString(m_ReportSettings.getReference()) << std::endl;
@@ -66,8 +69,8 @@ bool RTFReportWriter::open()
 
 bool RTFReportWriter::write(DataItem& dataItem)
 {
-    if (m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_Directories))
-        return true;
+//    if (m_ReportSettings.isRestrictionSet(ReportSettings::RestrictionE_Directories))
+//        return true;
 
     uint8_t tag = dataItem.isInfoValid(DataInfo::DataInfoE_Tag) ? StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_Tag)).toUInt() : 0;
 
@@ -114,10 +117,14 @@ bool RTFReportWriter::write(DataItem& dataItem)
     m_OutputStream << "\\par ";
 
     m_OutputStream << "\\pard\\sa200\\sl276\\slmult1 ";
-    m_OutputStream << "Preview (if possible)";
+
+    std::unique_ptr<ReportThumbnail> thumbnail = m_ReportThumbnailGenerator.generate(dataItem);
+    QString inlinedPicture;
+    if (thumbnail->inlineThumbnail(inlinedPicture))
+        m_OutputStream << StringHelper::toStdString(inlinedPicture);
+
     m_OutputStream << "\\par ";
 
-    //m_OutputStream << "Metadata ze souboru pokud jsou k dispozici";
     m_OutputStream << "Type: ";
     m_OutputStream << (dynamic_cast<const File *>(&dataItem) ? "File" : "Directory");
     m_OutputStream << "\\par ";

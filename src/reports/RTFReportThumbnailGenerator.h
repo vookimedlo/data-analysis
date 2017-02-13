@@ -20,14 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
 #include <memory>
+#include "ReportThumbnail.h"
+#include "ReportThumbnailGenerator.h"
 
-class QString;
-
-class ReportThumbnail
+class RTFReportThumbnailGenerator : public ReportThumbnailGenerator
 {
 public:
-    virtual ~ReportThumbnail() {};
+    virtual ~RTFReportThumbnailGenerator() {}
 
-    virtual bool inlineThumbnail(QString& outInlinedData) = 0;
-    virtual bool write(const QString& pathName) = 0;
+    std::unique_ptr<ReportThumbnail> generate(const DataItem& item) override;
 };

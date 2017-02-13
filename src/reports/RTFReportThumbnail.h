@@ -19,15 +19,20 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include <memory>
+#include <QString>
+#include "ReportThumbnail.h"
 
-class QString;
+class DataItem;
 
-class ReportThumbnail
+class RTFReportThumbnail : public ReportThumbnail
 {
 public:
-    virtual ~ReportThumbnail() {};
+    explicit RTFReportThumbnail(const DataItem &item);
+    virtual ~RTFReportThumbnail() {}
 
-    virtual bool inlineThumbnail(QString& outInlinedData) = 0;
-    virtual bool write(const QString& pathName) = 0;
+    bool inlineThumbnail(QString& outInlinedData) override;
+    bool write(const QString& pathName) override;
+
+private:
+    const DataItem& m_dataItem;
 };
