@@ -48,6 +48,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../ui/SearchDialog.h"
 #include "../ui/CSVFinalReportDialog.h"
 #include "../ui/HTMLFinalReportDialog.h"
+#include "../ui/RTFFinalReportDialog.h"
 #include "../util/compiler.h"
 #include "../util/StringHelper.h"
 

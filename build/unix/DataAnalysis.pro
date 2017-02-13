@@ -47,10 +47,13 @@ SOURCES += \
     ../../src/ui/CSVFinalReportDialog.cpp \
     ../../src/ui/FinalReportDialog.cpp \
     ../../src/ui/HTMLFinalReportDialog.cpp \
+    ../../src/ui/RTFFinalReportDialog.cpp \
     ../../src/ui/GlobalInformationDialog.cpp \
     ../../src/ui/SearchDialog.cpp \
     ../../src/reports/CopyReportThumbnail.cpp \
     ../../src/reports/HTMLReportThumbnailGenerator.cpp \
+    ../../src/reports/RTFReportThumbnail.cpp \
+    ../../src/reports/RTFReportThumbnailGenerator.cpp \
     ../../src/model/GlobalInformation.cpp
 
 
@@ -87,12 +90,15 @@ HEADERS  += \
     ../../src/ui/CSVFinalReportDialog.h \
     ../../src/ui/FinalReportDialog.h \
     ../../src/ui/HTMLFinalReportDialog.h \
+    ../../src/ui/RTFFinalReportDialog.h \
     ../../src/ui/GlobalInformationDialog.h \
     ../../src/ui/SearchDialog.h \
     ../../src/reports/CopyReportThumbnail.h \
     ../../src/reports/HTMLReportThumbnailGenerator.h \
     ../../src/reports/ReportThumbnail.h \
     ../../src/reports/ReportThumbnailGenerator.h \
+    ../../src/reports/RTFReportThumbnailGenerator.h \
+    ../../src/reports/RTFReportThumbnail.h \
     ../../src/model/GlobalInformation.h \
     ../../src/util/compiler.h
 
