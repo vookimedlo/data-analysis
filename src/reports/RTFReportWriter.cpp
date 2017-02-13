@@ -50,7 +50,6 @@ bool RTFReportWriter::open()
 
     m_OutputStream << "{\\rtf1\\ansi\\ansicpg1250\\deff0\\nouicompat\\deflang1029{\\fonttbl{\\f0\\fnil\\fcharset238 Calibri;}{\\f1\\fnil\\fcharset0 Calibri;}}" << std::endl;
     m_OutputStream << "{\\*\\generator Riched20 10.0.14393}\\viewkind4\\uc1\\pard\\sa200\\sl276\\slmult1\\f0\\fs22 ";
-    m_OutputStream << "\\line " << std::endl;
     m_OutputStream << rtfEscapeString(m_ReportSettings.getTitle()) << std::endl;
     m_OutputStream << "\\par " << std::endl;
     m_OutputStream << rtfEscapeString(m_ReportSettings.getReference()) << std::endl;
