@@ -1,4 +1,3 @@
-#pragma once
 /****************************************************************************
 Data Analysis - tool for making a basic data analysis.
 Copyright(C) 2017  Michal Duda <github@vookimedlo.cz>
@@ -18,16 +17,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
-
 #include <memory>
+#include "RTFReportThumbnail.h"
 
-class QString;
+#include "RTFReportThumbnailGenerator.h"
 
-class ReportThumbnail
+std::unique_ptr<ReportThumbnail> RTFReportThumbnailGenerator::generate(const DataItem& item)
 {
-public:
-    virtual ~ReportThumbnail() {};
-
-    virtual bool inlineThumbnail(QString& outInlinedData) = 0;
-    virtual bool write(const QString& pathName) = 0;
-};
+    return std::unique_ptr<ReportThumbnail>(std::make_unique<RTFReportThumbnail>(item));
+}

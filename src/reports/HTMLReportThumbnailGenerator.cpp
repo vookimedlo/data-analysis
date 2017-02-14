@@ -22,7 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "HTMLReportThumbnailGenerator.h"
 
-std::unique_ptr<ReportThumbnail> HTMLReportThumbnailGenerator::generate(const QString& pathName)
+std::unique_ptr<ReportThumbnail> HTMLReportThumbnailGenerator::generate(const DataItem& item)
 {
-    return std::unique_ptr<ReportThumbnail>(std::make_unique<CopyReportThumbnail>(pathName));
+    return std::unique_ptr<ReportThumbnail>(std::make_unique<CopyReportThumbnail>(item));
 }

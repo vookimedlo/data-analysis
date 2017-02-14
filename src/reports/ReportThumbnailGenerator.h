@@ -22,12 +22,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <memory>
 #include "ReportThumbnail.h"
 
-class QString;
+class DataItem;
 
 class ReportThumbnailGenerator
 {
 public:
     virtual ~ReportThumbnailGenerator() {}
 
-    virtual std::unique_ptr<ReportThumbnail> generate(const QString& pathName) = 0;
+    virtual std::unique_ptr<ReportThumbnail> generate(const DataItem& item) = 0;
 };

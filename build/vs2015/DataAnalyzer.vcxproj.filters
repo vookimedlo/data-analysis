@@ -258,6 +258,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_RTFFinalReportDialog.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\reports\RTFReportThumbnail.cpp">
+      <Filter>Source Files\Report</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\RTFReportThumbnailGenerator.cpp">
+      <Filter>Source Files\Report</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\src\controller\DirectoryTreeModel.h">
@@ -385,18 +391,6 @@
     <ClInclude Include="..\..\src\reports\ReportSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\reports\ReportThumbnailGenerator.h">
-      <Filter>Source Files\Report</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\reports\ReportThumbnail.h">
-      <Filter>Source Files\Report</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\reports\HTMLReportThumbnailGenerator.h">
-      <Filter>Source Files\Report</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\reports\CopyReportThumbnail.h">
-      <Filter>Source Files\Report</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_GlobalInformationDialog.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -422,6 +416,24 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\operations\SearchOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\CopyReportThumbnail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\ReportThumbnailGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\RTFReportThumbnailGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\HTMLReportThumbnailGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\ReportThumbnail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\RTFReportThumbnail.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

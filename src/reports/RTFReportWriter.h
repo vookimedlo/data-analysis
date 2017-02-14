@@ -27,13 +27,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 // Forward declarations
 class ReportSettings;
+class ReportThumbnailGenerator;
 
 class RTFReportWriter : public ReportWriter
 {
     Q_DECLARE_TR_FUNCTIONS(RTFReportWriter);
 
 public:
-    explicit RTFReportWriter(const ReportSettings &reportSettings, const QString &rootPath);
+    explicit RTFReportWriter(const ReportSettings &reportSettings, ReportThumbnailGenerator &reportThumbnailGenerator, const QString &rootPath);
     ~RTFReportWriter() override;
     bool open() override;
     bool write(DataItem &dataiItem) override;
@@ -47,4 +48,5 @@ protected:
 private:
     std::ofstream m_OutputStream;
     const ReportSettings &m_ReportSettings;
+    ReportThumbnailGenerator &m_ReportThumbnailGenerator;
 };

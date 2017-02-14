@@ -23,12 +23,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ReportThumbnail.h"
 #include "ReportThumbnailGenerator.h"
 
-class QString;
-
 class HTMLReportThumbnailGenerator : public ReportThumbnailGenerator
 {
 public:
     virtual ~HTMLReportThumbnailGenerator() {}
 
-    std::unique_ptr<ReportThumbnail> generate(const QString& pathName) override;
+    std::unique_ptr<ReportThumbnail> generate(const DataItem& item) override;
 };

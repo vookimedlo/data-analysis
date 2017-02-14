@@ -127,7 +127,7 @@ bool HTMLReportWriter::write(DataItem& dataItem)
     QString thumbnailName(QString::number(m_UniqueNumber++) + (fileInfo.completeSuffix().isEmpty() ? "" : ( "." + fileInfo.completeSuffix())));
     QString thumbnailURL(htmlOutput.baseName() + "/" + thumbnailName);
     QDir thumbnailDir(thumbnailPath);
-    std::unique_ptr<ReportThumbnail> thumbnail = m_ReportThumbnailGenerator.generate(originalPathName);
+    std::unique_ptr<ReportThumbnail> thumbnail = m_ReportThumbnailGenerator.generate(dataItem);
 
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Preview))
     {
@@ -167,7 +167,7 @@ bool HTMLReportWriter::write(DataItem& dataItem)
         }
         write("<br />");
     }
-    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Extension))
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Extension) && dynamic_cast<const File *>(&dataItem))
     {
         write(addPreparedStringInTag(prepareString(tr("Extension")), "span", "key"));
         write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.extension())), "span", "value"));
@@ -181,7 +181,7 @@ bool HTMLReportWriter::write(DataItem& dataItem)
         write("<br />");
     }
 
-    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Size))
+    if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Size) && dynamic_cast<const File *>(&dataItem))
     {
         write(addPreparedStringInTag(prepareString(tr("Size in bytes")), "span", "key"));
         write(addPreparedStringInTag(prepareString(QString::number(dataItem.size())), "span", "value"));
@@ -204,7 +204,7 @@ bool HTMLReportWriter::write(DataItem& dataItem)
 
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_MD5))
     {
-        if (dataItem.isInfoValid(DataInfo::DataInfoE_SHA1))
+        if (dataItem.isInfoValid(DataInfo::DataInfoE_MD5))
         {
             write(addPreparedStringInTag(prepareString(tr("MD5 fingerprint")), "span", "key"));
             write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_MD5))), "span", "value"));
@@ -224,7 +224,7 @@ bool HTMLReportWriter::write(DataItem& dataItem)
 
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_SHA3_512))
     {
-        if (dataItem.isInfoValid(DataInfo::DataInfoE_SHA1))
+        if (dataItem.isInfoValid(DataInfo::DataInfoE_SHA3_512))
         {
             write(addPreparedStringInTag(prepareString(tr("SHA3-512 fingerprint")), "span", "key"));
             write(addPreparedStringInTag(prepareString(StringHelper::toQString(dataItem.info(DataInfo::DataInfoE_SHA3_512))), "span", "value"));
@@ -269,6 +269,9 @@ bool HTMLReportWriter::write(DataItem& dataItem)
 
 bool HTMLReportWriter::close()
 {
+    write(prepareString(tr("Generated on ")));
+    write(prepareString(QDate::currentDate().toString("yyyy-MM-dd")));
+    write(prepareString(tr(" by the DataAnalyzer")));
     write("</body>");
     write("</html>");
 

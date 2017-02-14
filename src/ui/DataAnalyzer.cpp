@@ -43,10 +43,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../reports/HTMLReportThumbnailGenerator.h"
 #include "../reports/HTMLReportWriter.h"
 #include "../reports/ReportSettings.h"
+#include "../reports/RTFReportThumbnailGenerator.h"
 #include "../reports/RTFReportWriter.h"
 #include "../ui/SearchDialog.h"
 #include "../ui/CSVFinalReportDialog.h"
 #include "../ui/HTMLFinalReportDialog.h"
+#include "../ui/RTFFinalReportDialog.h"
 #include "../util/compiler.h"
 #include "../util/StringHelper.h"
 
@@ -402,8 +404,9 @@ void DataAnalyzer::onRTFReportTriggered()
 
         if (reportDialog.exec() == QDialog::Accepted)
         {
+            RTFReportThumbnailGenerator generator;
             QString rootPath = StringHelper::toQString(m_topLevelDirectory->directories()[0]->name());
-            RTFReportWriter writer(settings, rootPath);
+            RTFReportWriter writer(settings, generator, rootPath);
             ReportOperation operation(writer, *(m_topLevelDirectory->directories()[0]));
 
             OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);

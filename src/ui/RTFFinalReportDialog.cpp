@@ -68,7 +68,6 @@ void RTFFinalReportDialog::onSelectAll()
 {
     FinalReportDialog::onSelectAll();
     m_uiReportDialog.checkBoxPreview->setCheckState(Qt::CheckState::Unchecked);
-    m_uiReportDialog.checkBoxAnalysis->setCheckState(Qt::CheckState::Unchecked);
 }
 
 void RTFFinalReportDialog::defaultSettings() const
