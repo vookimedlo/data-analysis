@@ -32,8 +32,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "RTFReportWriter.h"
 
-
-
 RTFReportWriter::RTFReportWriter(const ReportSettings &reportSettings, ReportThumbnailGenerator &reportThumbnailGenerator, const QString &rootPath) : ReportWriter(rootPath), m_OutputStream(), m_ReportSettings(reportSettings), m_ReportThumbnailGenerator(reportThumbnailGenerator)
 {
 }
