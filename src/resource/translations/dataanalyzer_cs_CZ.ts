@@ -709,17 +709,17 @@
         <translation>Výstup do souboru</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="433"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="443"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="472"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="488"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/FinalReportDialog.ui" line="479"/>
+        <location filename="../../ui/forms/FinalReportDialog.ui" line="495"/>
         <source>Cancel</source>
         <translation>Zrušit</translation>
     </message>
@@ -967,6 +967,16 @@
         <source>Analysis</source>
         <translation>Analýza</translation>
     </message>
+    <message>
+        <location filename="../../reports/HTMLReportWriter.cpp" line="272"/>
+        <source>Generated on </source>
+        <translation>Vygenerováno dne </translation>
+    </message>
+    <message>
+        <location filename="../../reports/HTMLReportWriter.cpp" line="274"/>
+        <source> by the DataAnalyzer</source>
+        <translation>programem DataAnalyzer</translation>
+    </message>
 </context>
 <context>
     <name>OperationDialog</name>
@@ -981,7 +991,7 @@
         <translation>Adresářová struktura:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="161"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="156"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -996,19 +1006,37 @@
         <translation>Přečteno souborů:</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="300"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="301"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="315"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="316"/>
         <source>&amp;Run</source>
         <translation>&amp;Spustit</translation>
     </message>
     <message>
-        <location filename="../../ui/forms/OperationDialog.ui" line="330"/>
+        <location filename="../../ui/forms/OperationDialog.ui" line="331"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Zrušit</translation>
+    </message>
+</context>
+<context>
+    <name>RTFReportWriter</name>
+    <message>
+        <location filename="../../reports/RTFReportWriter.cpp" line="62"/>
+        <source>Final report: </source>
+        <translation>Závěrečná zpráva</translation>
+    </message>
+    <message>
+        <location filename="../../reports/RTFReportWriter.cpp" line="223"/>
+        <source>Generated on </source>
+        <translation>Vygenerováno dne </translation>
+    </message>
+    <message>
+        <location filename="../../reports/RTFReportWriter.cpp" line="226"/>
+        <source> by the DataAnalyzer</source>
+        <translation> programem DataAnalyzer</translation>
     </message>
 </context>
 <context>
