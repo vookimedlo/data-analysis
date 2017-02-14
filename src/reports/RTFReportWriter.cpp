@@ -104,7 +104,7 @@ bool RTFReportWriter::write(DataItem& dataItem)
     m_OutputStream << rtfEscapeString(dataItem.name());
     m_OutputStream << "}" << std::endl;
     m_OutputStream << "\\b0\\fs22 ";
-    if (!tag == 0)
+    if (tag != 0)
     {
         m_OutputStream << " - ";
         m_OutputStream << rtfEscapeString(TagHelper::tagToString(tag));
@@ -118,35 +118,35 @@ bool RTFReportWriter::write(DataItem& dataItem)
 
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_BasicDataType))
     {
-        m_OutputStream << "\\pard\\b{Basic data type:}\\b0\\tx2880\\tab{";
-        m_OutputStream << rtfEscapeString(QString(dynamic_cast<const File *>(&dataItem) ? "File" : "Directory"));
+        m_OutputStream << "\\pard\\b{" << rtfEscapeString(tr("Basic data type:")) << "}\\b0\\tx2880\\tab{";
+        m_OutputStream << rtfEscapeString(QString(dynamic_cast<const File *>(&dataItem) ? tr("File") : tr("Directory")));
         m_OutputStream << "}\\par ";
     }
 
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Extension) && dynamic_cast<const File *>(&dataItem))
     {
-        m_OutputStream << "\\pard\\b{Extension:}\\b0\\tx2880\\tab{";
+        m_OutputStream << "\\pard\\b{" << rtfEscapeString(tr("Extension:")) << "}\\b0\\tx2880\\tab{";
         m_OutputStream << rtfEscapeString(dataItem.extension());
         m_OutputStream << "}\\par ";
     }
 
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_Size) && dynamic_cast<const File *>(&dataItem))
     {
-        m_OutputStream << "\\pard\\b{Size in bytes:}\\b0\\tx2880\\tab{";
+        m_OutputStream << "\\pard\\b{" << rtfEscapeString(tr("Size in bytes:")) << "}\\b0\\tx2880\\tab{";
         m_OutputStream << rtfEscapeString(QString::number(dataItem.size()));
         m_OutputStream << "}\\par ";
     }
 
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_CreationDate))
     {
-        m_OutputStream << "\\pard\\b{Creation Date:}\\b0\\tx2880\\tab{";
+        m_OutputStream << "\\pard\\b{" << rtfEscapeString(tr("Creation Date:")) << "}\\b0\\tx2880\\tab{";
         m_OutputStream << rtfEscapeString(QDateTime::fromTime_t(dataItem.creationTimestamp()).toString(Qt::SystemLocaleShortDate));
         m_OutputStream << "}\\par ";
     }
 
     if (m_ReportSettings.isPropertySet(ReportSettings::PropertiesE_ModificationDate))
     {
-        m_OutputStream << "\\pard\\b{Modification Date:}\\b0\\tx2880\\tab{";
+        m_OutputStream << "\\pard\\b{" << rtfEscapeString(tr("Modification Date:")) << "}\\b0\\tx2880\\tab{";
         m_OutputStream << rtfEscapeString(QDateTime::fromTime_t(dataItem.modificationTimestamp()).toString(Qt::SystemLocaleShortDate));
         m_OutputStream << "}\\par ";
     }
@@ -155,7 +155,7 @@ bool RTFReportWriter::write(DataItem& dataItem)
         && dynamic_cast<const File *>(&dataItem)
         && dataItem.isInfoValid(DataInfo::DataInfoE_MD5))
     {
-        m_OutputStream << "\\pard\\b{MD5 fingerprint:}\\b0\\tx2880\\tab{";
+        m_OutputStream << "\\pard\\b{" << rtfEscapeString(tr("MD5 Fingerprint:")) << "}\\b0\\tx2880\\tab{";
         m_OutputStream << rtfEscapeString(dataItem.info(DataInfo::DataInfoE_MD5));
         m_OutputStream << "}\\par ";
     }
@@ -164,7 +164,7 @@ bool RTFReportWriter::write(DataItem& dataItem)
         && dynamic_cast<const File *>(&dataItem)
         && dataItem.isInfoValid(DataInfo::DataInfoE_SHA1))
     {
-        m_OutputStream << "\\pard\\b{SHA-1 fingerprint:}\\b0\\tx2880\\tab{";
+        m_OutputStream << "\\pard\\b{" << rtfEscapeString(tr("SHA-1 Fingerprint:")) << "}\\b0\\tx2880\\tab{";
         m_OutputStream << rtfEscapeString(dataItem.info(DataInfo::DataInfoE_SHA1));
         m_OutputStream << "}\\par ";
     }
@@ -173,7 +173,7 @@ bool RTFReportWriter::write(DataItem& dataItem)
         && dynamic_cast<const File *>(&dataItem)
         && dataItem.isInfoValid(DataInfo::DataInfoE_SHA3_512))
     {
-        m_OutputStream << "\\pard\\b{SHA3_512 fingerprint:}\\b0\\par{";
+        m_OutputStream << "\\pard\\b{" << rtfEscapeString(tr("SHA3_512 Fingerprint:")) << "}\\b0\\tx2880\\tab{";
         m_OutputStream << rtfEscapeString(dataItem.info(DataInfo::DataInfoE_SHA3_512));
         m_OutputStream << "}\\par ";
     }
@@ -182,7 +182,7 @@ bool RTFReportWriter::write(DataItem& dataItem)
         && dynamic_cast<const File *>(&dataItem)
         && dataItem.isInfoValid(DataInfo::DataInfoE_Magic))
     {
-        m_OutputStream << "\\pard\\b{Probable data type:}\\b0\\par{";
+        m_OutputStream << "\\pard\\b{" << rtfEscapeString(tr("Probable Data Type:")) << "}\\b0\\par{";
         m_OutputStream << rtfEscapeString(dataItem.info(DataInfo::DataInfoE_Magic));
         m_OutputStream << "}\\par ";
     }
@@ -191,7 +191,7 @@ bool RTFReportWriter::write(DataItem& dataItem)
         && dataItem.isInfoValid(DataInfo::DataInfoE_Analysis)
         && !dataItem.info(DataInfo::DataInfoE_Analysis).empty())
     {
-        m_OutputStream << "\\pard\\sa200\\sl276\\slmult1\\b{Analysis:}\\b0\\par{";
+        m_OutputStream << "\\pard\\sa200\\sl276\\slmult1\\b{" << rtfEscapeString(tr("Analysis:")) << "}\\b0\\par{";
         m_OutputStream << "\\trowd\\trgaph144" << std::endl;
         m_OutputStream << "\\clbrdrt\\brdrdot" << std::endl;
         m_OutputStream << "\\clbrdrl\\brdrdot" << std::endl;
@@ -245,7 +245,7 @@ std::string RTFReportWriter::rtfEscapeString(const std::wstring &str)
     {
         ushort code = cr.unicode();
         
-        // Do not escape ascii 127bit chars
+        // Do not escape ascii 127bit chars, we do not want bloating files
         if (code < 0x80)
         {
             strNew += cr.toLatin1();

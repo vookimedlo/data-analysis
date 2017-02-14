@@ -26,6 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QString>
 #include "../model/fs/DataItem.h"
 #include "../model/fs/File.h"
+#include "../util/compiler.h"
 #include "../util/StringHelper.h"
 
 #include "RTFReportThumbnail.h"
@@ -80,5 +81,6 @@ bool RTFReportThumbnail::inlineThumbnail(QString& outInlinedData)
 
 bool RTFReportThumbnail::write(const QString& pathName)
 {
+    UNUSED_VARIABLE(pathName);
     return false;
 }

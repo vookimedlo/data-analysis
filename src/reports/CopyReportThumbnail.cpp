@@ -22,6 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QString>
 #include "../model/fs/DataItem.h"
 #include "../model/fs/File.h"
+#include "../util/compiler.h"
 #include "../util/StringHelper.h"
 
 #include "CopyReportThumbnail.h"
@@ -33,6 +34,7 @@ CopyReportThumbnail::CopyReportThumbnail(const DataItem& item) : m_item(item)
 
 bool CopyReportThumbnail::inlineThumbnail(QString& outInlinedData)
 {
+    UNUSED_VARIABLE(outInlinedData);
     return false;
 }
 

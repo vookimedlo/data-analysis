@@ -102,6 +102,8 @@ HEADERS  += \
     ../../src/model/GlobalInformation.h \
     ../../src/util/compiler.h
 
+TRANSLATIONS += \
+    ../../src/resource/translations/dataanalyzer_cs_CZ.ts
 
 RESOURCES += \
     ../../src/resource/DataAnalyzer.qrc
