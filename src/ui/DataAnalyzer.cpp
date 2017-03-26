@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QMenu>
 #include <QPixmap>
 #include <QUrl>
+#include <QTextStream>
 
 #include "GlobalInformationDialog.h"
 #include "OperationDialog.h"
@@ -491,6 +492,7 @@ void DataAnalyzer::onNewTriggered()
 
         ui.detailsTreeWidget->clear();
         ui.previewWidget->clear();
+        ui.sourceWidget->clear();
         ui.tagListWidget->setCurrentRow(0);
 
         m_topLevelDirectory.reset();
@@ -611,10 +613,12 @@ void DataAnalyzer::dataItemSelected(QModelIndex index)
 
     ui.detailsTreeWidget->clear();
     ui.previewWidget->clear();
+    ui.sourceWidget->clear();
 
     File *file = dynamic_cast<File *>(item);
     if (file)
     {
+        ui.sourceWidget->setVisible(true);
         if (QImageReader::supportedImageFormats().indexOf(StringHelper::toQString(item->extension()).toLower().toLatin1()) != -1)
         {
             try
@@ -638,6 +642,12 @@ void DataAnalyzer::dataItemSelected(QModelIndex index)
         else
         {
             ui.previewWidget->clear();
+        }
+        QFile file2(StringHelper::toQString(file->path()));
+        if (file2.open(QIODevice::ReadOnly)) {
+            QTextStream in(&file2);
+            //ui.sourceWidget->setText(in.readAll());
+            ui.sourceWidget->insertPlainText(in.readAll());
         }
     }
 
