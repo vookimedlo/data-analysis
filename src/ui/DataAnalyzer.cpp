@@ -23,8 +23,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QCryptographicHash>
 #include <QDesktopServices>
 #include <QMenu>
+#include <QMessageBox>
 #include <QPixmap>
 #include <QUrl>
+#include <QTextStream>
 
 #include "GlobalInformationDialog.h"
 #include "OperationDialog.h"
@@ -80,6 +82,9 @@ DataAnalyzer::DataAnalyzer(QWidget *parent)
     m_contextMenu->addMenu(ui.menuOperation);
     m_contextMenu->addMenu(ui.menuEdit);
 
+    // Toolbar color
+    ui.toolBar->setStyleSheet("QToolBar {background: rgb(100, 100, 100)}");
+
     // Context menu connection
     connect(ui.detailedDataItemTreeView, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(onCustomContextMenuInDetailedDataItemTreeView(const QPoint &)));
     connect(ui.dataItemTreeView, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(onCustomContextMenuInDataItemTreeView(const QPoint &)));
@@ -103,6 +108,9 @@ DataAnalyzer::DataAnalyzer(QWidget *parent)
         ui.actionTranEnglish->setChecked(true);
 
     m_searchResult.addDirectory(new Directory(std::string(StringHelper::toStdString(tr("Search Results"))), &m_searchResult));
+    ui.tabWidget->setTabEnabled(0, false);
+    ui.tabWidget->setTabEnabled(1, false);
+    ui.tabWidget->setTabEnabled(2, false);
 }
 
 DataAnalyzer::~DataAnalyzer()
@@ -126,8 +134,14 @@ void DataAnalyzer::onScanTriggered()
         disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
         disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onSearchDDataItemClicked(const QModelIndex &)));
 
+        
+       // if (ui.tabWidget->currentIndex() == 0) ui.tabWidget->setCurrentIndex(1); 
+        //ui.tabWidget->setTabEnabled(0, false);
+        //ui.tabWidget->setTabEnabled(1, true);
+        //ui.tabWidget->setTabEnabled(2, true);
         ui.detailsTreeWidget->clear();
         ui.previewWidget->clear();
+
 
         m_topLevelDirectory = dialog.getResult();
 
@@ -491,6 +505,7 @@ void DataAnalyzer::onNewTriggered()
 
         ui.detailsTreeWidget->clear();
         ui.previewWidget->clear();
+        ui.sourceWidget->clear();
         ui.tagListWidget->setCurrentRow(0);
 
         m_topLevelDirectory.reset();
@@ -611,12 +626,20 @@ void DataAnalyzer::dataItemSelected(QModelIndex index)
 
     ui.detailsTreeWidget->clear();
     ui.previewWidget->clear();
+    ui.sourceWidget->clear();
+   
+    //if (ui.tabWidget->currentIndex() == 0) ui.tabWidget->setCurrentIndex(1);
+    ui.tabWidget->setTabEnabled(0, true);
+    ui.tabWidget->setTabEnabled(1, true);
+    ui.tabWidget->setTabEnabled(2, true);
 
     File *file = dynamic_cast<File *>(item);
     if (file)
     {
         if (QImageReader::supportedImageFormats().indexOf(StringHelper::toQString(item->extension()).toLower().toLatin1()) != -1)
-        {
+        {          
+            //ui.tabWidget->setTabEnabled(0, true);
+           
             try
             {
                 QImageReader imageReader(StringHelper::toQString(file->path()));
@@ -629,18 +652,44 @@ void DataAnalyzer::dataItemSelected(QModelIndex index)
                     scaledPixmap = pixmap.scaledToHeight(ui.previewWidget->size().height());
 
                 ui.previewWidget->setPixmap(scaledPixmap);
+                ui.sourceWidget->clear();
             }
             catch (...)
             {
                 ui.previewWidget->clear();
+                ui.sourceWidget->clear();
             }
         }
         else
         {
-            ui.previewWidget->clear();
+            if (ui.tabWidget->currentIndex() == 0) ui.tabWidget->setCurrentIndex(1);
+            ui.tabWidget->setTabEnabled(0, false);                               
+        }
+        if (ui.tabWidget->currentIndex() == 2)
+        {
+            QFile file2(StringHelper::toQString(file->path()));
+            if (!file2.open(QIODevice::ReadOnly))
+            {
+                QMessageBox::critical(this, tr("Error"), tr("Could not open file"));
+                return;
+            }
+            QTextStream in(&file2);
+
+            if (file2.size() > 10000000)
+                ui.sourceWidget->appendHtml(QString(tr("<font color = \"red\">--- File is too large (>10MB) ---</font>")));
+            else
+                ui.sourceWidget->insertPlainText(in.readAll());
+
+            file2.close();
         }
     }
-
+    else
+    {
+		ui.tabWidget->setCurrentIndex(1);
+		ui.tabWidget->setTabEnabled(0, false);
+        ui.tabWidget->setTabEnabled(1, true);
+        ui.tabWidget->setTabEnabled(2, false);
+    }
     assignDataItemToAnalysis(item);
     DetailsPublisher::toUI(*ui.detailsTreeWidget, *ui.tagListWidget, *item);
 }

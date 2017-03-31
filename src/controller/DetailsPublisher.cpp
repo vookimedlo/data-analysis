@@ -51,6 +51,10 @@ void DetailsPublisher::toUI(QTreeWidget& treeWidget, QListWidget& tagListWidget,
     treeItem->setText(0, tr("Modification timestamp"));
     treeItem->setText(1, QDateTime::fromTime_t(item.modificationTimestamp()).toString(Qt::SystemLocaleLongDate));
 
+//    treeItem = new QTreeWidgetItem(&treeWidget);
+ //   treeItem->setText(0, tr(""));
+  //  treeItem->setText(1, tr(""));
+
     for (DataInfo::DataInfoE info : item.infos())
     {
         switch (info)
@@ -64,6 +68,10 @@ void DetailsPublisher::toUI(QTreeWidget& treeWidget, QListWidget& tagListWidget,
             break;
         case DataInfo::DataInfoE_Magic:
         {
+ //           treeItem = new QTreeWidgetItem(&treeWidget);
+ //           treeItem->setText(0, "");
+ //           treeItem->setText(1, "");
+
             treeItem = new QTreeWidgetItem(&treeWidget);
             treeItem->setText(0, tr("Probable data type"));
 
@@ -86,7 +94,9 @@ void DetailsPublisher::toUI(QTreeWidget& treeWidget, QListWidget& tagListWidget,
         }
 
         if (info != DataInfo::DataInfoE_Magic)
-           treeItem->setText(1, QString::fromStdString(item.info(info)));
+        {
+            treeItem->setText(1, QString::fromStdString(item.info(info)));
+        }
     }
 
     tagListWidget.setCurrentRow(item.isInfoValid(DataInfo::DataInfoE_Tag) ? QString::fromStdString(item.info(DataInfo::DataInfoE_Tag)).toInt() : 0);
