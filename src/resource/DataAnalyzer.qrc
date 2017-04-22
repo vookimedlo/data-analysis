@@ -36,4 +36,7 @@
     <qresource prefix="/translation">
         <file alias="dataanalyzer_cs.qm">translations/dataanalyzer_cs_CZ.qm</file>
     </qresource>
+    <qresource prefix="/storage">
+        <file alias="latestSQLite">storage/blank_v1.sqlite3</file>
+    </qresource>
 </RCC>

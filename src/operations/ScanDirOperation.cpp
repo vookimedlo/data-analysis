@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "ScanDirOperation.h"
 #include "../util/StringHelper.h"
+#include "../util/UniqueId.h"
 
 
 ScanDirOperation::ScanDirOperation() : m_cancelWorkerActivity(false)
@@ -69,6 +70,7 @@ void ScanDirOperation::doScan(QString startDir)
 {
     unsigned numFiles = 0, numDirs = 0;
     DiskReader dr;
+    UniqueId<std::uint64_t> uniqueId(0);
     
     m_observersScanDir.call(startDir);
 
@@ -95,6 +97,8 @@ void ScanDirOperation::doScan(QString startDir)
         dr.readDirectoryStructure(d);
         d->optimize();
 
+        d->setUniqueId(uniqueId.nextId());
+
         for (Directory *directory : d->directories())
         {
 #ifdef DEBUG_VERBOSE_SCAN_FOUND_DIRS
@@ -109,6 +113,12 @@ void ScanDirOperation::doScan(QString startDir)
             std::wcerr << "File: " << file.path() << std::endl;
         }
 #endif
+
+        for (File *file : d->files())
+        {
+            file->setUniqueId(uniqueId.nextId());
+        }
+
 
         numFiles += d->files().size();
         m_observersFilesRead.call(numFiles);

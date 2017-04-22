@@ -23,7 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 using namespace std;
 
 
-DataItem::DataItem(const std::string& name, DataItem* parent) : m_parent(parent), m_dataInfo(), m_size(0), m_creationTimestamp(0), m_modificationTimestamp(0), m_name(name)
+DataItem::DataItem(const std::string& name, DataItem* parent) : Cache(), m_parent(parent), m_dataInfo(), m_size(0), m_creationTimestamp(0), m_modificationTimestamp(0), m_name(name)
 {
 }
 
@@ -111,7 +111,7 @@ std::string DataItem::path()
     return p;
 }
 
-std::string DataItem::info(const DataInfo::DataInfoE dataInfo)
+std::string DataItem::info(const DataInfo::DataInfoE dataInfo) const
 {
     return m_dataInfo.info(dataInfo);
 }

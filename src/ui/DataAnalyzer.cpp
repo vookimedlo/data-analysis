@@ -39,12 +39,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../operations/HashOperation.h"
 #include "../operations/ReportOperation.h"
 #include "../operations/ScanDirOperation.h"
+#include "../operations/SearchOperation.h"
+#include "../operations/StoreOperation.h"
 #include "../reports/CSVReportWriter.h"
 #include "../reports/HTMLReportThumbnailGenerator.h"
 #include "../reports/HTMLReportWriter.h"
 #include "../reports/ReportSettings.h"
 #include "../reports/RTFReportThumbnailGenerator.h"
 #include "../reports/RTFReportWriter.h"
+#include "../storage/SQLiteStorage.h"
+#include "../ui/SaveAsDialog.h"
 #include "../ui/SearchDialog.h"
 #include "../ui/CSVFinalReportDialog.h"
 #include "../ui/HTMLFinalReportDialog.h"
@@ -53,8 +57,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../util/StringHelper.h"
 
 #include "DataAnalyzer.h"
-#include "../operations/SearchOperation.h"
-#include "RTFFinalReportDialog.h"
 
 DataAnalyzer::DataAnalyzer(QWidget *parent)
     : QMainWindow(parent),
@@ -363,6 +365,30 @@ void DataAnalyzer::onFileMagicTriggered()
         dialog.setTitle(tr("Type detection"));
         dialog.exec();
         updateDetailsTreeWidget();
+    }
+}
+
+void DataAnalyzer::onSaveAsTriggered()
+{
+    if (m_topLevelDirectory.get())
+    {
+        SaveAsDialog saveDialog(this);
+
+        if (saveDialog.exec() == QDialog::Accepted)
+        {
+            const QString targetPath(saveDialog.getOutputFile());
+            QFile::remove(targetPath);
+            QFile::copy(":/storage/latestSQLite", targetPath);
+            QFile::setPermissions(targetPath, QFileDevice::ReadUser | QFileDevice::WriteUser | QFileDevice::ReadGroup | QFileDevice::WriteGroup);
+            SQLiteStorage storage(targetPath);
+            StoreOperation operation(storage, *m_topLevelDirectory);
+
+            storage.open();
+
+            OperationDialog dialog(operation, OperationDialog::ModeE_NoDirSelect, this);
+            dialog.setTitle(tr("Store operation"));
+            dialog.exec();
+        }
     }
 }
 

@@ -67,6 +67,7 @@ public Q_SLOTS:
     void onSHA1Triggered();
     void onSHA3_512Triggered();
     void onFileMagicTriggered();
+    void onSaveAsTriggered();
     void onCSVReportTriggered();
     void onRTFReportTriggered();
     void onHTMLReportTriggered();

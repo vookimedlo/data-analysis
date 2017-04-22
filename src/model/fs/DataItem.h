@@ -22,8 +22,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <string>
 #include "DataInfo.h"
+#include "../cache/Cache.h"
 
-class DataItem
+class DataItem : public Cache
 {
   public:
     explicit DataItem(const std::string &filename, DataItem* parent = nullptr);
@@ -45,7 +46,7 @@ class DataItem
     virtual void optimize();
 
     std::string path();
-    std::string info(const DataInfo::DataInfoE dataInfo);
+    std::string info(const DataInfo::DataInfoE dataInfo) const;
     std::vector<DataInfo::DataInfoE> infos() const;
     bool isInfoValid(const DataInfo::DataInfoE dataInfo) const;    
     

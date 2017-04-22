@@ -19,36 +19,24 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include <cstdint>
-#include <string>
-#include <vector>
+#include <QDialog>
+#include "ui_SaveAsDialog.h"
 
-class DataInfo
+class SaveAsDialog : public QDialog
 {
-  public:
-	  enum DataInfoE : uint8_t {
-          DataInfoE_Analysis,
-          DataInfoE_Tag,
-          DataInfoE_MD5,
-          DataInfoE_Magic,
-          DataInfoE_SHA1,
-          DataInfoE_SHA3_512,
-	  };
- 
-    DataInfo();
-    virtual ~DataInfo();
+    Q_OBJECT
 
-    void addInfo(const DataInfoE dataInfo, std::string value);
-    std::string info(const DataInfoE dataInfo) const;
-    std::vector<DataInfoE> dataInfos() const;
-    bool isValid(const DataInfoE dataInfo) const;
+public:
+    SaveAsDialog(QWidget *parent = Q_NULLPTR);
+    QString getOutputFile() const;
 
-  private:
-    std::vector<DataInfoE> m_infoKeys;
-    std::vector<std::string> m_infoValues;
+public Q_SLOTS:
+    virtual void onAccept();
+    virtual void onFileSelect();
 
-    // Hash implementation uses much more data than just the vectors
-    // Hash is not needed unless there could be many possible DataInfo stored ...
-    //std::unordered_map<DataInfoE, std::string> info;
+protected:
+    virtual bool checkChosenFile(const QString &filename) const;
+
+protected:
+    Ui::SaveAsDialog m_uiSaveAsDialog;
 };
-
