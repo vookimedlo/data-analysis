@@ -57,7 +57,9 @@ SOURCES += \
     ../../src/model/GlobalInformation.cpp \
     ../../src/storage/SQLiteStorage.cpp \
     ../../src/operations/StoreOperation.cpp \
-    ../../src/ui/SaveAsDialog.cpp
+    ../../src/ui/SaveAsDialog.cpp \
+    ../../src/operations/OpenOperation.cpp \
+    ../../src/ui/OpenDialog.cpp
 
 
 HEADERS  += \
@@ -108,7 +110,9 @@ HEADERS  += \
     ../../src/storage/SQLiteStorage.h \
     ../../src/operations/StoreOperation.h \
     ../../src/ui/SaveAsDialog.h \
-    ../../src/util/UniqueId.h
+    ../../src/util/UniqueId.h \
+    ../../src/operations/OpenOperation.h \
+    ../../src/ui/OpenDialog.h
 
 TRANSLATIONS += \
     ../../src/resource/translations/dataanalyzer_cs_CZ.ts
@@ -123,7 +127,8 @@ FORMS += \
     ../../src/ui/forms/FinalReportDialog.ui \
     ../../src/ui/forms/GlobalInformationDialog.ui \
     ../../src/ui/forms/SearchDialog.ui \
-    ../../src/ui/forms/SaveAsDialog.ui
+    ../../src/ui/forms/SaveAsDialog.ui \
+    ../../src/ui/forms/OpenDialog.ui
 
 macx: ICON = ../../src/resource/AppIcon/macos/icon.icns
 

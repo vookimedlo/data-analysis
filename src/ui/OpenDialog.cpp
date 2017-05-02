@@ -22,42 +22,42 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QMessageBox>
 #include <QStandardPaths>
 
-#include "SaveAsDialog.h"
+#include "OpenDialog.h"
 
 
-SaveAsDialog::SaveAsDialog(QWidget* parent) : QDialog(parent)
+OpenDialog::OpenDialog(QWidget* parent) : QDialog(parent)
 {
-    m_uiSaveAsDialog.setupUi(this);
+    m_uiOpenDialog.setupUi(this);
 }
 
-QString SaveAsDialog::getOutputFile() const
+QString OpenDialog::getInputFile() const
 {
-    return result() == QDialog::Accepted ? m_uiSaveAsDialog.exportToFileLineEdit->text() : "";
+    return result() == QDialog::Accepted ? m_uiOpenDialog.loadFromFileLineEdit->text() : "";
 }
 
-void SaveAsDialog::onAccept()
+void OpenDialog::onAccept()
 {
-    if (checkChosenFile(m_uiSaveAsDialog.exportToFileLineEdit->text()))
+    if (checkChosenFile(m_uiOpenDialog.loadFromFileLineEdit->text()))
         accept();
 }
 
-void SaveAsDialog::onFileSelect()
+void OpenDialog::onFileSelect()
 {
     QFileDialog dialog(this);
-    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    dialog.setAcceptMode(QFileDialog::AcceptOpen);
     dialog.setDefaultSuffix("sqlite3");
-    dialog.setOption(QFileDialog::DontConfirmOverwrite, true);
+    dialog.setOption(QFileDialog::ReadOnly, true);
     dialog.setDirectory(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
     if (dialog.exec() == QDialog::Accepted)
     {
         if (!dialog.selectedFiles().isEmpty())
-            m_uiSaveAsDialog.exportToFileLineEdit->setText(dialog.selectedFiles()[0]);
+            m_uiOpenDialog.loadFromFileLineEdit->setText(dialog.selectedFiles()[0]);
         else
-            m_uiSaveAsDialog.exportToFileLineEdit->setText("");
+            m_uiOpenDialog.loadFromFileLineEdit->setText("");
     }
 }
 
-bool SaveAsDialog::checkChosenFile(const QString& filename) const
+bool OpenDialog::checkChosenFile(const QString& filename) const
 {
     QFile f(filename);
 
@@ -65,32 +65,32 @@ bool SaveAsDialog::checkChosenFile(const QString& filename) const
     {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setText(tr("No file has been selected for saving."));
-        msgBox.setInformativeText(tr("Select the file for saving."));
+        msgBox.setText(tr("No file has been selected for opening."));
+        msgBox.setInformativeText(tr("Select a file for opening."));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.exec();
         return false;
     }
 
-    if (f.exists())
+    if (!f.exists())
     {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Question);
-        msgBox.setText(tr("Chosen file already exists."));
-        msgBox.setInformativeText(tr("Do you want to overwrite the chosen file?"));
-        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        msgBox.setText(tr("Chosen file doesn't exist."));
+        msgBox.setInformativeText(tr("Select an existing file for opening."));
+        msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
-        if (msgBox.exec() != QMessageBox::Ok)
-            return false;
+        msgBox.exec();
+        return false;
     }
 
-    if (!f.open(QIODevice::Truncate | QIODevice::WriteOnly))
+    if (!f.open(QIODevice::ReadOnly))
     {
         QMessageBox msgBox;
         msgBox.setIcon(QMessageBox::Warning);
-        msgBox.setText(tr("Chosen file cannot be opened for writing."));
-        msgBox.setInformativeText(tr("Choose another file."));
+        msgBox.setText(tr("Chosen file cannot be opened for reading."));
+        msgBox.setInformativeText(tr("Choose another file or check the file permissions."));
         msgBox.setStandardButtons(QMessageBox::Ok);
         msgBox.setDefaultButton(QMessageBox::Ok);
         msgBox.exec();

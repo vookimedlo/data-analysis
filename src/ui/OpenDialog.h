@@ -19,30 +19,24 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include <QSqlDatabase>
+#include <QDialog>
+#include "ui_OpenDialog.h"
 
-class DataItem;
-class Directory;
-class File;
-class QSqlQuery;
-
-class SQLiteStorage
+class OpenDialog : public QDialog
 {
+    Q_OBJECT
+
 public:
-      SQLiteStorage(const QString& path);
-      ~SQLiteStorage();
+    OpenDialog(QWidget *parent = Q_NULLPTR);
+    QString getInputFile() const;
 
-      bool open();
-      void close();
-
-      bool store(const Directory &item);
-      bool store(const File &item);
-      Directory *load();
+public Q_SLOTS:
+    virtual void onAccept();
+    virtual void onFileSelect();
 
 protected:
-      void fillDataItem(DataItem &item, QSqlQuery &query);
-      bool store(const DataItem &item, QSqlQuery &query);
+    virtual bool checkChosenFile(const QString &filename) const;
 
-private:
-      QSqlDatabase m_db;
+protected:
+    Ui::OpenDialog m_uiOpenDialog;
 };

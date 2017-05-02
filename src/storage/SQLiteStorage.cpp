@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDebug>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <unordered_map>
 #include "../model/fs/DataItem.h"
 #include "../model/fs/Directory.h"
 #include "../model/fs/File.h"
@@ -132,7 +133,80 @@ bool SQLiteStorage::store(const File &item)
     return store(item, query);
 }
 
-DataItem *SQLiteStorage::load()
+Directory *SQLiteStorage::load()
 {
-    return nullptr;
+    std::unordered_map<uint64_t, File *> files;
+    std::unordered_map<uint64_t, Directory *> directories;
+    directories[0] = nullptr;
+
+    {
+        QSqlQuery query("SELECT id, parent, name, extension, size, modificationTimestamp, creationTimestamp, tag FROM Directory ORDER BY id");
+        while (query.next()) {
+            uint64_t id = query.value(0).toULongLong();
+            uint64_t parentId = query.value(1).toULongLong();
+            QString name = query.value(2).toString();
+            Directory *dir = new Directory(StringHelper::toStdString(name), id == parentId ? nullptr : directories[parentId]);
+            fillDataItem(*dir, query);
+            dir->setUniqueId(id);
+            directories[id] = dir;
+
+            if (id != parentId)
+                directories[parentId]->addDirectory(dir);
+        }
+    }
+
+    if (directories[0])
+    {
+        QSqlQuery query("SELECT id, parent, name, extension, size, modificationTimestamp, creationTimestamp, tag FROM File ORDER BY id");
+        while (query.next()) {
+            uint64_t id = query.value(0).toULongLong();
+            uint64_t parentId = query.value(1).toULongLong();
+            QString name = query.value(2).toString();
+            File *file = new File(StringHelper::toStdString(name), directories[parentId]);
+            fillDataItem(*file, query);
+            file->setUniqueId(id);
+            files[id] = file;
+            // TODO: check if the parent really exists
+            directories[parentId]->addFile(file);
+        }
+
+        {
+            QSqlQuery query("SELECT dataItemId, typeId, value FROM Information");
+            while (query.next()) {
+                uint64_t id = query.value(0).toULongLong();
+                uint64_t typeId = query.value(1).toULongLong();
+                QString value = query.value(2).toString();
+
+                if (files.find(id) != files.end())
+                    files[id]->addInfo(static_cast<DataInfo::DataInfoE>(typeId), value.toStdString());
+                else if (directories.find(id) != directories.end())
+                    directories[id]->addInfo(static_cast<DataInfo::DataInfoE>(typeId), value.toStdString());
+                else {
+                    std::for_each(files.begin(), files.end(), [](std::unordered_map<uint64_t, File *>::value_type &item){delete item.second;});
+                    std::for_each(directories.begin(), directories.end(), [](std::unordered_map<uint64_t, Directory *>::value_type &item){delete item.second;});
+                    return nullptr;
+                }
+            }
+
+        }
+    }
+
+    return directories[0];
+}
+
+void SQLiteStorage::fillDataItem(DataItem &item, QSqlQuery &query)
+{
+    QString extension = query.value(3).toString();
+    uint64_t size = query.value(4).toULongLong();
+    uint64_t modificationTimestamp = query.value(5).toULongLong();
+    uint64_t creationTimestmap = query.value(6).toULongLong();
+    uint32_t tag = query.value(7).toUInt();
+
+    item.setSize(size);
+    item.setExtension(StringHelper::toStdString(extension));
+    item.setModificationTimestamp(modificationTimestamp);
+    item.setCreationTimestamp(creationTimestmap);
+    item.addInfo(DataInfo::DataInfoE_Tag, QString::number(tag).toStdString());
+    item.setDirty(false);
+    item.setStored(true);
 }

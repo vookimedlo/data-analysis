@@ -19,30 +19,32 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include <QSqlDatabase>
+#include <future>
+#include <magic.h>
+#include "../operations/Operations.h"
 
-class DataItem;
+/// Forward declarations
 class Directory;
-class File;
-class QSqlQuery;
+class SQLiteStorage;
 
-class SQLiteStorage
+class OpenOperation : public Operations
 {
 public:
-      SQLiteStorage(const QString& path);
-      ~SQLiteStorage();
-
-      bool open();
-      void close();
-
-      bool store(const Directory &item);
-      bool store(const File &item);
-      Directory *load();
+    OpenOperation(SQLiteStorage &storage);
+    ~OpenOperation();
+    void start(QString dir) override;
+    void start() override;
+    void cancel() override;
+    bool isFinished() const override;
+    QString path() const override;
+    uint32_t totalFilesCount() const override;
 
 protected:
-      void fillDataItem(DataItem &item, QSqlQuery &query);
-      bool store(const DataItem &item, QSqlQuery &query);
+    void startOperation();
 
 private:
-      QSqlDatabase m_db;
+    std::future<void> m_asyncScanWorker;
+    bool m_cancelWorkerActivity;
+    SQLiteStorage &m_Storage;
+    std::shared_ptr<Directory> m_asyncWorkerResult;
 };

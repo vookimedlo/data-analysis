@@ -788,6 +788,8 @@
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -883,7 +885,6 @@
    <addaction name="actionQuit"/>
    <addaction name="separator"/>
    <addaction name="separator"/>
-   <addaction name="actionSaveAs"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="toolBar">
@@ -1134,7 +1135,7 @@
   </action>
   <action name="actionOpen">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="text">
     <string>&amp;Open ...</string>
@@ -1301,6 +1302,17 @@
   <action name="actionSaveAs">
    <property name="text">
     <string>Save as ...</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Save</string>
    </property>
   </action>
  </widget>
@@ -1629,6 +1641,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionOpen</sender>
+   <signal>triggered()</signal>
+   <receiver>DataAnalyzerClass</receiver>
+   <slot>onOpenTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>771</x>
+     <y>438</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onScanTriggered()</slot>
@@ -1652,5 +1680,6 @@
   <slot>onAboutQtTriggered()</slot>
   <slot>onSearchTriggered()</slot>
   <slot>onSaveAsTriggered()</slot>
+  <slot>onOpenTriggered()</slot>
  </slots>
 </ui>
