@@ -22,6 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QSqlError>
 #include <QSqlQuery>
 #include <unordered_map>
+#include "../model/GlobalInformation.h"
 #include "../model/fs/DataItem.h"
 #include "../model/fs/Directory.h"
 #include "../model/fs/File.h"
@@ -133,6 +134,23 @@ bool SQLiteStorage::store(const File &item)
     return store(item, query);
 }
 
+bool SQLiteStorage::store(const QString &referenceNumber, const QString &reference, const QString &id, const QString &finalReport)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE Report SET referenceNumber = :referenceNumber, reference = :reference, id = :id, finalReport = :finalReport");
+    query.bindValue(":referenceNumber", referenceNumber);
+    query.bindValue(":reference", reference);
+    query.bindValue(":id", id);
+    query.bindValue(":finalReport", finalReport);
+
+    bool success = query.exec();
+
+    if (!success)
+        qDebug() << "DB error: " << query.lastError();
+
+    return success;
+}
+
 Directory *SQLiteStorage::load()
 {
     std::unordered_map<uint64_t, File *> files;
@@ -227,4 +245,16 @@ void SQLiteStorage::fillDataItem(DataItem &item, QSqlQuery &query)
     item.addInfo(DataInfo::DataInfoE_Tag, QString::number(tag).toStdString());
     item.setDirty(false);
     item.setStored(true);
+}
+
+void SQLiteStorage::load(GlobalInformation &globalInformation, QString &finalReport)
+{
+    QSqlQuery query("SELECT finalReport, referenceNumber, reference, id FROM Report");
+    while (query.next()) {
+        finalReport.clear();
+        finalReport += query.value(0).toString();
+        globalInformation.setReferenceNumber(StringHelper::toStdString(query.value(1).toString()));
+        globalInformation.setReference(StringHelper::toStdString(query.value(2).toString()));
+        globalInformation.setId(StringHelper::toStdString(query.value(3).toString()));
+    }
 }

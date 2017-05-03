@@ -332,6 +332,8 @@ void DataAnalyzer::onOpenTriggered()
         if (dialog.exec() == QDialog::Accepted)
         {
             loadNewModel(dialog.getResult());
+            m_globalInformation = operation.globalInformation();
+            ui.reportTextEdit->setPlainText(operation.finalReport());
         }
     }
 }
@@ -349,7 +351,7 @@ void DataAnalyzer::onSaveAsTriggered()
             QFile::copy(":/storage/latestSQLite", targetPath);
             QFile::setPermissions(targetPath, QFileDevice::ReadUser | QFileDevice::WriteUser | QFileDevice::ReadGroup | QFileDevice::WriteGroup);
             SQLiteStorage storage(targetPath);
-            StoreOperation operation(storage, *m_topLevelDirectory);
+            StoreOperation operation(storage, *m_topLevelDirectory, m_globalInformation, ui.reportTextEdit->toPlainText());
 
             storage.open();
 

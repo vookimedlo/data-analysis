@@ -24,6 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 class DataItem;
 class Directory;
 class File;
+class GlobalInformation;
 class QSqlQuery;
 
 class SQLiteStorage
@@ -37,7 +38,9 @@ public:
 
       bool store(const Directory &item);
       bool store(const File &item);
+      bool store(const QString &referenceNumber, const QString &reference, const QString &id, const QString &finalReport);
       Directory *load();
+      void load(GlobalInformation &globalInformation, QString &finalReport);
 
 protected:
       void fillDataItem(DataItem &item, QSqlQuery &query);

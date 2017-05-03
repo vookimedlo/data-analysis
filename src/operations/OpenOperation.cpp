@@ -74,8 +74,19 @@ uint32_t OpenOperation::totalFilesCount() const
 void OpenOperation::startOperation()
 {   
     Directory *dir = m_Storage.load();
+    m_Storage.load(m_globalInformation, m_finalReport);
 
     m_observersProgress.call(100);
     m_asyncWorkerResult.reset(dir);
     m_observersResult.call(m_asyncWorkerResult);
+}
+
+QString OpenOperation::finalReport()
+{
+    return m_finalReport;
+}
+
+GlobalInformation OpenOperation::globalInformation()
+{
+    return m_globalInformation;
 }

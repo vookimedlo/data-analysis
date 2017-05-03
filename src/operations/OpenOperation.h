@@ -21,6 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <future>
 #include <magic.h>
+#include "../model/GlobalInformation.h"
 #include "../operations/Operations.h"
 
 /// Forward declarations
@@ -38,6 +39,8 @@ public:
     bool isFinished() const override;
     QString path() const override;
     uint32_t totalFilesCount() const override;
+    QString finalReport();
+    GlobalInformation globalInformation();
 
 protected:
     void startOperation();
@@ -47,4 +50,6 @@ private:
     bool m_cancelWorkerActivity;
     SQLiteStorage &m_Storage;
     std::shared_ptr<Directory> m_asyncWorkerResult;
+    QString m_finalReport;
+    GlobalInformation m_globalInformation;
 };

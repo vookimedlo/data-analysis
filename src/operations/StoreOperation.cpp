@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <queue>
 #include <QString>
 #include "../abstraction/FS.h"
+#include "../model/GlobalInformation.h"
 #include "../model/fs/Directory.h"
 #include "../model/fs/File.h"
 #include "../storage/SQLiteStorage.h"
@@ -32,7 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "StoreOperation.h"
 
-StoreOperation::StoreOperation(SQLiteStorage &storage, DataItem &rootItem) : m_cancelWorkerActivity(false), m_Storage(storage), m_RootItem(rootItem)
+StoreOperation::StoreOperation(SQLiteStorage &storage, DataItem &rootItem, const GlobalInformation &globalInformation, const QString finalReport) : m_cancelWorkerActivity(false), m_Storage(storage), m_RootItem(rootItem), m_globalInformation(globalInformation), m_finalReport(finalReport)
 {    
 }
 
@@ -78,6 +79,8 @@ void StoreOperation::startOperation()
     
     m_observersScanDir.call(StringHelper::toQString(m_RootItem.path()));
 
+    QSqlDatabase::database().transaction();
+
     Directory *directory = dynamic_cast<Directory *>(&m_RootItem);
     if (directory)
     {
@@ -117,6 +120,14 @@ void StoreOperation::startOperation()
             }
         }
     }
+
+    m_Storage.store(StringHelper::toQString(m_globalInformation.getReferenceNumber()),
+                    StringHelper::toQString(m_globalInformation.getReference()),
+                    StringHelper::toQString(m_globalInformation.getId()),
+                    m_finalReport
+                    );
+
+    QSqlDatabase::database().commit();
 
     m_observersResultVoid.call();
 }

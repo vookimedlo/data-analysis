@@ -25,12 +25,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 /// Forward declarations
 class DataItem;
+class GlobalInformation;
 class SQLiteStorage;
 
 class StoreOperation : public Operations
 {
 public:
-    StoreOperation(SQLiteStorage &storage, DataItem &rootItem);
+    StoreOperation(SQLiteStorage &storage, DataItem &rootItem, const GlobalInformation &globalInformation, const QString finalReport);
     ~StoreOperation();
     void start(QString dir) override;
     void start() override;
@@ -47,4 +48,6 @@ private:
     bool m_cancelWorkerActivity;
     SQLiteStorage &m_Storage;
     DataItem &m_RootItem;
+    const GlobalInformation &m_globalInformation;
+    const QString m_finalReport;
 };
