@@ -122,61 +122,7 @@ void DataAnalyzer::onScanTriggered()
     dialog.setPath(FS::systemRootPath());
     if (dialog.exec() == QDialog::Accepted)
     {
-        // Do the disconnection before the model is cleared
-        disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
-        disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDataItemCurrentClicked(const QModelIndex &)));
-        disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
-        disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDetailedDataItemClicked(const QModelIndex &)));
-        disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
-        disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onSearchDDataItemClicked(const QModelIndex &)));
-
-        ui.detailsTreeWidget->clear();
-        ui.previewWidget->clear();
-
-        m_topLevelDirectory = dialog.getResult();
-
-        m_searchFileDirectoryModel.reset(nullptr);
-        m_directoryModel.reset(new (std::nothrow) DirectoryTreeModel(m_topLevelDirectory.get()));
-        m_fileDirectoryModel.reset(new (std::nothrow) DataItemTreeModel(m_topLevelDirectory.get(), DataItemTreeModel::DataItemTreeModelE_NoDetails));
-
-        // Remove model binding so we can delete the old one
-        ui.detailedDataItemTreeView->reset();
-        ui.detailedDataItemTreeView->setModel(nullptr);
-
-        m_detailedDataItemSortFilterProxyModel->setSourceModel(nullptr);
-
-        m_detailedDataItemModel.reset(new (std::nothrow) DataItemTreeModel(m_topLevelDirectory.get(), DataItemTreeModel::DataItemTreeModelE_Details));
-
-        m_detailedDataItemSortFilterProxyModel->setSourceModel(m_detailedDataItemModel.get());
-
-        ui.detailedDataItemTreeView->setModel(m_detailedDataItemSortFilterProxyModel.get());
-
-        onDirOnly(ui.dirOnlyCheckBox->checkState() == Qt::CheckState::Checked);
-
-        // Columns resize policy
-        if (ui.dataItemTreeView->header()->count() > 0)
-            ui.dataItemTreeView->header()->setSectionResizeMode(0, QHeaderView::Interactive);
-
-        for (int i = 1; i < ui.dataItemTreeView->header()->count(); ++i)
-        {
-            ui.dataItemTreeView->header()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
-        }
-            
-        // Columns resize policy
-        if (ui.detailedDataItemTreeView->header()->count() > 0)
-            ui.detailedDataItemTreeView->header()->setSectionResizeMode(0, QHeaderView::Stretch);
-
-        for (int i = 1; i < ui.detailedDataItemTreeView->header()->count(); ++i)
-        {
-            ui.detailedDataItemTreeView->header()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
-        }
-
-        connect(ui.detailedDataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
-        connect(ui.detailedDataItemTreeView, SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDetailedDataItemClicked(const QModelIndex &)));
-        connect(ui.dataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
-        connect(ui.dataItemTreeView, SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDataItemCurrentClicked(const QModelIndex &)));
-
-        ui.fileOperationsTabWidget->setCurrentWidget(ui.scannedDataTab);          
+        loadNewModel(dialog.getResult());
     }
 }
 
@@ -385,61 +331,7 @@ void DataAnalyzer::onOpenTriggered()
         dialog.setTitle(tr("Open operation"));
         if (dialog.exec() == QDialog::Accepted)
         {
-            // Do the disconnection before the model is cleared
-            disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
-            disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDataItemCurrentClicked(const QModelIndex &)));
-            disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
-            disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDetailedDataItemClicked(const QModelIndex &)));
-            disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
-            disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onSearchDDataItemClicked(const QModelIndex &)));
-
-            ui.detailsTreeWidget->clear();
-            ui.previewWidget->clear();
-
-            m_topLevelDirectory = dialog.getResult();
-
-            m_searchFileDirectoryModel.reset(nullptr);
-            m_directoryModel.reset(new (std::nothrow) DirectoryTreeModel(m_topLevelDirectory.get()));
-            m_fileDirectoryModel.reset(new (std::nothrow) DataItemTreeModel(m_topLevelDirectory.get(), DataItemTreeModel::DataItemTreeModelE_NoDetails));
-
-            // Remove model binding so we can delete the old one
-            ui.detailedDataItemTreeView->reset();
-            ui.detailedDataItemTreeView->setModel(nullptr);
-
-            m_detailedDataItemSortFilterProxyModel->setSourceModel(nullptr);
-
-            m_detailedDataItemModel.reset(new (std::nothrow) DataItemTreeModel(m_topLevelDirectory.get(), DataItemTreeModel::DataItemTreeModelE_Details));
-
-            m_detailedDataItemSortFilterProxyModel->setSourceModel(m_detailedDataItemModel.get());
-
-            ui.detailedDataItemTreeView->setModel(m_detailedDataItemSortFilterProxyModel.get());
-
-            onDirOnly(ui.dirOnlyCheckBox->checkState() == Qt::CheckState::Checked);
-
-            // Columns resize policy
-            if (ui.dataItemTreeView->header()->count() > 0)
-                ui.dataItemTreeView->header()->setSectionResizeMode(0, QHeaderView::Interactive);
-
-            for (int i = 1; i < ui.dataItemTreeView->header()->count(); ++i)
-            {
-                ui.dataItemTreeView->header()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
-            }
-
-            // Columns resize policy
-            if (ui.detailedDataItemTreeView->header()->count() > 0)
-                ui.detailedDataItemTreeView->header()->setSectionResizeMode(0, QHeaderView::Stretch);
-
-            for (int i = 1; i < ui.detailedDataItemTreeView->header()->count(); ++i)
-            {
-                ui.detailedDataItemTreeView->header()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
-            }
-
-            connect(ui.detailedDataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
-            connect(ui.detailedDataItemTreeView, SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDetailedDataItemClicked(const QModelIndex &)));
-            connect(ui.dataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
-            connect(ui.dataItemTreeView, SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDataItemCurrentClicked(const QModelIndex &)));
-
-            ui.fileOperationsTabWidget->setCurrentWidget(ui.scannedDataTab);
+            loadNewModel(dialog.getResult());
         }
     }
 }
@@ -837,3 +729,63 @@ void DataAnalyzer::updateDetailsTreeWidget()
         DetailsPublisher::toUI(*ui.detailsTreeWidget, *ui.tagListWidget, *m_selectedDataItem);
     }
 }
+
+void DataAnalyzer::loadNewModel(std::shared_ptr<Directory> topLevelDirectory)
+{
+    // Do the disconnection before the model is cleared
+    disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+    disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDataItemCurrentClicked(const QModelIndex &)));
+    disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+    disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDetailedDataItemClicked(const QModelIndex &)));
+    disconnect(SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onSearchDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+    disconnect(SIGNAL(clicked(const QModelIndex&)), this, SLOT(onSearchDDataItemClicked(const QModelIndex &)));
+
+    ui.detailsTreeWidget->clear();
+    ui.previewWidget->clear();
+
+    m_topLevelDirectory = topLevelDirectory;
+
+    m_searchFileDirectoryModel.reset(nullptr);
+    m_directoryModel.reset(new (std::nothrow) DirectoryTreeModel(m_topLevelDirectory.get()));
+    m_fileDirectoryModel.reset(new (std::nothrow) DataItemTreeModel(m_topLevelDirectory.get(), DataItemTreeModel::DataItemTreeModelE_NoDetails));
+
+    // Remove model binding so we can delete the old one
+    ui.detailedDataItemTreeView->reset();
+    ui.detailedDataItemTreeView->setModel(nullptr);
+
+    m_detailedDataItemSortFilterProxyModel->setSourceModel(nullptr);
+
+    m_detailedDataItemModel.reset(new (std::nothrow) DataItemTreeModel(m_topLevelDirectory.get(), DataItemTreeModel::DataItemTreeModelE_Details));
+
+    m_detailedDataItemSortFilterProxyModel->setSourceModel(m_detailedDataItemModel.get());
+
+    ui.detailedDataItemTreeView->setModel(m_detailedDataItemSortFilterProxyModel.get());
+
+    onDirOnly(ui.dirOnlyCheckBox->checkState() == Qt::CheckState::Checked);
+
+    // Columns resize policy
+    if (ui.dataItemTreeView->header()->count() > 0)
+        ui.dataItemTreeView->header()->setSectionResizeMode(0, QHeaderView::Interactive);
+
+    for (int i = 1; i < ui.dataItemTreeView->header()->count(); ++i)
+    {
+        ui.dataItemTreeView->header()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+    }
+
+    // Columns resize policy
+    if (ui.detailedDataItemTreeView->header()->count() > 0)
+        ui.detailedDataItemTreeView->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+
+    for (int i = 1; i < ui.detailedDataItemTreeView->header()->count(); ++i)
+    {
+        ui.detailedDataItemTreeView->header()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+    }
+
+    connect(ui.detailedDataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDetailedDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+    connect(ui.detailedDataItemTreeView, SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDetailedDataItemClicked(const QModelIndex &)));
+    connect(ui.dataItemTreeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)), this, SLOT(onDataItemCurrentChanged(const QModelIndex &, const QModelIndex &)));
+    connect(ui.dataItemTreeView, SIGNAL(clicked(const QModelIndex&)), this, SLOT(onDataItemCurrentClicked(const QModelIndex &)));
+
+    ui.fileOperationsTabWidget->setCurrentWidget(ui.scannedDataTab);
+}
+

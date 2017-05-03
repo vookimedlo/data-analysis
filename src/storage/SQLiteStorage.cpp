@@ -139,6 +139,7 @@ Directory *SQLiteStorage::load()
     std::unordered_map<uint64_t, Directory *> directories;
     directories[0] = nullptr;
 
+// TODO: error conditions
     {
         QSqlQuery query("SELECT id, parent, name, extension, size, modificationTimestamp, creationTimestamp, tag FROM Directory ORDER BY id");
         while (query.next()) {
@@ -187,7 +188,24 @@ Directory *SQLiteStorage::load()
                     return nullptr;
                 }
             }
+        }
 
+        {
+            QSqlQuery query("SELECT dataItemId, analysis FROM Analysis");
+            while (query.next()) {
+                uint64_t id = query.value(0).toULongLong();
+                QString value = query.value(1).toString();
+
+                if (files.find(id) != files.end())
+                    files[id]->addInfo(DataInfo::DataInfoE_Analysis, value.toStdString());
+                else if (directories.find(id) != directories.end())
+                    directories[id]->addInfo(DataInfo::DataInfoE_Analysis, value.toStdString());
+                else {
+                    std::for_each(files.begin(), files.end(), [](std::unordered_map<uint64_t, File *>::value_type &item){delete item.second;});
+                    std::for_each(directories.begin(), directories.end(), [](std::unordered_map<uint64_t, Directory *>::value_type &item){delete item.second;});
+                    return nullptr;
+                }
+            }
         }
     }
 

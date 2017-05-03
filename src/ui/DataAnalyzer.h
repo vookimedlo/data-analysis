@@ -89,6 +89,7 @@ protected:
     void switchTranslator(QTranslator& translator, const QString& filename);
     void changeEvent(QEvent *event) override;
     void updateDetailsTreeWidget();
+    void loadNewModel(std::shared_ptr<Directory> topLevelDirectory);
 
 private:
     Ui::DataAnalyzerClass ui;
