@@ -19,36 +19,37 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include <cstdint>
-#include <string>
-#include <vector>
+#include <future>
+#include <magic.h>
+#include "../model/GlobalInformation.h"
+#include "../operations/Operations.h"
 
-class DataInfo
+/// Forward declarations
+class Directory;
+class SQLiteStorage;
+
+class OpenOperation : public Operations
 {
-  public:
-	  enum DataInfoE : uint8_t {
-          DataInfoE_Analysis,
-          DataInfoE_Tag,
-          DataInfoE_MD5,
-          DataInfoE_Magic,
-          DataInfoE_SHA1,
-          DataInfoE_SHA3_512,
-	  };
- 
-    DataInfo();
-    virtual ~DataInfo();
+public:
+    OpenOperation(SQLiteStorage &storage);
+    ~OpenOperation();
+    void start(QString dir) override;
+    void start() override;
+    void cancel() override;
+    bool isFinished() const override;
+    QString path() const override;
+    uint32_t totalFilesCount() const override;
+    QString finalReport();
+    GlobalInformation globalInformation();
 
-    void addInfo(const DataInfoE dataInfo, std::string value);
-    std::string info(const DataInfoE dataInfo) const;
-    std::vector<DataInfoE> dataInfos() const;
-    bool isValid(const DataInfoE dataInfo) const;
+protected:
+    void startOperation();
 
-  private:
-    std::vector<DataInfoE> m_infoKeys;
-    std::vector<std::string> m_infoValues;
-
-    // Hash implementation uses much more data than just the vectors
-    // Hash is not needed unless there could be many possible DataInfo stored ...
-    //std::unordered_map<DataInfoE, std::string> info;
+private:
+    std::future<void> m_asyncScanWorker;
+    bool m_cancelWorkerActivity;
+    SQLiteStorage &m_Storage;
+    std::shared_ptr<Directory> m_asyncWorkerResult;
+    QString m_finalReport;
+    GlobalInformation m_globalInformation;
 };
-

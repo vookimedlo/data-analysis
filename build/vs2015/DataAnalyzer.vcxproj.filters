@@ -70,6 +70,9 @@
     <Filter Include="Source Files\Model\FileSystem">
       <UniqueIdentifier>{78aec9ba-e03b-42d2-8da6-7e4272ba073f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Storage">
+      <UniqueIdentifier>{dd2820b6-1eb8-41b0-8596-611ac01525e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp">
@@ -264,6 +267,33 @@
     <ClCompile Include="..\..\src\reports\RTFReportThumbnailGenerator.cpp">
       <Filter>Source Files\Report</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\storage\SQLiteStorage.cpp">
+      <Filter>Source Files\Storage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ui\OpenDialog.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_OpenDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_OpenDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ui\SaveAsDialog.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SaveAsDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SaveAsDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\operations\OpenOperation.cpp">
+      <Filter>Source Files\Operation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\operations\StoreOperation.cpp">
+      <Filter>Source Files\Operation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\src\controller\DirectoryTreeModel.h">
@@ -325,6 +355,18 @@
     </CustomBuild>
     <CustomBuild Include="..\..\src\ui\RTFFinalReportDialog.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\OpenDialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\SaveAsDialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\forms\OpenDialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\forms\SaveAsDialog.ui">
+      <Filter>Form Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -434,6 +476,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\reports\RTFReportThumbnail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\storage\SQLiteStorage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_OpenDialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_SaveAsDialog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\operations\StoreOperation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\operations\OpenOperation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

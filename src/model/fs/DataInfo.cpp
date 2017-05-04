@@ -60,7 +60,7 @@ void DataInfo::addInfo(const DataInfoE dataInfo, std::string value)
    m_infoValues.shrink_to_fit();
 }
 
-std::string DataInfo::info(const DataInfoE dataInfo)
+std::string DataInfo::info(const DataInfoE dataInfo) const
 {
     uint8_t index = 0;
 

@@ -67,6 +67,8 @@ public Q_SLOTS:
     void onSHA1Triggered();
     void onSHA3_512Triggered();
     void onFileMagicTriggered();
+    void onOpenTriggered();
+    void onSaveAsTriggered();
     void onCSVReportTriggered();
     void onRTFReportTriggered();
     void onHTMLReportTriggered();
@@ -87,6 +89,7 @@ protected:
     void switchTranslator(QTranslator& translator, const QString& filename);
     void changeEvent(QEvent *event) override;
     void updateDetailsTreeWidget();
+    void loadNewModel(std::shared_ptr<Directory> topLevelDirectory);
 
 private:
     Ui::DataAnalyzerClass ui;

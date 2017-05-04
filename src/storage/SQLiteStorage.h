@@ -19,36 +19,33 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
-#include <cstdint>
-#include <string>
-#include <vector>
+#include <QSqlDatabase>
 
-class DataInfo
+class DataItem;
+class Directory;
+class File;
+class GlobalInformation;
+class QSqlQuery;
+
+class SQLiteStorage
 {
-  public:
-	  enum DataInfoE : uint8_t {
-          DataInfoE_Analysis,
-          DataInfoE_Tag,
-          DataInfoE_MD5,
-          DataInfoE_Magic,
-          DataInfoE_SHA1,
-          DataInfoE_SHA3_512,
-	  };
- 
-    DataInfo();
-    virtual ~DataInfo();
+public:
+      SQLiteStorage(const QString& path);
+      ~SQLiteStorage();
 
-    void addInfo(const DataInfoE dataInfo, std::string value);
-    std::string info(const DataInfoE dataInfo) const;
-    std::vector<DataInfoE> dataInfos() const;
-    bool isValid(const DataInfoE dataInfo) const;
+      bool open();
+      void close();
 
-  private:
-    std::vector<DataInfoE> m_infoKeys;
-    std::vector<std::string> m_infoValues;
+      bool store(const Directory &item);
+      bool store(const File &item);
+      bool store(const QString &referenceNumber, const QString &reference, const QString &id, const QString &finalReport);
+      Directory *load();
+      void load(GlobalInformation &globalInformation, QString &finalReport);
 
-    // Hash implementation uses much more data than just the vectors
-    // Hash is not needed unless there could be many possible DataInfo stored ...
-    //std::unordered_map<DataInfoE, std::string> info;
+protected:
+      void fillDataItem(DataItem &item, QSqlQuery &query);
+      bool store(const DataItem &item, QSqlQuery &query);
+
+private:
+      QSqlDatabase m_db;
 };
-

@@ -636,7 +636,7 @@
               <x>0</x>
               <y>0</y>
               <width>357</width>
-              <height>458</height>
+              <height>439</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -788,6 +788,8 @@
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -874,15 +876,23 @@
    <property name="windowTitle">
     <string>Other operations</string>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>64</width>
+     <height>64</height>
+    </size>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
    <addaction name="actionQuit"/>
    <addaction name="separator"/>
+   <addaction name="actionOpen"/>
    <addaction name="separator"/>
+   <addaction name="actionSaveAs"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="toolBar">
@@ -1133,13 +1143,17 @@
   </action>
   <action name="actionOpen">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../../resource/DataAnalyzer.qrc">
+     <normaloff>:/images/frame-Download-box-open.png</normaloff>:/images/frame-Download-box-open.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Open ...</string>
    </property>
    <property name="shortcut">
-    <string notr="true">Ctrl+O</string>
+    <string>Ctrl+O</string>
    </property>
    <property name="shortcutContext">
     <enum>Qt::ApplicationShortcut</enum>
@@ -1295,6 +1309,32 @@
    </property>
    <property name="menuRole">
     <enum>QAction::ApplicationSpecificRole</enum>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="icon">
+    <iconset resource="../../resource/DataAnalyzer.qrc">
+     <normaloff>:/images/frame-Download-box-save-as.png</normaloff>:/images/frame-Download-box-save-as.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save as ...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
  </widget>
@@ -1607,6 +1647,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionSaveAs</sender>
+   <signal>triggered()</signal>
+   <receiver>DataAnalyzerClass</receiver>
+   <slot>onSaveAsTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>771</x>
+     <y>438</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOpen</sender>
+   <signal>triggered()</signal>
+   <receiver>DataAnalyzerClass</receiver>
+   <slot>onOpenTriggered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>771</x>
+     <y>438</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onScanTriggered()</slot>
@@ -1629,5 +1701,7 @@
   <slot>onDatasetSettingsTriggered()</slot>
   <slot>onAboutQtTriggered()</slot>
   <slot>onSearchTriggered()</slot>
+  <slot>onSaveAsTriggered()</slot>
+  <slot>onOpenTriggered()</slot>
  </slots>
 </ui>

@@ -25,6 +25,8 @@
         <file alias="frame-fingerprint-sha3_512.png">images/frame-fingerprint-sha3_512.png</file>
         <file alias="flags/czech.png">flags/BevelledCzechRepublic.png</file>
         <file alias="flags/usa.png">flags/BevelledUSA.png</file>
+        <file alias="frame-Download-box-open.png">images/frame-Download-box-open.png</file>
+        <file alias="frame-Download-box-save-as.png">images/frame-Download-box-save-as.png</file>
     </qresource>
     <qresource prefix="/text">
         <file alias="about.html">text/about.htm</file>
@@ -35,5 +37,8 @@
     </qresource>
     <qresource prefix="/translation">
         <file alias="dataanalyzer_cs.qm">translations/dataanalyzer_cs_CZ.qm</file>
+    </qresource>
+    <qresource prefix="/storage">
+        <file alias="latestSQLite">storage/blank_v1.sqlite3</file>
     </qresource>
 </RCC>

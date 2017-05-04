@@ -20,35 +20,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
 #include <cstdint>
-#include <string>
-#include <vector>
+#include <atomic>
 
-class DataInfo
+template <typename ID>
+class UniqueId
 {
-  public:
-	  enum DataInfoE : uint8_t {
-          DataInfoE_Analysis,
-          DataInfoE_Tag,
-          DataInfoE_MD5,
-          DataInfoE_Magic,
-          DataInfoE_SHA1,
-          DataInfoE_SHA3_512,
-	  };
- 
-    DataInfo();
-    virtual ~DataInfo();
+public:
+    explicit UniqueId(ID startId) : m_id(startId) {}
+    virtual ~UniqueId() {}
+    ID nextId() { return ++m_id;}
 
-    void addInfo(const DataInfoE dataInfo, std::string value);
-    std::string info(const DataInfoE dataInfo) const;
-    std::vector<DataInfoE> dataInfos() const;
-    bool isValid(const DataInfoE dataInfo) const;
-
-  private:
-    std::vector<DataInfoE> m_infoKeys;
-    std::vector<std::string> m_infoValues;
-
-    // Hash implementation uses much more data than just the vectors
-    // Hash is not needed unless there could be many possible DataInfo stored ...
-    //std::unordered_map<DataInfoE, std::string> info;
+private:
+    std::atomic<ID> m_id;
 };
-

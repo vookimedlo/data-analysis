@@ -20,35 +20,29 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ****************************************************************************/
 
 #include <cstdint>
-#include <string>
-#include <vector>
 
-class DataInfo
+class Cache
 {
   public:
-	  enum DataInfoE : uint8_t {
-          DataInfoE_Analysis,
-          DataInfoE_Tag,
-          DataInfoE_MD5,
-          DataInfoE_Magic,
-          DataInfoE_SHA1,
-          DataInfoE_SHA3_512,
-	  };
- 
-    DataInfo();
-    virtual ~DataInfo();
+    Cache() :
+        m_isDirty(true),
+        m_isStored(false),
+        m_uniqueId(0)
+    {}
 
-    void addInfo(const DataInfoE dataInfo, std::string value);
-    std::string info(const DataInfoE dataInfo) const;
-    std::vector<DataInfoE> dataInfos() const;
-    bool isValid(const DataInfoE dataInfo) const;
+    virtual ~Cache() {}
 
-  private:
-    std::vector<DataInfoE> m_infoKeys;
-    std::vector<std::string> m_infoValues;
+    void setDirty(bool isDirty) {m_isDirty = isDirty;}
+    bool isDirty() const {return m_isDirty;}
 
-    // Hash implementation uses much more data than just the vectors
-    // Hash is not needed unless there could be many possible DataInfo stored ...
-    //std::unordered_map<DataInfoE, std::string> info;
+    void setStored(bool isStored) {m_isStored = isStored;}
+    bool isStored() const {return m_isStored;}
+
+    void setUniqueId(uint64_t id) {m_uniqueId = id;}
+    uint64_t getUniqueId() const {return m_uniqueId;}
+
+private:
+    bool m_isDirty;
+    bool m_isStored;
+    uint64_t m_uniqueId;
 };
-
