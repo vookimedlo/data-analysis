@@ -13,6 +13,13 @@
   <property name="windowTitle">
    <string>Open</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../resource/DataAnalyzer.qrc">
+    <normaloff>:/images/frame-Download-box-open.png</normaloff>:/images/frame-Download-box-open.png</iconset>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
@@ -118,7 +125,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resource/DataAnalyzer.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>fileSelectionToolButton</sender>
