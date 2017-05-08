@@ -23,7 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_OperationDialog.h"
 #include "../operations/Operations.h"
 
-class OperationDialog : public QDialog, Ui::OperationDialog
+class OperationDialog : public QDialog
 {
     Q_OBJECT
 
@@ -64,4 +64,7 @@ private:
     ModeE m_Mode;
     Operations &m_Operations;
     std::shared_ptr<Directory> m_result;
+
+protected:
+    Ui::OperationDialog m_uiDialog;
 };

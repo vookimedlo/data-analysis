@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 OperationDialog::OperationDialog(Operations &operations, ModeE mode, QWidget* parent) : QDialog(parent), m_IsScanningFinished(false), m_Mode(mode), m_Operations(operations)
 {
-    setupUi(this);
+    m_uiDialog.setupUi(this);
     m_Operations.observeProgress(std::bind(&OperationDialog::progressChanged, this, std::placeholders::_1));
     m_Operations.observeResult([&](std::shared_ptr<Directory> dir) {onResultReadyNotification(dir); });
     m_Operations.observeResult([&]() {onResultReadyNotification(); });
@@ -34,8 +34,8 @@ OperationDialog::OperationDialog(Operations &operations, ModeE mode, QWidget* pa
 
     if (m_Mode == ModeE_NoDirSelect)
     {
-        labelScanFSValue->setText(operations.path());
-        dirSelectButton->setVisible(false);
+        m_uiDialog.labelScanFSValue->setText(operations.path());
+        m_uiDialog.dirSelectButton->setVisible(false);
     }
 }
 
@@ -46,7 +46,7 @@ void OperationDialog::setTitle(const QString& title)
 
 void OperationDialog::setPath(const QString &value)
 {
-    labelScanFSValue->setText(value);
+    m_uiDialog.labelScanFSValue->setText(value);
 }
 
 void OperationDialog::onScannedDirChangeNotification(QString name)
@@ -72,7 +72,7 @@ std::shared_ptr<Directory> OperationDialog::getResult() const
 
 void OperationDialog::onUpdateProgress(int value)
 {
-    progressBar->setValue(value);
+    m_uiDialog.progressBar->setValue(value);
 }
 
 void OperationDialog::onScanningFinished()
@@ -82,20 +82,20 @@ void OperationDialog::onScanningFinished()
 
 void OperationDialog::onStart()
 {
-    dirSelectButton->setEnabled(false);
-    startButton->setEnabled(false);
+    m_uiDialog.dirSelectButton->setEnabled(false);
+    m_uiDialog.startButton->setEnabled(false);
     
     if (m_Mode == ModeE_DirSelect)
     {
         /* Infinite progressbar behavior */
-        progressBar->setMaximum(0);
-        progressBar->setMinimum(0);
-        m_Operations.start(labelScanFSValue->text());
+        m_uiDialog.progressBar->setMaximum(0);
+        m_uiDialog.progressBar->setMinimum(0);
+        m_Operations.start(m_uiDialog.labelScanFSValue->text());
     }
     else
     {
-        progressBar->setMaximum(m_Operations.totalFilesCount());
-        progressBar->setMinimum(0);
+        m_uiDialog.progressBar->setMaximum(m_Operations.totalFilesCount());
+        m_uiDialog.progressBar->setMinimum(0);
         m_Operations.start();
     }
 }
@@ -108,40 +108,40 @@ void OperationDialog::onCancel()
 void OperationDialog::onDirSelect()
 {
     QFileDialog dialog(this);
-    dialog.setDirectory(labelScanFSValue->text());
+    dialog.setDirectory(m_uiDialog.labelScanFSValue->text());
     dialog.setFileMode(QFileDialog::Directory);
     dialog.setOption(QFileDialog::ShowDirsOnly, true);
     if (dialog.exec() == QDialog::Accepted)
     {
-        labelScanFSValue->setText(dialog.directory().absolutePath());
+        m_uiDialog.labelScanFSValue->setText(dialog.directory().absolutePath());
     }
 }
 
 void OperationDialog::onFilesRead(unsigned value)
 {
-    labelScanFileNumberValue->setText(QString::fromStdString(std::to_string(value)));
+    m_uiDialog.labelScanFileNumberValue->setText(QString::fromStdString(std::to_string(value)));
 }
 
 void OperationDialog::onResultReady()
 {
     if (m_Mode == ModeE_NoDirSelect)
     {
-        cancelButton->setVisible(false);
+        m_uiDialog.cancelButton->setVisible(false);
     }
     else
     {
         /* Defined value is known so do not use maximum behavior anymore */
-        progressBar->setMaximum(100);        
+        m_uiDialog.progressBar->setMaximum(100);
     }
 
-    labelScanDirValue->clear();
-    stackedWidget->setCurrentIndex(0);
-    okButton->setFocus();
+    m_uiDialog.labelScanDirValue->clear();
+    m_uiDialog.stackedWidget->setCurrentIndex(0);
+    m_uiDialog.okButton->setFocus();
 }
 
 void OperationDialog::onScanDirChange(QString value)
 {
-    labelScanDirValue->setText(value);
+    m_uiDialog.labelScanDirValue->setText(value);
 }
 
 void OperationDialog::reject()
