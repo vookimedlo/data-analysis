@@ -62,6 +62,7 @@ public Q_SLOTS:
     void onClockwiseRotate();
     void onTagChanged(int row);
     void onAbout();
+    void onAboutComponents();
     void onAboutQtTriggered();
     void onMD5Triggered();
     void onSHA1Triggered();

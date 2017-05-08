@@ -31,6 +31,11 @@
     <qresource prefix="/text">
         <file alias="about.html">text/about.htm</file>
         <file alias="about.cs.html">text/about.cs.htm</file>
+        <file alias="aboutMagic.html">text/aboutMagic.htm</file>
+        <file alias="aboutZlib.html">text/aboutZlib.htm</file>
+        <file alias="aboutOpenClipart.html">text/aboutOpenClipart.htm</file>
+        <file alias="aboutQt.html">text/aboutQt.htm</file>
+        <file alias="aboutRegEx.html">text/aboutRegEx.htm</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="dataanalysis.css">css/dataanalysis.css</file>

@@ -49,6 +49,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "../reports/RTFReportThumbnailGenerator.h"
 #include "../reports/RTFReportWriter.h"
 #include "../storage/SQLiteStorage.h"
+#include "../ui/AboutComponentsDialog.h"
 #include "../ui/OpenDialog.h"
 #include "../ui/SaveAsDialog.h"
 #include "../ui/SearchDialog.h"
@@ -276,6 +277,12 @@ void DataAnalyzer::onAbout()
     QDialog dialog(this);
     uiAbout.setupUi(&dialog);
     uiAbout.textBrowser->setSource(tr("qrc:/text/about.html"));
+    dialog.exec();
+}
+
+void DataAnalyzer::onAboutComponents()
+{
+    AboutComponentsDialog dialog(this);
     dialog.exec();
 }
 

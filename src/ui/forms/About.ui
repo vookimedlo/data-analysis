@@ -57,6 +57,9 @@
      </item>
      <item>
       <widget class="QTextBrowser" name="textBrowser">
+       <property name="acceptDrops">
+        <bool>false</bool>
+       </property>
        <property name="source">
         <url>
          <string>qrc:/text/about.html</string>
@@ -111,7 +114,6 @@
   </layout>
  </widget>
  <resources>
-  <include location="../../resource/DataAnalyzer.qrc"/>
   <include location="../../resource/DataAnalyzer.qrc"/>
  </resources>
  <connections>

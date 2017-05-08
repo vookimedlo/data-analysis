@@ -59,7 +59,8 @@ SOURCES += \
     ../../src/operations/StoreOperation.cpp \
     ../../src/ui/SaveAsDialog.cpp \
     ../../src/operations/OpenOperation.cpp \
-    ../../src/ui/OpenDialog.cpp
+    ../../src/ui/OpenDialog.cpp \
+    ../../src/ui/AboutComponentsDialog.cpp
 
 
 HEADERS  += \
@@ -112,7 +113,8 @@ HEADERS  += \
     ../../src/ui/SaveAsDialog.h \
     ../../src/util/UniqueId.h \
     ../../src/operations/OpenOperation.h \
-    ../../src/ui/OpenDialog.h
+    ../../src/ui/OpenDialog.h \
+    ../../src/ui/AboutComponentsDialog.h
 
 TRANSLATIONS += \
     ../../src/resource/translations/dataanalyzer_cs_CZ.ts
@@ -128,7 +130,8 @@ FORMS += \
     ../../src/ui/forms/GlobalInformationDialog.ui \
     ../../src/ui/forms/SearchDialog.ui \
     ../../src/ui/forms/SaveAsDialog.ui \
-    ../../src/ui/forms/OpenDialog.ui
+    ../../src/ui/forms/OpenDialog.ui \
+    ../../src/ui/forms/AboutComponentsDialog.ui
 
 macx: ICON = ../../src/resource/AppIcon/macos/icon.icns
 
