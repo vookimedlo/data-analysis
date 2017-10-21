@@ -294,6 +294,15 @@
     <ClCompile Include="..\..\src\operations\StoreOperation.cpp">
       <Filter>Source Files\Operation</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\ui\AboutComponentsDialog.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_AboutComponentsDialog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_AboutComponentsDialog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\src\controller\DirectoryTreeModel.h">
@@ -367,6 +376,12 @@
     </CustomBuild>
     <CustomBuild Include="..\..\src\ui\forms\SaveAsDialog.ui">
       <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\forms\AboutComponentsDialog.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\ui\AboutComponentsDialog.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -492,6 +507,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\operations\OpenOperation.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_AboutComponentsDialog.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
